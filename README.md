@@ -2,9 +2,9 @@
 
 ## Contents:
 
-###NER/NLP Data Processing
+- NER/NLP Data Processing
 
-###PredictMEE 
+- PredictMEE 
 
 
 
