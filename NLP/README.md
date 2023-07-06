@@ -1,4 +1,4 @@
-# CrewATLAS - MollahLab Internal Repo
+# NLP/NER - MollahLab Internal Repo
 
 ## Requirements
 
