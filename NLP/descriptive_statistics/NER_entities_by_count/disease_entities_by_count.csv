@@ -1,0 +1,973 @@
+,word,count
+0,cancer,347
+1,tumor,137
+2,breast cancer,72
+3,7 mcf,52
+4,hcc,39
+5,hypoxia,35
+6,ad,30
+7,cancer lung,29
+8,gbm,26
+9,aml,26
+10,cancer prostate,23
+11,231 mb mda,22
+12,cancer gastric,20
+13,solid tumor,18
+14,gc,17
+15,nsclc,16
+16,mds,16
+17,obesity,15
+18,mef,14
+19,hd,14
+20,cardiac hypertrophy,13
+21,cancer pancreatic,13
+22,alzheimer disease s,13
+23,metabolic syndrome,12
+24,meningeoma,12
+25,bipolar disorder,12
+26,atrial fibrillation,12
+27,mcf7,11
+28,cancer colorectal,11
+29,acute leukemia myeloid,11
+30,skov3,10
+31,schizophrenia,10
+32,pca,10
+33,leukemia,10
+34,injury,10
+35,inflammation,10
+36,hypertrophy,10
+37,hypertension,10
+38,du145,10
+39,depression,10
+40,carcinoma hepatocellular,10
+41,glioma,9
+42,cardiovascular disease,9
+43,cancer colon,9
+44,blcum,9
+45,acc,9
+46,stroke,8
+47,ss,8
+48,pc3,8
+49,mi,8
+50,mcf,8
+51,hematological malignancy,8
+52,crc,8
+53,cll,8
+54,cicc,8
+55,apl,8
+56,tauopathy,7
+57,pah,7
+58,melanoma,7
+59,me,7
+60,infection viral,7
+61,hf,7
+62,escc,7
+63,chd,7
+64,carcinoma mammary,7
+65,burn injury,7
+66,brain tumor,7
+67,af,7
+68,adenocarcinoma,7
+69,seizure,6
+70,neuroblastoma,6
+71,mcl,6
+72,hemorrhage,6
+73,frda,6
+74,epilepsy,6
+75,disease neurodegenerative,6
+76,diabetes,6
+77,copd,6
+78,cmm,6
+79,cancer cell lung non small,6
+80,bls,6
+81,as,6
+82,wt,5
+83,sclc,5
+84,rcc,5
+85,ph,5
+86,npc,5
+87,lncap,5
+88,insulin resistance,5
+89,injury liver,5
+90,infection,5
+91,hdf,5
+92,depressive disorder major,5
+93,dcis,5
+94,cell cutaneous lymphoma t,5
+95,breast tumor,5
+96,atrt,5
+97,atherosclerosis,5
+98,anxiety,5
+99,aids,5
+100,3 pc,5
+101,231 mda,5
+102,tnbc,4
+103,sle,4
+104,sca7,4
+105,resox,4
+106,primary tumor,4
+107,phgg,4
+108,pd,4
+109,nb4,4
+110,nb,4
+111,myelodysplastic syndrome,4
+112,multiple myeloma,4
+113,mss,4
+114,mcf10um,4
+115,malnutrition,4
+116,malignant melanoma,4
+117,mafld,4
+118,ls,4
+119,infection virus,4
+120,infarction myocardial,4
+121,hypertrophic,4
+122,hyperglycemia,4
+123,hs,4
+124,h msi,4
+125,glioblastoma,4
+126,fibrosis,4
+127,fas,4
+128,failure heart,4
+129,disorder sleep,4
+130,disability intellectual,4
+131,dipg,4
+132,diabetes mellitus,4
+133,developmental disorder,4
+134,depression metabolic,4
+135,ccrcc,4
+136,cardiac injury ischemia reperfusion,4
+137,cardiac fibrosis,4
+138,cancer pediatric,4
+139,cancer liver,4
+140,bph,4
+141,bc,4
+142,autoimmune disease,4
+143,alt,4
+144,adenoma,4
+145,addiction drug,4
+146,acute leukemia,4
+147,aac,4
+148,vhl,3
+149,t47,3
+150,t4,3
+151,sz,3
+152,rth,3
+153,retinoblastoma,3
+154,pituitary tumor,3
+155,pgbms,3
+156,pc,3
+157,neoplasm,3
+158,ncbrs,3
+159,mrt,3
+160,mcao,3
+161,mb,3
+162,mammary tumor,3
+163,malignant tumor,3
+164,malignancy,3
+165,leukemia myeloid,3
+166,leishmaniasis,3
+167,inflammation lung,3
+168,hiv infection,3
+169,heart hypertrophy,3
+170,hcc tumor,3
+171,glioma pediatric,3
+172,esrd,3
+173,dn,3
+174,disorder neurodevelopmental,3
+175,disorder neurodegenerative,3
+176,disease polyglutamine repeat,3
+177,disease metabolic,3
+178,disease infectious,3
+179,diabetic,3
+180,despair,3
+181,depressive,3
+182,cvd,3
+183,cockayne syndrome,3
+184,ckd,3
+185,carcinoma invasive mammary,3
+186,carcinoma cell squamous,3
+187,carcinoma cell renal,3
+188,carcinoma cell lung squamous,3
+189,carcinoma cell head neck squamous,3
+190,carcinoma cell cell clear renal,3
+191,cancer oral,3
+192,cancer gastrointestinal,3
+193,burn,3
+194,breast cancer sporadic,3
+195,bare lymphocyte syndrome,3
+196,autism,3
+197,asthmatic,3
+198,agammaglobulinemia,3
+199,adenocarcinoma mammary,3
+200,adenocarcinoma lung,3
+201,acute leukemia promyelocytic,3
+202,aaa,3
+203,was,2
+204,ucec,2
+205,tumor wilms,2
+206,thymoma,2
+207,thym,2
+208,thca,2
+209,tgct,2
+210,tau,2
+211,t47d,2
+212,stad,2
+213,skcm,2
+214,sin,2
+215,sickness sleeping,2
+216,sarcoma,2
+217,rubinstein syndrome taybi,2
+218,rett syndrome,2
+219,ptsd,2
+220,prostate tumor,2
+221,promyelocytic,2
+222,prad,2
+223,phggs,2
+224,pev,2
+225,pe,2
+226,parathyroid tumor,2
+227,paad,2
+228,ov,2
+229,osteosarcoma,2
+230,or,2
+231,nsclc tumor,2
+232,neurotoxicity,2
+233,nervous system tumor,2
+234,neoplasia,2
+235,nash,2
+236,multiple sclerosis,2
+237,mr,2
+238,mental retardation syndrome,2
+239,melanoma uveal,2
+240,medulloblastoma,2
+241,mdd,2
+242,lusc,2
+243,luad,2
+244,lihc,2
+245,lh,2
+246,lgg,2
+247,laml,2
+248,iugr,2
+249,iri,2
+250,intestinal metaplasia,2
+251,insufficiency placental utero,2
+252,injury myocardial reperfusion,2
+253,infertility male,2
+254,infection respiratory tract upper,2
+255,immunodeficiency,2
+256,id syndrome,2
+257,icf syndrome,2
+258,hypothermia,2
+259,hypogammaglobulinemia,2
+260,hypertension pulmonary,2
+261,ho,2
+262,hn,2
+263,hippel lindau von,2
+264,hhcy,2
+265,hemorrhagic shock,2
+266,he5,2
+267,h,2
+268,goiter,2
+269,glioma grade high pediatric,2
+270,gh4,2
+271,fibrosis idiopathic pulmonary,2
+272,esca,2
+273,embryonic lethality,2
+274,ebv infection,2
+275,eauu,2
+276,dysms,2
+277,ds,2
+278,drouth,2
+279,down syndrome,2
+280,dm,2
+281,disorder mood,2
+282,disfunction metabolic,2
+283,disfunction endothelial,2
+284,disfunction,2
+285,disease pick s,2
+286,disease parkinson s,2
+287,disease neurological,2
+288,disease malignant,2
+289,disease inherit,2
+290,disease,2
+291,disability intellectual syndrome,2
+292,diffuse glioma intrinsic pontine,2
+293,dgs vcfs,2
+294,dermatomyositis,2
+295,dementia,2
+296,deformity musculoskeletal,2
+297,deficient pcaf,2
+298,deficient gcn5,2
+299,deficiency smarcb1,2
+300,deficiency mmr,2
+301,ddcrs,2
+302,dc,2
+303,cystadenocarcinoma ovarian serous,2
+304,cutaneous melanoma skin,2
+305,css,2
+306,cs,2
+307,cryptorchidism,2
+308,crs,2
+309,crpc,2
+310,congenital disease heart,2
+311,cognitive impairment,2
+312,cognitive defect,2
+313,cmml,2
+314,cin,2
+315,chronic leukemia lymphocytic,2
+316,cholangiocarcinoma,2
+317,chol,2
+318,chagas disease,2
+319,cell lymphoma peripheral t,2
+320,cell germ testicular tumor,2
+321,cardus,2
+322,cardiomyopathy diabetic,2
+323,carcinoma thyroid,2
+324,carcinoma lung,2
+325,carcinoma hepatocellular liver,2
+326,carcinoma esophageal,2
+327,carcinoma corpus endometrial uterine,2
+328,carcinoma cell lung small,2
+329,carcinoma cell lung non small,2
+330,carcinoma,2
+331,cancer thyroid,2
+332,cancer cell lung small,2
+333,cancer castration prostate resistant,2
+334,breast lesion,2
+335,breast carcinoma,2
+336,breast cancer invasive,2
+337,bpd,2
+338,bladder cancer,2
+339,bcs,2
+340,atrophy tubular,2
+341,atrophy brain,2
+342,ataxia telangiectasia,2
+343,ataxia mutate telangiectasia,2
+344,ataxia,2
+345,asthma,2
+346,associate disease disfunction fatty liver metabolic,2
+347,asd,2
+348,artery coronary disease,2
+349,angelman syndrome,2
+350,aki,2
+351,aging disease related,2
+352,adenomatous coli polyposis,2
+353,adenocarcinoma stomach,2
+354,adenocarcinoma prostate,2
+355,adenocarcinoma pancreatic,2
+356,ach4 alpha ip,2
+357,abnormality metabolic,2
+358,2 diabetes mellitus type,2
+359,1 hsv infection,2
+360,1 diabetic type,2
+361,1 diabetes type,2
+362,zn,1
+363,uvm,1
+364,undern,1
+365,ucs,1
+366,ubc,1
+367,tumor wilm,1
+368,trypanosomiasis,1
+369,trauma,1
+370,teratocarcinoma,1
+371,teleangiectasia,1
+372,tb,1
+373,syndrome williams,1
+374,supratentorial tumor,1
+375,stress traumatic,1
+376,ssss,1
+377,src,1
+378,sporadic wt,1
+379,spinal,1
+380,solid tumorsmc,1
+381,sio,1
+382,septic shock,1
+383,sepsis,1
+384,senescence,1
+385,scz,1
+386,scoliosis,1
+387,scleroderma,1
+388,schizophrenic,1
+389,scc,1
+390,sca10,1
+391,sc,1
+392,sarcomatoxoplasmosis soft tissue,1
+393,sarcoma soft tissue,1
+394,sarc,1
+395,rwpe,1
+396,rubtein taybi,1
+397,rts,1
+398,rhabdoid tumor,1
+399,rett,1
+400,retinoblastoma tumor,1
+401,retinoblastoma retinoblastoma,1
+402,restriction,1
+403,res,1
+404,related,1
+405,read,1
+406,ptcl,1
+407,psychosis,1
+408,prostate,1
+409,pituitary tumor tumorshuman,1
+410,pheochromocytoma,1
+411,peripheral,1
+412,pelvis renal,1
+413,pediatric tumor,1
+414,pdc,1
+415,pdac,1
+416,pcpg,1
+417,pcc,1
+418,paraganglioma,1
+419,overexpress,1
+420,ovarian tumor,1
+421,oscc,1
+422,organ reproductive tumor,1
+423,ohdo syndrome,1
+424,ogd,1
+425,og,1
+426,obstruction,1
+427,obese,1
+428,oatete,1
+429,neuronal tauopathy,1
+430,neuroect,1
+431,nervous peripheral system tumor,1
+432,nervous pediatric system tumor,1
+433,neoplasm parathyroid,1
+434,ndd,1
+435,mzct3,1
+436,myeloproliferative neoplasm,1
+437,myeloma,1
+438,mtc,1
+439,ms,1
+440,mm,1
+441,microvascularmyelodysplastic syndrome,1
+442,metaplasia,1
+443,metabolic,1
+444,mental retardationrocephaly,1
+445,mental retardation,1
+446,men1,1
+447,mda,1
+448,mcrc,1
+449,mbt,1
+450,mb231 mda,1
+451,mb23 mda,1
+452,maternal obesity,1
+453,mask syndrome,1
+454,mammary,1
+455,malnutrition perinatal,1
+456,malignantmelanomum,1
+457,malignant rhabdoid tumor,1
+458,malignant retina tumor,1
+459,malignancy myeloid,1
+460,malignancy multiple tissue,1
+461,male sterility,1
+462,malaria,1
+463,lubs syndrome,1
+464,loss,1
+465,lncap prostate tumor,1
+466,liver tumor,1
+467,link mental retardation x,1
+468,leukemia promyelocytic,1
+469,leukemia myelogeneous,1
+470,leukemia myeloblastic,1
+471,leukemia mammary tumorocytic,1
+472,leukemia lymphoblastic,1
+473,leukemia lineage mixed,1
+474,leuk,1
+475,leave,1
+476,korsakoff s syndrome,1
+477,kirp,1
+478,kipan,1
+479,kidney,1
+480,jme,1
+481,ivf,1
+482,ischemic stroke,1
+483,ischemia neuronal,1
+484,ischemia myocardial,1
+485,ipmn,1
+486,intraductal mucinous neoplasm papillary,1
+487,intestinal itsum stomach type,1
+488,injury nerve sciatic,1
+489,injury nerve,1
+490,injury mental,1
+491,injury lung,1
+492,injury ischemia myocardial reperfusion,1
+493,infratentorial tumor,1
+494,inflammation renal,1
+495,infection respiratory tract,1
+496,infection mtb,1
+497,infection microbial,1
+498,infarct,1
+499,imr,1
+500,impairment memory,1
+501,impairment,1
+502,im,1
+503,illness psychiatric,1
+504,illness mental,1
+505,iigastrointestinal stromal tumor,1
+506,ihcc,1
+507,ige,1
+508,idc,1
+509,id,1
+510,icf,1
+511,ibd,1
+512,i type,1
+513,hypotrichosis,1
+514,hypoplasia,1
+515,hypogammaglobulin infection respiratory tract,1
+516,hypertrophy ventricular,1
+517,hyperphagia,1
+518,hyperhomocysteinemia,1
+519,hyperglycemic,1
+520,hypercortisolemia,1
+521,hypercarbia,1
+522,hunger,1
+523,human immunodeficiency virus,1
+524,human immunodeficiency primary,1
+525,hsf,1
+526,hs tle,1
+527,homocysteinemic,1
+528,homocysteinemia,1
+529,hodgkin lymphoma non s,1
+530,hodgkin lymphoma,1
+531,hnscc,1
+532,hnsc,1
+533,hl,1
+534,hiv infected,1
+535,hgg,1
+536,hereditary non parathyroid tumor,1
+537,hereditary neoplasm or pediatric,1
+538,her2 neu,1
+539,hepatocarcinoma,1
+540,hepatocarcin,1
+541,hemorrhagic necrosis,1
+542,hemispheric tumor,1
+543,hematologic malignancy,1
+544,hemachromatosis,1
+545,h46060,1
+546,gs,1
+547,growth retardation,1
+548,growth intrauterine restriction,1
+549,glomerular sclerosis,1
+550,glioneuronal tumor,1
+551,glioma grade low,1
+552,glioma grade high,1
+553,glioblastoma pediatric,1
+554,glioblastoma multiforme,1
+555,glio neuronal tumor,1
+556,germ infection line viral,1
+557,gemcitabine nsclc,1
+558,gef,1
+559,gbmlgg,1
+560,gbm glioblastoma multiforme,1
+561,gastrointestinal infection,1
+562,gastroadenocarcinomum,1
+563,ganglioglioma,1
+564,gac,1
+565,ga,1
+566,ft,1
+567,fragile syndromex x,1
+568,fragile syndrome x,1
+569,focal glomerulosclerosisabetes mellitus mellitusetes segmental,1
+570,floating harbor syndrome,1
+571,fibrosis tubulointerstitial,1
+572,fibrosis renal,1
+573,fibrosis intersticial,1
+574,fhs,1
+575,fetal,1
+576,fcds,1
+577,fatigue,1
+578,failure,1
+579,ezh2,1
+580,esophageal gastric,1
+581,erythematosus lupus systemic,1
+582,epilepticus status,1
+583,epilepsys,1
+584,epilepsy juvenile myoclonic,1
+585,epilepsy hippocampal lobe sclerosis temporal,1
+586,epilepsy generalise idiopathic,1
+587,epilepsy focal generalise hereditary or,1
+588,epilepsy focal,1
+589,epilepsy febrile generalise plus seizure,1
+590,eoc,1
+591,emphysema,1
+592,embryonal neoplasm,1
+593,egc,1
+594,ebv ms negative,1
+595,eauuuu,1
+596,eau,1
+597,early leukemia myeloid,1
+598,eac,1
+599,dystrophy muscular,1
+600,dysplasia immuno osseous schimke,1
+601,dysmorphy facial,1
+602,dysmorphism facial,1
+603,dysmorphic,1
+604,dyslipidemia,1
+605,dysarthria,1
+606,drug,1
+607,dravet syndrome,1
+608,dna lesion,1
+609,dms,1
+610,distal extremity weakness,1
+611,disorder respiratory,1
+612,disorder psychiatric,1
+613,disorder post traumatic,1
+614,disorder post stress traumatic,1
+615,disorder polyglutamine,1
+616,disorder neuropsychiatric,1
+617,disorder neurological,1
+618,disorder neurodegenerative progressive,1
+619,disorder metabolic,1
+620,disorder mental,1
+621,disorder malformation,1
+622,disorder inflammatory neurodegenerative,1
+623,disorder inflammatory lung,1
+624,disorder hematopoietic,1
+625,disorder endocrin,1
+626,disorder drug related,1
+627,disfunction systolic,1
+628,disfunction rod,1
+629,disfunction renal,1
+630,disfunction mitochondrial,1
+631,diseasegressive disorder infectious neurodevelopmental,1
+632,disease viral,1
+633,disease tumor,1
+634,disease transgenerational,1
+635,disease psychiatric,1
+636,disease pleural,1
+637,disease parkinson,1
+638,disease non oncologic,1
+639,disease monogenic,1
+640,disease metastatic,1
+641,disease mendelian non,1
+642,disease kidney lung polycystic tumor,1
+643,disease kidney,1
+644,disease inheritance mendelian non,1
+645,disease inflammatory,1
+646,disease immunodeficiency primary,1
+647,disease immunodeficiency,1
+648,disease huntington s,1
+649,disease human inherit,1
+650,disease hippel lindau tumor von,1
+651,disease her2 neu positive,1
+652,disease heart ischemic,1
+653,disease glycogen storage type v,1
+654,disease genetic,1
+655,diffuse glioma intrinsic pediatric pontine,1
+656,diarrhea malabsorptive,1
+657,diabetic ii,1
+658,dh,1
+659,dgs,1
+660,dg diffuse glioma,1
+661,developmental disorder neurological,1
+662,depressive disorder,1
+663,depression seasonal,1
+664,dementia neurodegenerative,1
+665,deficit,1
+666,deficientpp,1
+667,deficiency tdg,1
+668,deficiency sirt1,1
+669,deficiency pi,1
+670,deficiency methionin,1
+671,deficiency immune,1
+672,deficiency iga igg or selective,1
+673,deficiency,1
+674,defect rubinstein syndromeneurological taybi,1
+675,defect neural tube,1
+676,defect heart outflow tract,1
+677,defect,1
+678,decline,1
+679,de vr,1
+680,dcm,1
+681,cytopenia,1
+682,cystic fibrosis,1
+683,cutaneous melanoma,1
+684,cutaneous malignant melanoma,1
+685,cushing syndrome,1
+686,cushing,1
+687,csb,1
+688,cowden syndrome,1
+689,cortical dysplasia focal,1
+690,coordination,1
+691,connective dermatomyositis disease tissue,1
+692,congenital malformation,1
+693,congenital defect heart inherit,1
+694,condition neurodegenerative,1
+695,condition growth retardation,1
+696,condition epileptogenic,1
+697,complication,1
+698,complement cross deficiency excision repair repair rodent,1
+699,combined immunodeficiency severe,1
+700,coli familial polyposis,1
+701,cognitive disturbance,1
+702,cognitive disfunction,1
+703,coffin siris syndrome,1
+704,coffin lowry syndrome,1
+705,cof,1
+706,coadread,1
+707,cm cutaneous melanoma,1
+708,closure defect neural tube,1
+709,class deficiency ii mhc,1
+710,chronic infection,1
+711,chronic hiv infection,1
+712,chronic hepatitis viral,1
+713,chronic disorder relapsing,1
+714,chronic disease proliferative,1
+715,chronic disease obstructive pulmonary,1
+716,chronic disease kidney,1
+717,chronic disease,1
+718,chromoplectic tumor,1
+719,chromatin developmental disorder remodeling,1
+720,chorea,1
+721,chondrocyte hypertrophy,1
+722,choline deficiency,1
+723,childhood obesity,1
+724,chaga disease s,1
+725,cesc,1
+726,cerebrovascular disease,1
+727,cerebro facio oculo skeletal syndrome,1
+728,cerebral,1
+729,central nervous system tumor,1
+730,central malignancy nervous system,1
+731,celll lymphoma peripheral t,1
+732,cellcarcinomum esophageal squamous,1
+733,cell germ,1
+734,cell clonal disorder hematopoietic stem,1
+735,cell clonal derived disorder stem,1
+736,cell clear rcc,1
+737,ccrc,1
+738,cardiovascular complication,1
+739,cardiomyopathy hypertrophic,1
+740,cardiac defect,1
+741,carcinosarcoma uterine,1
+742,carcinoma rockhepatocellular,1
+743,carcinoma prostate,1
+744,carcinoma nasopharyngeal,1
+745,carcinoma myeloidular,1
+746,carcinoma metastatic,1
+747,carcinoma lewis lung,1
+748,carcinoma hypopharyngeal laryngeal,1
+749,carcinoma hcc hepatocellular,1
+750,carcinoma ductal situ,1
+751,carcinoma ductal invasive,1
+752,carcinoma disorder hepatocellular myeloproliferative,1
+753,carcinoma colon,1
+754,carcinoma characterise event first molecular mres mutation one tumor was,1
+755,carcinoma cervical,1
+756,carcinoma cell ring signet,1
+757,carcinoma cell lung nonsmall,1
+758,carcinoma cell large,1
+759,carcinoma cell kidney papillary renal,1
+760,carcinoma cell esophageal squamous,1
+761,carcinoma cell escc esophageal squamous,1
+762,carcinoma cell cervical squamous,1
+763,carcinoma cell cervical cscl squamous,1
+764,carcinoma cell cell lung non small squamous,1
+765,carcinoma cell cell clear cowden cowden like or renal syndromedromic,1
+766,carcinoma cec cervical endometrioid,1
+767,cancersus h,1
+768,cancersrian cancersse carcinoma cell clear,1
+769,cancerrjcowden colorectal familial microsatellite stable syndrome,1
+770,cancernn disease pick,1
+771,cancerngiocarcinomum,1
+772,cancerc,1
+773,cancer stomach,1
+774,cancer sporadic,1
+775,cancer skin,1
+776,cancer renal,1
+777,cancer pca prostate,1
+778,cancer pancreas,1
+779,cancer ovarian serous,1
+780,cancer ovarian,1
+781,cancer nervous pediatric system,1
+782,cancer metastatic,1
+783,cancer lung primary,1
+784,cancer lung malignant mesotheliomaiiesotheliomum pleural,1
+785,cancer lncap prostate,1
+786,cancer liver primary,1
+787,cancer kidney pelvis renal,1
+788,cancer kidney pan,1
+789,cancer kidney,1
+790,cancer inherit,1
+791,cancer gallbladder,1
+792,cancer familial,1
+793,cancer extracranial solid,1
+794,cancer epithelial ovarian,1
+795,cancer driven kras,1
+796,cancer diffuse gastric,1
+797,cancer colorectal primary,1
+798,cancer colorectal familial nonpolypotic,1
+799,cancer cisdiffuse gastric,1
+800,cancer childhood,1
+801,cancer cell lung nonsmall,1
+802,cancer cell large lung,1
+803,cancer cell clear renal,1
+804,cancer carcinoma cell clear deficient ovarian tumors1um,1
+805,cancer cancertic,1
+806,cancer cancerrian gastric,1
+807,cancer cancer1um deficient,1
+808,cancer cancer,1
+809,cae,1
+810,cad,1
+811,c9hre,1
+812,c6 glioma,1
+813,burns,1
+814,bronchopulmonary dysplasia,1
+815,brg1 deficiency,1
+816,breast sporadic tumor,1
+817,breast refractary,1
+818,breast carcinoma invasive,1
+819,breast cancer prostate,1
+820,breast cancer other renal,1
+821,breast cancer onset ovarian syndrome,1
+822,breast cancer negative triple,1
+823,breast cancer negative,1
+824,breast cancer familial ovarian,1
+825,breast cancer er,1
+826,breast cancer colon,1
+827,breakage nijmegen syndrome,1
+828,brca,1
+829,brain malignant tumor,1
+830,brain lesion,1
+831,brain injury traumatic,1
+832,brain glioma grade lour,1
+833,brain developmental lesion,1
+834,brain cancer,1
+835,brain,1
+836,bradycardia,1
+837,brachydactyly,1
+838,bowel disease inflammatory,1
+839,bladder tumor,1
+840,bladder carcinoma urothelial,1
+841,bladder cancer urothelial,1
+842,bl,1
+843,bisexual infection infectionsexual,1
+844,bipolar disorder mood,1
+845,bipolar,1
+846,biotin deficiency,1
+847,bilc breast carcinoma invasive lobular,1
+848,benign hyperplasia prostatic,1
+849,benign familial neonatal seizure,1
+850,bcs er,1
+851,bcdrenal carcinoma cell,1
+852,baraitser nicolaides,1
+853,b cockayne syndrome type,1
+854,b cell diffuse lymphoma,1
+855,b cell diffuse large lymphoma,1
+856,b cell diffuse dlbl large lymphoma,1
+857,autosomal disorder dominant neurological,1
+858,autosomal disorder dominant,1
+859,autoimmunity,1
+860,autoimmune diabetes mellitus,1
+861,autoimmune demyelination,1
+862,autoimmune condition,1
+863,autism disorder spectrum,1
+864,atypical rhabdoid teratoid tumor,1
+865,atypical ductal hyperplasia,1
+866,atrx syndrome,1
+867,atrx,1
+868,atrt myc tumor,1
+869,atropic gastritis,1
+870,atrophy muscle,1
+871,atrophy disuse,1
+872,atherosclerotic lesion,1
+873,atherosclerotic,1
+874,ataxia inherit,1
+875,ataxia friedreich s,1
+876,ataxia frda friedreich s,1
+877,astrocytoma iv,1
+878,astrocytoma,1
+879,as d,1
+880,arthritis rheumatoid,1
+881,arthritis rheumatic,1
+882,arthritis gouty,1
+883,arthritis,1
+884,artery coronary obstruction,1
+885,artery cerebral middle occlusion,1
+886,arterial hypertension pulmonary,1
+887,arrythmia cardiac,1
+888,arrythmia,1
+889,areflexia,1
+890,apnea obstructive sleep,1
+891,aplasia hypo thymus,1
+892,aplasia gland hypo parathyroid,1
+893,apc,1
+894,anovulation,1
+895,anomaly congenital,1
+896,anomaly centromeric facial immunodeficiency instability,1
+897,animal disease nagana,1
+898,aneurismal dilatation,1
+899,aneuploidy,1
+900,anemia cell sickle,1
+901,aml25,1
+902,aml24,1
+903,aml11,1
+904,aml fpd,1
+905,aml enl mll positive,1
+906,aml disease,1
+907,alzheimer neurodegenerative,1
+908,alse alshre c9,1
+909,als,1
+910,alpha link mental retardation thalassemia x,1
+911,allergic reaction,1
+912,all b,1
+913,alcoholic disease liver,1
+914,alcohol fetal syndrome,1
+915,airway chronic disease inflammatory,1
+916,aie de elsevier masson resistance sasles syndrome,1
+917,agc,1
+918,aerobiosis,1
+919,adrenocortical carcinoma,1
+920,adnp autism syndrome,1
+921,adnp autism disability intellectual syndrome,1
+922,adh,1
+923,adenosquamous carcinoma,1
+924,adenoma tubular,1
+925,adenoma parathyroid,1
+926,adenoid carcinoma cystic,1
+927,adenocarcinoma tubular,1
+928,adenocarcinoma rectum,1
+929,adenocarcinoma mucinous,1
+930,adenocarcinoma gastric,1
+931,adenocarcinoma endocervical,1
+932,adenocarcinoma eac esophageal,1
+933,adenocarcinoma ductal pancreatic,1
+934,adenocarcinoma diffuse dtsum stomach type,1
+935,adenocarcinoma colon rectum,1
+936,adenocarcinoma cac colon,1
+937,adenocarcinoma breast,1
+938,adeno carcinoma,1
+939,addison disease s,1
+940,addison,1
+941,addiction cocain,1
+942,acute pancreatitis severe,1
+943,acute leukemia megakaryoblastic,1
+944,acute leukaemiaeral myeloid,1
+945,acute injury lung,1
+946,active chronic,1
+947,acquired immunodeficiency syndrome,1
+948,acidosis,1
+949,ach,1
+950,acc tumor,1
+951,abuse drug,1
+952,abuse alcohol,1
+953,absence childhood epilepsy,1
+954,abnormality epigenetic,1
+955,abnormality,1
+956,aaag1,1
+957,49 a,1
+958,35 h,1
+959,3 adenocarcinomagc,1
+960,3,1
+961,2 diabetes type,1
+962,2 autoimmune connective dermatomyositis disease mi tissue,1
+963,17 ftdp,1
+964,17 chromosome dementia frontotemporal link parkinsonism,1
+965,12thyroid hormone resistance,1
+966,12 b vitamin,1
+967,10um mcf,1
+968,10 mcf,1
+969,1 hiv infection,1
+970,1 hiv,1
+971,1 eso ny,1
