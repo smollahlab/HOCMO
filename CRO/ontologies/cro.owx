@@ -12,12 +12,400 @@
     <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Import>http://purl.obolibrary.org/obo/doid/releases/2023-05-31/doid.owl</Import>
+    <Import>http://purl.obolibrary.org/obo/go/releases/2023-06-11/go.owl</Import>
     <Declaration>
         <Class IRI="#CRO_0000001"/>
     </Declaration>
     <Declaration>
         <Class IRI="#CRO_0000002"/>
     </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000066"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000067"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000068"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000069"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000070"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000071"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000072"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000073"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000074"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000075"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000076"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000077"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000078"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000079"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000080"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000081"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000082"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000083"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000084"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000085"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000086"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000087"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000088"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000089"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000090"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000091"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000092"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000093"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000094"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000095"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000096"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000097"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000098"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000099"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000100"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000101"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000102"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000103"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000104"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000105"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000106"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000107"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000108"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000109"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000110"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000111"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000112"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000113"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000114"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000115"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000116"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000117"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CRO_0000120"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#CRO_0000121"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#CRO_0000001"/>
+        <Class IRI="#CRO_0000120"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000002"/>
+        <Class IRI="#CRO_0000120"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000066"/>
+        <Class IRI="#CRO_0000002"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000067"/>
+        <Class IRI="#CRO_0000066"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000068"/>
+        <Class IRI="#CRO_0000066"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000069"/>
+        <Class IRI="#CRO_0000002"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000070"/>
+        <Class IRI="#CRO_0000069"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000071"/>
+        <Class IRI="#CRO_0000069"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000072"/>
+        <Class IRI="#CRO_0000069"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000073"/>
+        <Class IRI="#CRO_0000069"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000074"/>
+        <Class IRI="#CRO_0000069"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000075"/>
+        <Class IRI="#CRO_0000069"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000076"/>
+        <Class IRI="#CRO_0000069"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000077"/>
+        <Class IRI="#CRO_0000069"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000078"/>
+        <Class IRI="#CRO_0000069"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000079"/>
+        <Class IRI="#CRO_0000002"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000079"/>
+        <Class IRI="#CRO_0000079"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000080"/>
+        <Class IRI="#CRO_0000079"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000081"/>
+        <Class IRI="#CRO_0000002"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000081"/>
+        <Class IRI="#CRO_0000081"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000082"/>
+        <Class IRI="#CRO_0000081"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000083"/>
+        <Class IRI="#CRO_0000081"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000084"/>
+        <Class IRI="#CRO_0000001"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000085"/>
+        <Class IRI="#CRO_0000084"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000086"/>
+        <Class IRI="#CRO_0000085"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000087"/>
+        <Class IRI="#CRO_0000085"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000088"/>
+        <Class IRI="#CRO_0000085"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000089"/>
+        <Class IRI="#CRO_0000085"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000090"/>
+        <Class IRI="#CRO_0000084"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000091"/>
+        <Class IRI="#CRO_0000090"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000092"/>
+        <Class IRI="#CRO_0000090"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000093"/>
+        <Class IRI="#CRO_0000090"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000094"/>
+        <Class IRI="#CRO_0000090"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000095"/>
+        <Class IRI="#CRO_0000090"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000096"/>
+        <Class IRI="#CRO_0000001"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000097"/>
+        <Class IRI="#CRO_0000096"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000098"/>
+        <Class IRI="#CRO_0000097"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000099"/>
+        <Class IRI="#CRO_0000097"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000100"/>
+        <Class IRI="#CRO_0000096"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000101"/>
+        <Class IRI="#CRO_0000100"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000102"/>
+        <Class IRI="#CRO_0000100"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000103"/>
+        <Class IRI="#CRO_0000001"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000104"/>
+        <Class IRI="#CRO_0000103"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000105"/>
+        <Class IRI="#CRO_0000103"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000106"/>
+        <Class IRI="#CRO_0000105"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000107"/>
+        <Class IRI="#CRO_0000105"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000108"/>
+        <Class IRI="#CRO_0000103"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000109"/>
+        <Class IRI="#CRO_0000103"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000110"/>
+        <Class IRI="#CRO_0000001"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000111"/>
+        <Class IRI="#CRO_0000001"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000112"/>
+        <Class IRI="#CRO_0000001"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000113"/>
+        <Class IRI="#CRO_0000001"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000114"/>
+        <Class IRI="#CRO_0000001"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000115"/>
+        <Class IRI="#CRO_0000114"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000116"/>
+        <Class IRI="#CRO_0000114"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CRO_0000117"/>
+        <Class IRI="#CRO_0000001"/>
+    </SubClassOf>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>#CRO_0000001</IRI>
@@ -27,6 +415,271 @@
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>#CRO_0000002</IRI>
         <Literal>ATPDependentChromatinRemodeler</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000066</IRI>
+        <Literal>SWI/SNF</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000067</IRI>
+        <Literal>BAF</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000068</IRI>
+        <Literal>PBAF</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000069</IRI>
+        <Literal>ISWI</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000070</IRI>
+        <Literal>b-WICH</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000071</IRI>
+        <Literal>WICH</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000072</IRI>
+        <Literal>WSTF</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000073</IRI>
+        <Literal>NoRC</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000074</IRI>
+        <Literal>RSF</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000075</IRI>
+        <Literal>ACF</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000076</IRI>
+        <Literal>CHRAC</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000077</IRI>
+        <Literal>CERF</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000078</IRI>
+        <Literal>NuRF</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000079</IRI>
+        <Literal>CHD</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000080</IRI>
+        <Literal>NuRD</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000081</IRI>
+        <Literal>INO80</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000082</IRI>
+        <Literal>SRCAP</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000083</IRI>
+        <Literal>TIP60/p400</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000084</IRI>
+        <Literal>AcetylationModifier</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000085</IRI>
+        <Literal>HistoneAcetyltransferase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000086</IRI>
+        <Literal>HAT1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000087</IRI>
+        <Literal>CBP</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000088</IRI>
+        <Literal>GNAT</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000089</IRI>
+        <Literal>MYST</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000090</IRI>
+        <Literal>HistoneDeacetylase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000091</IRI>
+        <Literal>ClassI</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000092</IRI>
+        <Literal>ClassIIa</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000093</IRI>
+        <Literal>ClassIIb</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000094</IRI>
+        <Literal>ClassIII</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000095</IRI>
+        <Literal>ClassIV</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000096</IRI>
+        <Literal>MethylationModifier</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000097</IRI>
+        <Literal>HistoneMethyltransferase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000098</IRI>
+        <Literal>LysineMethyltransferase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000099</IRI>
+        <Literal>ProteinArginineMethyltransferase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000100</IRI>
+        <Literal>HistoneDemethylase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000101</IRI>
+        <Literal>JumonjiCDomain</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000102</IRI>
+        <Literal>LysineSpecificDemethylase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000103</IRI>
+        <Literal>ADP-ribosylationModifier</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000104</IRI>
+        <Literal>PolyADP-RibosePolymerase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000105</IRI>
+        <Literal>ADP-ribosyltransferase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000106</IRI>
+        <Literal>ARTD</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000107</IRI>
+        <Literal>ARTC</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000108</IRI>
+        <Literal>ADP-riboseProteinHydrolase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000109</IRI>
+        <Literal>polyADP-riboseGlyhydrolase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000110</IRI>
+        <Literal>PhosphorylationModifier</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000111</IRI>
+        <Literal>UbiquitinylationModifier</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000112</IRI>
+        <Literal>SumoylationModifier</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000113</IRI>
+        <Literal>CitrullinationModifier</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000114</IRI>
+        <Literal>O-GlcNAcylation</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000115</IRI>
+        <Literal>O-GlcNAcTransferase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000116</IRI>
+        <Literal>O-GlcNAcase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000117</IRI>
+        <Literal>PeptidylArginineDeiminase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#CRO_0000120</IRI>
+        <Literal>ChromatinRegulator</Literal>
     </AnnotationAssertion>
 </Ontology>
 
