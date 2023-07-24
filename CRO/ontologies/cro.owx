@@ -15,6 +15,12 @@
     <Import>http://purl.obolibrary.org/obo/doid/releases/2023-05-31/doid.owl</Import>
     <Import>http://purl.obolibrary.org/obo/go/releases/2023-06-11/go.owl</Import>
     <Declaration>
+        <Class IRI="#CHDClassII"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CHDClassIII"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#CRO_0000001"/>
     </Declaration>
     <Declaration>
@@ -63,9 +69,6 @@
         <Class IRI="#CRO_0000079"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#CRO_0000080"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#CRO_0000081"/>
     </Declaration>
     <Declaration>
@@ -81,9 +84,6 @@
         <Class IRI="#CRO_0000085"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#CRO_0000086"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#CRO_0000087"/>
     </Declaration>
     <Declaration>
@@ -97,18 +97,6 @@
     </Declaration>
     <Declaration>
         <Class IRI="#CRO_0000091"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#CRO_0000092"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#CRO_0000093"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#CRO_0000094"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#CRO_0000095"/>
     </Declaration>
     <Declaration>
         <Class IRI="#CRO_0000096"/>
@@ -180,8 +168,178 @@
         <Class IRI="#CRO_0000120"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#CRO_0000121"/>
+        <Class IRI="#GBAF"/>
     </Declaration>
+    <Declaration>
+        <Class IRI="#H2AModification"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#H2BModification"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#H3Modification"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#H4Modification"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Hbo1"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HistoneDeacetylaseClassI"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HistoneDeacetylaseClassII"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HistoneDeacetylaseClassIII"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HistoneDeacetylaseClassIIa"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HistoneDeacetylaseClassIIb"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HistoneDeacetylaseClassIV"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HistoneModification"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#domain"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Mof/Tip60"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Moz/Qkf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#has_domain"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ANM1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ARID_DNA-binding_domain"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Acyl-CoAN-acyltransferase"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#AdoMet_MTases"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#BRPF1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#BRPF2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Bromodomain"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#CHD"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#CHD4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#CHDSubfamilyIISANT-likeDomain"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ChromobarrelBindingDomain"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Chromodomain"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#FY-rich_C-terminal"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ING1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ING_N_histone-binding"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#JmjC"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#JmjN"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#KAT1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#KAT2A"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#KAT6A"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#KAT8"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#KDM3B"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#KDM5A"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#KDM5B"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#KMT2A"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#KMT2B"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#MYST-typeHATDomain"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PHD"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PWWP"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#SET"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#SIR2L"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#SIR4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#SIR5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#SIRT1Domain"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#SIRT4Domain"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#SIRT5Domain"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ePHD"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Aminotransferase_class_I/classII"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#CHDClassII"/>
+        <Class IRI="#CRO_0000079"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CHDClassIII"/>
+        <Class IRI="#CRO_0000079"/>
+    </SubClassOf>
     <SubClassOf>
         <Class IRI="#CRO_0000001"/>
         <Class IRI="#CRO_0000120"/>
@@ -247,14 +405,6 @@
         <Class IRI="#CRO_0000002"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#CRO_0000079"/>
-        <Class IRI="#CRO_0000079"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#CRO_0000080"/>
-        <Class IRI="#CRO_0000079"/>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#CRO_0000081"/>
         <Class IRI="#CRO_0000002"/>
     </SubClassOf>
@@ -279,10 +429,6 @@
         <Class IRI="#CRO_0000084"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#CRO_0000086"/>
-        <Class IRI="#CRO_0000085"/>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#CRO_0000087"/>
         <Class IRI="#CRO_0000085"/>
     </SubClassOf>
@@ -300,23 +446,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#CRO_0000091"/>
-        <Class IRI="#CRO_0000090"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#CRO_0000092"/>
-        <Class IRI="#CRO_0000090"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#CRO_0000093"/>
-        <Class IRI="#CRO_0000090"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#CRO_0000094"/>
-        <Class IRI="#CRO_0000090"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#CRO_0000095"/>
-        <Class IRI="#CRO_0000090"/>
+        <Class IRI="#CRO_0000079"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#CRO_0000096"/>
@@ -406,6 +536,508 @@
         <Class IRI="#CRO_0000117"/>
         <Class IRI="#CRO_0000001"/>
     </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#GBAF"/>
+        <Class IRI="#CRO_0000066"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#H2AModification"/>
+        <Class IRI="#HistoneModification"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#H2BModification"/>
+        <Class IRI="#HistoneModification"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#H3Modification"/>
+        <Class IRI="#HistoneModification"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#H4Modification"/>
+        <Class IRI="#HistoneModification"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Hbo1"/>
+        <Class IRI="#CRO_0000089"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HistoneDeacetylaseClassI"/>
+        <Class IRI="#CRO_0000090"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HistoneDeacetylaseClassII"/>
+        <Class IRI="#CRO_0000090"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HistoneDeacetylaseClassIII"/>
+        <Class IRI="#CRO_0000090"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HistoneDeacetylaseClassIIa"/>
+        <Class IRI="#HistoneDeacetylaseClassII"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HistoneDeacetylaseClassIIb"/>
+        <Class IRI="#HistoneDeacetylaseClassII"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HistoneDeacetylaseClassIV"/>
+        <Class IRI="#CRO_0000090"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Mof/Tip60"/>
+        <Class IRI="#CRO_0000089"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Moz/Qkf"/>
+        <Class IRI="#CRO_0000089"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#CHDClassII"/>
+        <Class IRI="#CHDClassIII"/>
+        <Class IRI="#CRO_0000091"/>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#CRO_0000099"/>
+        <NamedIndividual IRI="#ANM1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#ARID_DNA-binding_domain"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#Acyl-CoAN-acyltransferase"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#AdoMet_MTases"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CRO_0000085"/>
+        <NamedIndividual IRI="#BRPF1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CRO_0000085"/>
+        <NamedIndividual IRI="#BRPF2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#Bromodomain"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#HistoneDeacetylaseClassII"/>
+        <NamedIndividual IRI="#CHD4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#CHDSubfamilyIISANT-likeDomain"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#ChromobarrelBindingDomain"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#Chromodomain"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#FY-rich_C-terminal"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CRO_0000120"/>
+        <NamedIndividual IRI="#ING1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#ING_N_histone-binding"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#JmjC"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#JmjN"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CRO_0000085"/>
+        <NamedIndividual IRI="#KAT1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CRO_0000085"/>
+        <NamedIndividual IRI="#KAT2A"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CRO_0000085"/>
+        <NamedIndividual IRI="#KAT6A"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CRO_0000089"/>
+        <NamedIndividual IRI="#KAT8"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CRO_0000102"/>
+        <NamedIndividual IRI="#KDM3B"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CRO_0000102"/>
+        <NamedIndividual IRI="#KDM5A"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CRO_0000102"/>
+        <NamedIndividual IRI="#KDM5B"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CRO_0000098"/>
+        <NamedIndividual IRI="#KMT2A"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CRO_0000098"/>
+        <NamedIndividual IRI="#KMT2B"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#MYST-typeHATDomain"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#PHD"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#PWWP"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#SET"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#HistoneDeacetylaseClassIII"/>
+        <NamedIndividual IRI="#SIR2L"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#HistoneDeacetylaseClassIII"/>
+        <NamedIndividual IRI="#SIR4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#HistoneDeacetylaseClassIII"/>
+        <NamedIndividual IRI="#SIR5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#SIRT1Domain"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#SIRT4Domain"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#SIRT5Domain"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#ePHD"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#domain"/>
+        <NamedIndividual IRI="#Aminotransferase_class_I/classII"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#ANM1"/>
+        <NamedIndividual IRI="#AdoMet_MTases"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#BRPF1"/>
+        <NamedIndividual IRI="#Bromodomain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#BRPF1"/>
+        <NamedIndividual IRI="#PHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#BRPF1"/>
+        <NamedIndividual IRI="#PWWP"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#BRPF1"/>
+        <NamedIndividual IRI="#ePHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#BRPF2"/>
+        <NamedIndividual IRI="#Bromodomain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#BRPF2"/>
+        <NamedIndividual IRI="#PHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#BRPF2"/>
+        <NamedIndividual IRI="#PWWP"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#BRPF2"/>
+        <NamedIndividual IRI="#ePHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#CHD4"/>
+        <NamedIndividual IRI="#CHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#CHD4"/>
+        <NamedIndividual IRI="#CHDSubfamilyIISANT-likeDomain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#CHD4"/>
+        <NamedIndividual IRI="#Chromodomain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#CHD4"/>
+        <NamedIndividual IRI="#PHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#ING1"/>
+        <NamedIndividual IRI="#ING_N_histone-binding"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#ING1"/>
+        <NamedIndividual IRI="#PHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#ING_N_histone-binding"/>
+        <NamedIndividual IRI="#ARID_DNA-binding_domain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#ING_N_histone-binding"/>
+        <NamedIndividual IRI="#JmjC"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#ING_N_histone-binding"/>
+        <NamedIndividual IRI="#JmjN"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#ING_N_histone-binding"/>
+        <NamedIndividual IRI="#PHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KAT1"/>
+        <NamedIndividual IRI="#Aminotransferase_class_I/classII"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KAT2A"/>
+        <NamedIndividual IRI="#Acyl-CoAN-acyltransferase"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KAT2A"/>
+        <NamedIndividual IRI="#Bromodomain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KAT6A"/>
+        <NamedIndividual IRI="#Acyl-CoAN-acyltransferase"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KAT6A"/>
+        <NamedIndividual IRI="#MYST-typeHATDomain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KAT6A"/>
+        <NamedIndividual IRI="#PHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KAT8"/>
+        <NamedIndividual IRI="#Acyl-CoAN-acyltransferase"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KAT8"/>
+        <NamedIndividual IRI="#ChromobarrelBindingDomain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KAT8"/>
+        <NamedIndividual IRI="#MYST-typeHATDomain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KDM3B"/>
+        <NamedIndividual IRI="#JmjC"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KDM5A"/>
+        <NamedIndividual IRI="#ARID_DNA-binding_domain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KDM5A"/>
+        <NamedIndividual IRI="#JmjC"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KDM5A"/>
+        <NamedIndividual IRI="#JmjN"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KDM5A"/>
+        <NamedIndividual IRI="#PHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KDM5B"/>
+        <NamedIndividual IRI="#ARID_DNA-binding_domain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KDM5B"/>
+        <NamedIndividual IRI="#JmjC"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KDM5B"/>
+        <NamedIndividual IRI="#JmjN"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KDM5B"/>
+        <NamedIndividual IRI="#PHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KMT2A"/>
+        <NamedIndividual IRI="#Bromodomain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KMT2A"/>
+        <NamedIndividual IRI="#FY-rich_C-terminal"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KMT2A"/>
+        <NamedIndividual IRI="#PHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KMT2A"/>
+        <NamedIndividual IRI="#SET"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KMT2A"/>
+        <NamedIndividual IRI="#ePHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KMT2B"/>
+        <NamedIndividual IRI="#Bromodomain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KMT2B"/>
+        <NamedIndividual IRI="#FY-rich_C-terminal"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KMT2B"/>
+        <NamedIndividual IRI="#PHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KMT2B"/>
+        <NamedIndividual IRI="#SET"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#KMT2B"/>
+        <NamedIndividual IRI="#ePHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#PHD"/>
+        <NamedIndividual IRI="#SIRT4Domain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#SIR2L"/>
+        <NamedIndividual IRI="#SIRT1Domain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#SIR4"/>
+        <NamedIndividual IRI="#SIRT4Domain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_domain"/>
+        <NamedIndividual IRI="#SIR5"/>
+        <NamedIndividual IRI="#SIRT5Domain"/>
+    </ObjectPropertyAssertion>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#has_domain"/>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000053"/>
+    </SubObjectPropertyOf>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#has_domain"/>
+        <Class IRI="#CRO_0000120"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/RO_0000053"/>
+        <Class IRI="#domain"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#has_domain"/>
+        <Class IRI="#domain"/>
+    </ObjectPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <IRI>#ANM1</IRI>
+        <Literal>PRMT1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <IRI>#BRPF1</IRI>
+        <Literal>BR140
+Peregrin</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <IRI>#BRPF2</IRI>
+        <Literal>BRD1
+BRL</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <IRI>#CHD4</IRI>
+        <Literal>Mi2-beta</Literal>
+    </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>#CRO_0000001</IRI>
@@ -424,7 +1056,7 @@
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>#CRO_0000067</IRI>
-        <Literal>BAF</Literal>
+        <Literal>cBAF</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -488,11 +1120,6 @@
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>#CRO_0000080</IRI>
-        <Literal>NuRD</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>#CRO_0000081</IRI>
         <Literal>INO80</Literal>
     </AnnotationAssertion>
@@ -518,13 +1145,8 @@
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>#CRO_0000086</IRI>
-        <Literal>HAT1</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>#CRO_0000087</IRI>
-        <Literal>CBP</Literal>
+        <Literal>p300/CBP</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -544,27 +1166,7 @@
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>#CRO_0000091</IRI>
-        <Literal>ClassI</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>#CRO_0000092</IRI>
-        <Literal>ClassIIa</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>#CRO_0000093</IRI>
-        <Literal>ClassIIb</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>#CRO_0000094</IRI>
-        <Literal>ClassIII</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>#CRO_0000095</IRI>
-        <Literal>ClassIV</Literal>
+        <Literal>CHDClassI</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -594,7 +1196,7 @@
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>#CRO_0000101</IRI>
-        <Literal>JumonjiCDomain</Literal>
+        <Literal>JumonjiDomain</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -677,9 +1279,58 @@
         <Literal>PeptidylArginineDeiminase</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <IRI>#CRO_0000120</IRI>
+        <Literal></Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>#CRO_0000120</IRI>
         <Literal>ChromatinRegulator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <IRI>#KAT1</IRI>
+        <Literal>GTK</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <IRI>#KAT2A</IRI>
+        <Literal>GCN5</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <IRI>#KAT6A</IRI>
+        <Literal>MYST-3</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <IRI>#KAT8</IRI>
+        <Literal>hMOF
+MYST-1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <IRI>#KDM5A</IRI>
+        <Literal>JARID1A
+RBBP-2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <IRI>#KDM5B</IRI>
+        <Literal>PLU-1
+JARID1B</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <IRI>#KMT2A</IRI>
+        <Literal>ALL-1
+CXXC7</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <IRI>#KMT2B</IRI>
+        <Literal>WBP-7</Literal>
     </AnnotationAssertion>
 </Ontology>
 
