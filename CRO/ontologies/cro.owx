@@ -225,6 +225,9 @@
         <NamedIndividual IRI="#ARID_DNA-binding_domain"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#ATAC_complex"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#Acyl-CoAN-acyltransferase"/>
     </Declaration>
     <Declaration>
@@ -256,6 +259,9 @@
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#FY-rich_C-terminal"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#HBO_complex"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#ING1"/>
@@ -297,13 +303,31 @@
         <NamedIndividual IRI="#KMT2B"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#MLL1_complex"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#MLL4_complex"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#MSL_complex"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#MYST-typeHATDomain"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#NSL_complex"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#NuRD_complex"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#PHD"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#PWWP"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#SAGA_complex"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#SET"/>
@@ -327,10 +351,25 @@
         <NamedIndividual IRI="#SIRT5Domain"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#SIR_complex"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Sin3A_complex"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Sin3B_complex"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#TFTC_complex"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#ePHD"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Aminotransferase_class_I/classII"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#MOZ/MORF_Complex"/>
     </Declaration>
     <SubClassOf>
         <Class IRI="#CHDClassII"/>
@@ -606,6 +645,10 @@
         <NamedIndividual IRI="#ARID_DNA-binding_domain"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="http://purl.obolibrary.org/obo/GO_0140672"/>
+        <NamedIndividual IRI="#ATAC_complex"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="#domain"/>
         <NamedIndividual IRI="#Acyl-CoAN-acyltransferase"/>
     </ClassAssertion>
@@ -644,6 +687,10 @@
     <ClassAssertion>
         <Class IRI="#domain"/>
         <NamedIndividual IRI="#FY-rich_C-terminal"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.obolibrary.org/obo/GO_0000123"/>
+        <NamedIndividual IRI="#HBO_complex"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#CRO_0000120"/>
@@ -698,8 +745,28 @@
         <NamedIndividual IRI="#KMT2B"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="http://purl.obolibrary.org/obo/GO_0044665"/>
+        <NamedIndividual IRI="#MLL1_complex"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.obolibrary.org/obo/GO_0044666"/>
+        <NamedIndividual IRI="#MLL4_complex"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.obolibrary.org/obo/GO_0072487"/>
+        <NamedIndividual IRI="#MSL_complex"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="#domain"/>
         <NamedIndividual IRI="#MYST-typeHATDomain"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.obolibrary.org/obo/GO_0044545"/>
+        <NamedIndividual IRI="#NSL_complex"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.obolibrary.org/obo/GO_0016581"/>
+        <NamedIndividual IRI="#NuRD_complex"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#domain"/>
@@ -708,6 +775,10 @@
     <ClassAssertion>
         <Class IRI="#domain"/>
         <NamedIndividual IRI="#PWWP"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.obolibrary.org/obo/GO_0000124"/>
+        <NamedIndividual IRI="#SAGA_complex"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#domain"/>
@@ -738,6 +809,22 @@
         <NamedIndividual IRI="#SIRT5Domain"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="http://purl.obolibrary.org/obo/GO_0005677"/>
+        <NamedIndividual IRI="#SIR_complex"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.obolibrary.org/obo/GO_0016580"/>
+        <NamedIndividual IRI="#Sin3A_complex"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.obolibrary.org/obo/GO_0016580"/>
+        <NamedIndividual IRI="#Sin3B_complex"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.obolibrary.org/obo/GO_0033276"/>
+        <NamedIndividual IRI="#TFTC_complex"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="#domain"/>
         <NamedIndividual IRI="#ePHD"/>
     </ClassAssertion>
@@ -745,12 +832,21 @@
         <Class IRI="#domain"/>
         <NamedIndividual IRI="#Aminotransferase_class_I/classII"/>
     </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://purl.obolibrary.org/obo/GO_0070776"/>
+        <NamedIndividual IRI="#MOZ/MORF_Complex"/>
+    </ClassAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#ANM1"/>
         <NamedIndividual IRI="#AdoMet_MTases"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#BRPF1"/>
+        <NamedIndividual IRI="#MOZ/MORF_Complex"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#BRPF1"/>
         <NamedIndividual IRI="#Bromodomain"/>
@@ -771,6 +867,16 @@
         <NamedIndividual IRI="#ePHD"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#BRPF2"/>
+        <NamedIndividual IRI="#HBO_complex"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#BRPF2"/>
+        <NamedIndividual IRI="#MOZ/MORF_Complex"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#BRPF2"/>
         <NamedIndividual IRI="#Bromodomain"/>
@@ -789,6 +895,11 @@
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#BRPF2"/>
         <NamedIndividual IRI="#ePHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#CHD4"/>
+        <NamedIndividual IRI="#NuRD_complex"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
@@ -809,6 +920,16 @@
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#CHD4"/>
         <NamedIndividual IRI="#PHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#ING1"/>
+        <NamedIndividual IRI="#Sin3A_complex"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#ING1"/>
+        <NamedIndividual IRI="#Sin3B_complex"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
@@ -846,6 +967,21 @@
         <NamedIndividual IRI="#Aminotransferase_class_I/classII"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#KAT2A"/>
+        <NamedIndividual IRI="#ATAC_complex"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#KAT2A"/>
+        <NamedIndividual IRI="#SAGA_complex"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#KAT2A"/>
+        <NamedIndividual IRI="#TFTC_complex"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#KAT2A"/>
         <NamedIndividual IRI="#Acyl-CoAN-acyltransferase"/>
@@ -854,6 +990,11 @@
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#KAT2A"/>
         <NamedIndividual IRI="#Bromodomain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#KAT6A"/>
+        <NamedIndividual IRI="#MOZ/MORF_Complex"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
@@ -869,6 +1010,16 @@
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#KAT6A"/>
         <NamedIndividual IRI="#PHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#KAT8"/>
+        <NamedIndividual IRI="#MSL_complex"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#KAT8"/>
+        <NamedIndividual IRI="#NSL_complex"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
@@ -931,6 +1082,11 @@
         <NamedIndividual IRI="#PHD"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#KMT2A"/>
+        <NamedIndividual IRI="#MLL1_complex"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#KMT2A"/>
         <NamedIndividual IRI="#Bromodomain"/>
@@ -954,6 +1110,11 @@
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#KMT2A"/>
         <NamedIndividual IRI="#ePHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#KMT2B"/>
+        <NamedIndividual IRI="#MLL4_complex"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
@@ -986,9 +1147,19 @@
         <NamedIndividual IRI="#SIRT4Domain"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#SIR2L"/>
+        <NamedIndividual IRI="#SIR_complex"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#SIR2L"/>
         <NamedIndividual IRI="#SIRT1Domain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        <NamedIndividual IRI="#SIR4"/>
+        <NamedIndividual IRI="#SIR_complex"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
