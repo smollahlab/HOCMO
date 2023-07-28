@@ -217,16 +217,112 @@
         <Class IRI="#Moz/Qkf"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#acetylates"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#activates"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#binds"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#cell_expresses"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#citrullinates"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#complexes_with"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#correlates_with"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#covalently_modifies"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#deacetylates"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#degrades"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#demethylates"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#dephosphorylates"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#enables"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#ends_before"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#expresses"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#genetically_interacts_with"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#genomically_related_to"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#has_domain"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#has_gene_product"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#interacts_with"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#involved_in"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#located_in"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#methylates"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#modulates"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#molecularly_interacts_with"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#phosphorylates"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#prevents"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#recruit"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#releases"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#removes"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#represses"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#requires"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#silences"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#sumoylates"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#transfers"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#ubiquitinylates"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#ANM1"/>
@@ -272,6 +368,33 @@
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#FY-rich_C-terminal"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#H2AAcetylation"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#H3Acetylation"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#H3K36me3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#H3K4Methylation"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#H3K4me3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#H3K9me1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#H3K9me2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#H4Acetylation"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#H4R3Methylation"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#HBO_complex"/>
@@ -772,6 +895,42 @@
         <NamedIndividual IRI="#FY-rich_C-terminal"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="#H3Modification"/>
+        <NamedIndividual IRI="#H2AAcetylation"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#H3Modification"/>
+        <NamedIndividual IRI="#H3Acetylation"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#H3Modification"/>
+        <NamedIndividual IRI="#H3K36me3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#H3Modification"/>
+        <NamedIndividual IRI="#H3K4Methylation"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#H3Modification"/>
+        <NamedIndividual IRI="#H3K4me3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#H3Modification"/>
+        <NamedIndividual IRI="#H3K9me1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#H3Modification"/>
+        <NamedIndividual IRI="#H3K9me2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#H3Modification"/>
+        <NamedIndividual IRI="#H4Acetylation"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#H3Modification"/>
+        <NamedIndividual IRI="#H4R3Methylation"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class abbreviatedIRI="obo:GO_0000123"/>
         <NamedIndividual IRI="#HBO_complex"/>
     </ClassAssertion>
@@ -1008,6 +1167,11 @@
         <NamedIndividual IRI="#MOZ/MORF_Complex"/>
     </ClassAssertion>
     <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="obo:RO_0003000"/>
+        <NamedIndividual IRI="#ANM1"/>
+        <NamedIndividual IRI="#H4R3Methylation"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#ANM1"/>
         <NamedIndividual IRI="#AdoMet_MTases"/>
@@ -1073,6 +1237,11 @@
         <NamedIndividual IRI="#MOZ/MORF_Complex"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#binds"/>
+        <NamedIndividual IRI="#BRPF1"/>
+        <NamedIndividual IRI="#H3K36me3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#BRPF1"/>
         <NamedIndividual IRI="#Bromodomain"/>
@@ -1101,6 +1270,11 @@
         <ObjectProperty abbreviatedIRI="obo:BFO_0000050"/>
         <NamedIndividual IRI="#BRPF2"/>
         <NamedIndividual IRI="#MOZ/MORF_Complex"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#binds"/>
+        <NamedIndividual IRI="#BRPF2"/>
+        <NamedIndividual IRI="#H3K36me3"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
@@ -1243,6 +1417,16 @@
         <NamedIndividual IRI="#PHD"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="obo:RO_0003000"/>
+        <NamedIndividual IRI="#KAT1"/>
+        <NamedIndividual IRI="#H2AAcetylation"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="obo:RO_0003000"/>
+        <NamedIndividual IRI="#KAT1"/>
+        <NamedIndividual IRI="#H4Acetylation"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#KAT1"/>
         <NamedIndividual IRI="#Aminotransferase_class_I/classII"/>
@@ -1271,6 +1455,16 @@
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#KAT2A"/>
         <NamedIndividual IRI="#Bromodomain"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="obo:RO_0003000"/>
+        <NamedIndividual IRI="#KAT6A"/>
+        <NamedIndividual IRI="#H3Acetylation"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="obo:RO_0003000"/>
+        <NamedIndividual IRI="#KAT6A"/>
+        <NamedIndividual IRI="#H4Acetylation"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
@@ -1308,6 +1502,21 @@
         <NamedIndividual IRI="#JmjC"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#removes"/>
+        <NamedIndividual IRI="#KDM3B"/>
+        <NamedIndividual IRI="#H3K9me1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#removes"/>
+        <NamedIndividual IRI="#KDM3B"/>
+        <NamedIndividual IRI="#H3K9me2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#binds"/>
+        <NamedIndividual IRI="#KDM5A"/>
+        <NamedIndividual IRI="#H3K4me3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#KDM5A"/>
         <NamedIndividual IRI="#ARID_DNA-binding_domain"/>
@@ -1346,6 +1555,16 @@
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#KDM5B"/>
         <NamedIndividual IRI="#PHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#removes"/>
+        <NamedIndividual IRI="#KDM5B"/>
+        <NamedIndividual IRI="#H3K4me3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="obo:RO_0003000"/>
+        <NamedIndividual IRI="#KMT2A"/>
+        <NamedIndividual IRI="#H3K4Methylation"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
@@ -1371,6 +1590,11 @@
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#KMT2A"/>
         <NamedIndividual IRI="#ePHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="obo:RO_0003000"/>
+        <NamedIndividual IRI="#KMT2B"/>
+        <NamedIndividual IRI="#H3K4Methylation"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#has_domain"/>
@@ -1508,8 +1732,108 @@
         <NamedIndividual IRI="#regulation_of_DNA_templated_transcription"/>
     </ObjectPropertyAssertion>
     <SubObjectPropertyOf>
+        <ObjectProperty IRI="#acetylates"/>
+        <ObjectProperty IRI="#covalently_modifies"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#activates"/>
+        <ObjectProperty abbreviatedIRI="obo:RO_0002213"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#binds"/>
+        <ObjectProperty IRI="#molecularly_interacts_with"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#cell_expresses"/>
+        <ObjectProperty IRI="#expresses"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#citrullinates"/>
+        <ObjectProperty IRI="#covalently_modifies"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#complexes_with"/>
+        <ObjectProperty IRI="#molecularly_interacts_with"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#covalently_modifies"/>
+        <ObjectProperty IRI="#molecularly_interacts_with"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#deacetylates"/>
+        <ObjectProperty IRI="#covalently_modifies"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#degrades"/>
+        <ObjectProperty abbreviatedIRI="obo:RO_0002212"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#demethylates"/>
+        <ObjectProperty IRI="#covalently_modifies"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#dephosphorylates"/>
+        <ObjectProperty IRI="#covalently_modifies"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#expresses"/>
+        <ObjectProperty IRI="#genomically_related_to"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#genetically_interacts_with"/>
+        <ObjectProperty IRI="#interacts_with"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
         <ObjectProperty IRI="#has_domain"/>
         <ObjectProperty abbreviatedIRI="obo:RO_0000053"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#has_gene_product"/>
+        <ObjectProperty IRI="#genomically_related_to"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#methylates"/>
+        <ObjectProperty IRI="#covalently_modifies"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#molecularly_interacts_with"/>
+        <ObjectProperty IRI="#interacts_with"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#phosphorylates"/>
+        <ObjectProperty IRI="#covalently_modifies"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#prevents"/>
+        <ObjectProperty abbreviatedIRI="obo:RO_0002212"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#recruit"/>
+        <ObjectProperty IRI="#molecularly_interacts_with"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#releases"/>
+        <ObjectProperty IRI="#molecularly_interacts_with"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#removes"/>
+        <ObjectProperty IRI="#molecularly_interacts_with"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#represses"/>
+        <ObjectProperty abbreviatedIRI="obo:RO_0002212"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#silences"/>
+        <ObjectProperty abbreviatedIRI="obo:RO_0002212"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#sumoylates"/>
+        <ObjectProperty IRI="#covalently_modifies"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#ubiquitinylates"/>
+        <ObjectProperty IRI="#covalently_modifies"/>
     </SubObjectPropertyOf>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#has_domain"/>
