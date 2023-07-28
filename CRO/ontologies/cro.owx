@@ -211,6 +211,9 @@
         <Class IRI="#domain"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#protein"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Mof/Tip60"/>
     </Declaration>
     <Declaration>
@@ -367,6 +370,12 @@
         <NamedIndividual IRI="#DNA_binding"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#E2F2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#EZH2"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#FY-rich_C-terminal"/>
     </Declaration>
     <Declaration>
@@ -493,6 +502,9 @@
         <NamedIndividual IRI="#ePHD"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#hepatocellular_carcinoma"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#histone_H3-K14_acetylation"/>
     </Declaration>
     <Declaration>
@@ -529,10 +541,19 @@
         <NamedIndividual IRI="#monoubiquitinated_histone_deubiquitination"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#negative_regulation_of_stem_cell_differentiation"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#p53_binding"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#positive_regulation_of_DNA-templated_transcription"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#positive_regulation_of_cell_population_proliferation"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#positive_regulation_of_epithelial_to_mesenchymal_transition"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#protein_binding"/>
@@ -565,13 +586,22 @@
         <NamedIndividual IRI="#regulation_of_tubulin_deacetylation"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#sequence-specific_double-stranded_DNA_binding"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#transcription_coactivator_activity"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Aminotransferase_class_I/classII"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#G1/S_transition_of_mitotic_cell_cycle"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#MOZ/MORF_Complex"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#regulation_of_transcription_involved_in_G1/S_transition_of_mitotic_cell_cycle"/>
     </Declaration>
     <SubClassOf>
         <Class IRI="#CHDClassII"/>
@@ -891,6 +921,14 @@
         <NamedIndividual IRI="#DNA_binding"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="#protein"/>
+        <NamedIndividual IRI="#E2F2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#protein"/>
+        <NamedIndividual IRI="#EZH2"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="#domain"/>
         <NamedIndividual IRI="#FY-rich_C-terminal"/>
     </ClassAssertion>
@@ -1059,6 +1097,10 @@
         <NamedIndividual IRI="#ePHD"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class abbreviatedIRI="obo:DOID_684"/>
+        <NamedIndividual IRI="#hepatocellular_carcinoma"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class abbreviatedIRI="obo:GO_0044154"/>
         <NamedIndividual IRI="#histone_H3-K14_acetylation"/>
     </ClassAssertion>
@@ -1107,12 +1149,24 @@
         <NamedIndividual IRI="#monoubiquitinated_histone_deubiquitination"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class abbreviatedIRI="obo:GO_2000737"/>
+        <NamedIndividual IRI="#negative_regulation_of_stem_cell_differentiation"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class abbreviatedIRI="obo:GO_0002039"/>
         <NamedIndividual IRI="#p53_binding"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class abbreviatedIRI="obo:GO_0045893"/>
         <NamedIndividual IRI="#positive_regulation_of_DNA-templated_transcription"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="obo:GO_0008284"/>
+        <NamedIndividual IRI="#positive_regulation_of_cell_population_proliferation"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="obo:GO_0010718"/>
+        <NamedIndividual IRI="#positive_regulation_of_epithelial_to_mesenchymal_transition"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class abbreviatedIRI="obo:GO_0005515"/>
@@ -1155,6 +1209,10 @@
         <NamedIndividual IRI="#regulation_of_tubulin_deacetylation"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class abbreviatedIRI="obo:GO_1990837"/>
+        <NamedIndividual IRI="#sequence-specific_double-stranded_DNA_binding"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class abbreviatedIRI="obo:GO_0003713"/>
         <NamedIndividual IRI="#transcription_coactivator_activity"/>
     </ClassAssertion>
@@ -1163,8 +1221,16 @@
         <NamedIndividual IRI="#Aminotransferase_class_I/classII"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class abbreviatedIRI="obo:GO_0000082"/>
+        <NamedIndividual IRI="#G1/S_transition_of_mitotic_cell_cycle"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class abbreviatedIRI="obo:GO_0070776"/>
         <NamedIndividual IRI="#MOZ/MORF_Complex"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="obo:GO_0000083"/>
+        <NamedIndividual IRI="#regulation_of_transcription_involved_in_G1/S_transition_of_mitotic_cell_cycle"/>
     </ClassAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty abbreviatedIRI="obo:RO_0003000"/>
@@ -1320,6 +1386,51 @@
         <ObjectProperty IRI="#has_domain"/>
         <NamedIndividual IRI="#CHD4"/>
         <NamedIndividual IRI="#PHD"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="obo:RO_0003304"/>
+        <NamedIndividual IRI="#E2F2"/>
+        <NamedIndividual IRI="#hepatocellular_carcinoma"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#involved_in"/>
+        <NamedIndividual IRI="#E2F2"/>
+        <NamedIndividual IRI="#regulation_of_cell_cycle"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#involved_in"/>
+        <NamedIndividual IRI="#E2F2"/>
+        <NamedIndividual IRI="#sequence-specific_double-stranded_DNA_binding"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#involved_in"/>
+        <NamedIndividual IRI="#E2F2"/>
+        <NamedIndividual IRI="#regulation_of_transcription_involved_in_G1/S_transition_of_mitotic_cell_cycle"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="obo:RO_0003304"/>
+        <NamedIndividual IRI="#EZH2"/>
+        <NamedIndividual IRI="#hepatocellular_carcinoma"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#involved_in"/>
+        <NamedIndividual IRI="#EZH2"/>
+        <NamedIndividual IRI="#negative_regulation_of_stem_cell_differentiation"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#involved_in"/>
+        <NamedIndividual IRI="#EZH2"/>
+        <NamedIndividual IRI="#positive_regulation_of_cell_population_proliferation"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#involved_in"/>
+        <NamedIndividual IRI="#EZH2"/>
+        <NamedIndividual IRI="#positive_regulation_of_epithelial_to_mesenchymal_transition"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#involved_in"/>
+        <NamedIndividual IRI="#EZH2"/>
+        <NamedIndividual IRI="#G1/S_transition_of_mitotic_cell_cycle"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#enables"/>
@@ -1715,6 +1826,16 @@
         <ObjectProperty IRI="#involved_in"/>
         <NamedIndividual IRI="#TFTC_complex"/>
         <NamedIndividual IRI="#regulation_of_transcription_by_RNA_polymerase_II"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="obo:RO_0002213"/>
+        <NamedIndividual IRI="#MOZ/MORF_Complex"/>
+        <NamedIndividual IRI="#E2F2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="obo:RO_0002213"/>
+        <NamedIndividual IRI="#MOZ/MORF_Complex"/>
+        <NamedIndividual IRI="#EZH2"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#enables"/>
