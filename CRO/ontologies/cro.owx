@@ -457,6 +457,12 @@
         <NamedIndividual IRI="#PWWP"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#RBBP4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#RBBP7"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#RNA_polymerase_II-specific_DNA-binding_transcription_factor_binding"/>
     </Declaration>
     <Declaration>
@@ -1037,6 +1043,14 @@
         <NamedIndividual IRI="#PWWP"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="#protein"/>
+        <NamedIndividual IRI="#RBBP4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#protein"/>
+        <NamedIndividual IRI="#RBBP7"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class abbreviatedIRI="obo:GO_0061629"/>
         <NamedIndividual IRI="#RNA_polymerase_II-specific_DNA-binding_transcription_factor_binding"/>
     </ClassAssertion>
@@ -1411,6 +1425,16 @@
         <ObjectProperty abbreviatedIRI="obo:RO_0003304"/>
         <NamedIndividual IRI="#EZH2"/>
         <NamedIndividual IRI="#hepatocellular_carcinoma"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#correlates_with"/>
+        <NamedIndividual IRI="#EZH2"/>
+        <NamedIndividual IRI="#RBBP4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#correlates_with"/>
+        <NamedIndividual IRI="#EZH2"/>
+        <NamedIndividual IRI="#RBBP7"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#involved_in"/>
