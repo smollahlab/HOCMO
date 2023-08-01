@@ -3,15 +3,19 @@
 An ontology to describe objects in the chromatin regulator domain. Developed using [Protege 5.6.1](http://protegeproject.github.io/protege/installation/).
 
 ## Ontology Structure
-CRO imports 
-- [DOID v2023-05-31 (29.6 MB)](http://purl.obolibrary.org/obo/doid/releases/2023-05-31/doid.owl)
-- [GO v2023-06-11 (123 MB)](http://purl.obolibrary.org/obo/go/releases/2023-06-11/go.owl)
-```
-```
+CRO defines a native taxonomy that all chromatin regulators can be classified into. CRO imports [GO v2023-06-11 (123 MB)](http://purl.obolibrary.org/obo/go/releases/2023-06-11/go.owl) and  [DOID v2023-05-31 (29.6 MB)](http://purl.obolibrary.org/obo/doid/releases/2023-05-31/doid.owl) to provide terms relating to molecular functiones, biological processes, cellular components, and disease characteristics. There are three additional top level classes defined CRO:
+- `protein` represents proteins that are affected downstream by CRs but are not themselves CRs.
+- `domain` represents protein domains.
+-  `HistoneModifications` is further separated into `H2AModification`, `H2BModification`, `H3Modification`, and `H4Mofication` to represent covalent histone modifications such as H3K9me1. 
+
+Most properties are imported as part of  [GO](http://purl.obolibrary.org/obo/go/releases/2023-06-11/go.owl) and [DOID](http://purl.obolibrary.org/obo/doid/releases/2023-05-31/doid.owl) imports. Many properties are also natively defined in CRO based on their frequency of appearance in CR-related journal articles. 
+
+Chromatin regulator instances along with their respective complexes, domains, diseases, protein-protein interactions, and GO terms are encoded in CRO as proof of concept. The main example, involving the relationship between BRPF1 and heptacellular carcinoma comes from [this journal publication](https://doi.org/10.1038/s42003-021-02405-6). Additionally, 15 chromatin regulators chosen from [crewDB tables](https://github.com/smollahlab/crewATLAS/tree/master/NLP) were incorporated. Information that was not found in the tables was based on research from [UniProt](https://www.uniprot.org/), [HGNC](https://www.genenames.org/), [InterPro](https://www.ebi.ac.uk/interpro/entry/InterPro/#table), and [StringDB](https://string-db.org/). 
 
 ## References
 #### Ontology Design
 - Arp R, Smith B, Spear AD. Building ontologies with basic formal ontology. Cambridge, MA: The MIT Press; 2015.
+- Cheng, C.LH., Tsang, F.HC., Wei, L. et al. Bromodomain-containing protein BRPF1 is a therapeutic target for liver cancer. Commun Biol 4, 888 (2021). https://doi.org/10.1038/s42003-021-02405-6
 - Debellis, Michael. (2021). A Practical Guide to Building OWL Ontologies Using Protégé 5.5 and Plugins. 
 - Noy, N. & Mcguinness, Deborah. (2001). Ontology Development 101: A Guide to Creating Your First Ontology. Knowledge Systems Laboratory. 32. 
 #### Chromatin Regulator Review
