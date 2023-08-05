@@ -4,13 +4,13 @@ An ontology to describe objects in the chromatin regulator domain. Developed usi
 
 ## Ontology Structure
 CRO defines a native taxonomy that all chromatin regulators can be classified into. CRO imports [GO v2023-06-11 (123 MB)](http://purl.obolibrary.org/obo/go/releases/2023-06-11/go.owl) and  [DOID v2023-05-31 (29.6 MB)](http://purl.obolibrary.org/obo/doid/releases/2023-05-31/doid.owl) to provide terms relating to molecular functiones, biological processes, cellular components, and disease characteristics. There are three additional top level classes defined CRO:
-- `protein` represents proteins that are affected downstream by CRs but are not themselves CRs.
+- `protein` represents proteins that are affected by CRs but are not themselves CRs.
 - `domain` represents protein domains.
 -  `HistoneModifications` is further separated into `H2AModification`, `H2BModification`, `H3Modification`, and `H4Mofication` to represent covalent histone modifications such as H3K9me1. 
 
-Most properties are imported as part of  [GO](http://purl.obolibrary.org/obo/go/releases/2023-06-11/go.owl) and [DOID](http://purl.obolibrary.org/obo/doid/releases/2023-05-31/doid.owl) imports. Many properties are also natively defined in CRO based on their frequency of appearance in CR-related journal articles. 
+Most properties are imported as part of  [GO](http://purl.obolibrary.org/obo/go/releases/2023-06-11/go.owl) and [DOID](http://purl.obolibrary.org/obo/doid/releases/2023-05-31/doid.owl) imports. Many properties are also natively defined in CRO based on the frequency of their appearance in CR-related journal articles. 
 
-Chromatin regulator instances along with their respective complexes, domains, diseases, protein-protein interactions, and GO terms are encoded in CRO as proof of concept. The main example, involving the relationship between BRPF1 and hepatocellular carcinoma comes from [this journal publication](https://doi.org/10.1038/s42003-021-02405-6). Additionally, 15 chromatin regulators chosen from [crewDB tables](https://github.com/smollahlab/crewATLAS/tree/master/NLP) are with their family classification and histone targets are incorporated. Information other than histone targets was based on research from [UniProt](https://www.uniprot.org/), [HGNC](https://www.genenames.org/), [InterPro](https://www.ebi.ac.uk/interpro/entry/InterPro/#table), and [StringDB](https://string-db.org/). 
+Chromatin regulator instances along with their respective complexes, domains, diseases, protein-protein interactions, and GO terms are encoded in CRO as proof of concept. The main example, involving the relationship between BRPF1 and hepatocellular carcinoma comes from [this journal publication](https://doi.org/10.1038/s42003-021-02405-6). Additionally, 15 chromatin regulators chosen from [crewDB tables](https://github.com/smollahlab/crewATLAS/tree/master/NLP) with their family classification and histone targets are incorporated. Information other than histone targets was based on research from [UniProt](https://www.uniprot.org/), [HGNC](https://www.genenames.org/), [InterPro](https://www.ebi.ac.uk/interpro/entry/InterPro/#table), and [StringDB](https://string-db.org/). 
 
 ## References
 #### Ontology Design
