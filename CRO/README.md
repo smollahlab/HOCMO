@@ -1,8 +1,8 @@
 # Chromatin Regulator Ontology (CRO)
 
+### Description
 An ontology to describe objects in the chromatin regulator domain. Developed using [Protege 5.6.1](http://protegeproject.github.io/protege/installation/).
 
-## Ontology Structure
 CRO defines a native taxonomy that all chromatin regulators can be classified into. CRO imports [GO v2023-06-11 (123 MB)](http://purl.obolibrary.org/obo/go/releases/2023-06-11/go.owl) and  [DOID v2023-05-31 (29.6 MB)](http://purl.obolibrary.org/obo/doid/releases/2023-05-31/doid.owl) to provide terms relating to molecular functiones, biological processes, cellular components, and disease characteristics. There are three additional top level classes defined CRO:
 - `protein` represents proteins that are affected by CRs but are not themselves CRs.
 - `domain` represents protein domains.
@@ -12,13 +12,16 @@ Most properties are imported as part of  [GO](http://purl.obolibrary.org/obo/go/
 
 Chromatin regulator instances along with their respective complexes, domains, diseases, protein-protein interactions, and GO terms are encoded in CRO as proof of concept. The main example, involving the relationship between BRPF1 and hepatocellular carcinoma comes from [this journal publication](https://doi.org/10.1038/s42003-021-02405-6). Additionally, 15 chromatin regulators chosen from [crewDB tables](https://github.com/smollahlab/crewATLAS/tree/master/NLP) with their family classification and histone targets are incorporated. Information other than histone targets was based on research from [UniProt](https://www.uniprot.org/), [HGNC](https://www.genenames.org/), [InterPro](https://www.ebi.ac.uk/interpro/entry/InterPro/#table), and [StringDB](https://string-db.org/). 
 
-## References
-#### Ontology Design
+### Prerequisites
+- [Protege](http://protegeproject.github.io/protege/) 5.6.1 - Setup instructions [here](http://protegeproject.github.io/protege/installation/). Run Protege.exe and when the GUI opens, view CRO by clicking `file > open` and then selecting the location of `cro.owx` in the local file directory. 
+
+### References
+##### Ontology Design
 - Arp R, Smith B, Spear AD. Building ontologies with basic formal ontology. Cambridge, MA: The MIT Press; 2015.
 - Cheng, C.LH., Tsang, F.HC., Wei, L. et al. Bromodomain-containing protein BRPF1 is a therapeutic target for liver cancer. Commun Biol 4, 888 (2021). https://doi.org/10.1038/s42003-021-02405-6
 - Debellis, Michael. (2021). A Practical Guide to Building OWL Ontologies Using Protégé 5.5 and Plugins. 
 - Noy, N. & Mcguinness, Deborah. (2001). Ontology Development 101: A Guide to Creating Your First Ontology. Knowledge Systems Laboratory. 32. 
-#### Chromatin Regulator Review
+##### Chromatin Regulator Review
 - D'Oto A, Tian QW, Davidoff AM, Yang J. Histone demethylases and their roles in cancer epigenetics. _J Med Oncol Ther_. 2016;1(2):34-40.
 - Flaus A, Martin DM, Barton GJ, Owen-Hughes T. Identification of multiple distinct Snf2 subfamilies with conserved structural motifs. _Nucleic Acids Res_. 2006;34(10):2887-2905. Published 2006 May 31. doi:10.1093/nar/gkl295
 - Gillette TG, Hill JA. Readers, writers, and erasers: chromatin as the whiteboard of heart disease. _Circ Res_. 2015;116(7):1245-1253. doi:10.1161/CIRCRESAHA.116.303630
@@ -33,3 +36,6 @@ Chromatin regulator instances along with their respective complexes, domains, di
 - Thomas T, Voss AK. The diverse biological roles of MYST histone acetyltransferase family proteins. _Cell Cycle_. 2007;6(6):696-704. doi:10.4161/cc.6.6.4013
 - Zhang P, Torres K, Liu X, Liu CG, Pollock RE. An Overview of Chromatin-Regulating Proteins in Cells. _Curr Protein Pept Sci_. 2016;17(5):401-410. doi:10.2174/1389203717666160122120310
 - Zhao, Z., Shilatifard, A. Epigenetic modifications of histones in cancer. _Genome Biol_ **20**, 245 (2019). https://doi.org/10.1186/s13059-019-1870-5
+
+### Contact
+- miahn@ucsd.edu
