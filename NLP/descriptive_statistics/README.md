@@ -2,9 +2,9 @@
 
 ### Description
 This directory contains code that was used to manipulate and perform downstream analysis of NER output of selected Cell and Nature articles. It contains the following notebooks:
-- **disease_analysis**: Used to find the most common relations among articles enriched for disease entities.
-- **pickle_analysis**: Perform various quantitative and qualitative statistics about NER output such as distribution of word lengths, proportion of entities which are disease, number of entities per article, etc.
-- **venny_analysis**: Used to create the files needed to quantify the number of overlapping terms between NER genetic entities and crewDB terms.
+- `disease_analysis.ipynb`: Used to find the most common relations among articles enriched for disease entities.
+- `pickle_analysis.ipynb`: Perform various quantitative and qualitative statistics about NER output such as distribution of word lengths, proportion of entities which are disease, number of entities per article, etc.
+- `venny_analysis.ipynb`: Used to create the files needed to quantify the number of overlapping terms between NER genetic entities and crewDB terms.
 
 ### Prerequisites
 - [python](https://www.python.org/downloads/) 3.9.12+
