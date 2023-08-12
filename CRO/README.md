@@ -3,7 +3,7 @@
 ### Description
 An ontology to describe objects in the chromatin regulator domain. Developed using [Protege 5.6.1](http://protegeproject.github.io/protege/installation/).
 
-CRO defines a native taxonomy that all chromatin regulators can be classified into. CRO imports [GO v2023-06-11 (123 MB)](http://purl.obolibrary.org/obo/go/releases/2023-06-11/go.owl) and  [DOID v2023-05-31 (29.6 MB)](http://purl.obolibrary.org/obo/doid/releases/2023-05-31/doid.owl) to provide terms relating to molecular functiones, biological processes, cellular components, and disease characteristics. There are three additional top level classes defined CRO:
+CRO defines a native taxonomy that all chromatin regulators can be classified into. CRO imports [GO v2023-06-11 (123 MB)](http://purl.obolibrary.org/obo/go/releases/2023-06-11/go.owl) and  [DOID v2023-05-31 (29.6 MB)](http://purl.obolibrary.org/obo/doid/releases/2023-05-31/doid.owl) to provide terms relating to molecular functions, biological processes, cellular components, and disease characteristics. There are three additional top level classes defined CRO:
 - `protein` represents proteins that are affected by CRs but are not themselves CRs.
 - `domain` represents protein domains.
 -  `HistoneModifications` is further separated into `H2AModification`, `H2BModification`, `H3Modification`, and `H4Mofication` to represent covalent histone modifications such as H3K9me1. 
