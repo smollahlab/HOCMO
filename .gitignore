@@ -136,3 +136,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# CRO external ontology imports
+CRO/ontologies/*
+!CRO/ontologies/cro.owx
+!CRO/ontologies/cro.properties
+!CRO/ontologies/*.md
+
+# UMLS Norm tool
+NLP/descriptive_statistics/lvg2023/
