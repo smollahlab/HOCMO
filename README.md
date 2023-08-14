@@ -15,15 +15,12 @@ Two datasets were used to model the high-order correlations between signaling pr
 
   * Python 3.6
   * Numpy
-  * Jupyter Notebook
+  * Pandas
 
 ## Usage
 
-1. The significant_test.ipynb implements the Student's t-test for both RPPA and GCP data
-2. The NTF_NCP.ipynb implements non-negative tensor factorization on RPPA and GCP tensors using NCP.
-3. The NTF_Tensorly.ipynb implements non-negative tensor factorization on RPPA and GCP tensors using Tensorly.
-
-To perform the NTF based on RPPA and GCP data, please run the corresponding notebooks step by step.
+1. The fatorization.py implements non-negative tensor factorization on RPPA and GCP tensors using NCP.
+2. The main.py runs the pipeline end-to-end for RPPA and GCP datasets. 
 
 ## Reference
 
