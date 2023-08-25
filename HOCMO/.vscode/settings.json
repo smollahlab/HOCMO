@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./HOCMO_package/HOCMO"
+    ]
+}
