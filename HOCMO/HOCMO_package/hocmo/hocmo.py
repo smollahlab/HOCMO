@@ -23,6 +23,7 @@ def createTensor(input_matrix, input_index_column, y_val, z_val):
     EXAMPLE OUTPUT:
     > Size of the tensor: (5, 5, 5)
     '''
+    
     ## Importing tensor incidence matrix
     ## Skipping much of the preprocessing as we have a very simplified matrix
     incidence_matrix = pd.read_csv(input_matrix)
@@ -61,7 +62,6 @@ def basicVisual(tensor, x_names, y_names,z_names):
 
     EXAMPLE USAGE:
     > hocmo.basicVisual(tensor, protein_names, disease_names,gene_names)
-
     '''
 
     ##transposes tensor and ensure no 0 zeroes are present for visualization
