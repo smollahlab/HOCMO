@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
         "./HOCMO_package/HOCMO"
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "basic"
 }

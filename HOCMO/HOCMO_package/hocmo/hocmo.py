@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 
 def createTensor(input_matrix, input_index_column, y_val, z_val):
@@ -14,7 +15,7 @@ def createTensor(input_matrix, input_index_column, y_val, z_val):
     OUTPUTS:
     incidence_matrix: Post-processed matrix
     incidence_matrix_binary: Binary version of the processed matrix. -1 if the original value was <0 and 1 if >=0
-    x_names, y_names, z_names: Names of variables derived from input matrix. (for y and z names to function, seperate the two with '_')
+    x_names, y_names, z_names: List of names of variables derived from input matrix. (for y and z names to function, seperate the two with '_')
     tensor: tensor representing hypergraph of input
 
     EXAMPLE USAGE:
@@ -23,7 +24,7 @@ def createTensor(input_matrix, input_index_column, y_val, z_val):
     EXAMPLE OUTPUT:
     > Size of the tensor: (5, 5, 5)
     '''
-    
+
     ## Importing tensor incidence matrix
     ## Skipping much of the preprocessing as we have a very simplified matrix
     incidence_matrix = pd.read_csv(input_matrix)
@@ -44,24 +45,26 @@ def createTensor(input_matrix, input_index_column, y_val, z_val):
     incidence_matrix = np.absolute(incidence_matrix) 
     x_names = incidence_matrix.index
     tensor = incidence_matrix.to_numpy().reshape([x, y, z]).transpose([2, 0, 1]) ## why is it transposed like this? no reason given here
-    y_names = pd.Index([v.split('_')[0] for v in incidence_matrix.columns.to_numpy().reshape([y,z]).transpose([1,0])[0]]) ## just some fancy matrix manipulation to get disease names
+    y_names = pd.Index([v.split('_')[0] for v in incidence_matrix.columns.to_numpy().reshape([y,z]).transpose([1,0])[0]]) ##  some fancy matrix manipulation to get disease names
     z_names = pd.Index([v.split('_')[1] for v in incidence_matrix.columns.to_numpy().reshape([x,y])[1]]) 
     print('Size of the tensor:',tensor.shape)
     return incidence_matrix,incidence_matrix_binary,x_names,y_names,z_names,tensor
 
 
-def basicVisual(tensor, x_names, y_names,z_names):
+def basicVisual(tensor, x_names, y_names,z_names, x_labels, y_labels, z_labels, img_filePath, img_name):
     '''
     Creates basic 3d scatter plot of tensor's data points. 
     INPUTS:
     tensor: 3d tensor to be visualized
     x_names, y_names,z_names: names of each dimension of the tensor, this is used to generate the labels
+    x_labels, y_labels, z_labels: lists containing names of entities in each axis of the tensor
+    img_filePath, img_name: path and name of file for image to be saved in 
 
     OUTPUTS:
     3d scatter plot
 
     EXAMPLE USAGE:
-    > hocmo.basicVisual(tensor, protein_names, disease_names,gene_names)
+    > hocmo.basicVisual(tensor, 'CRs', 'Diseases', 'Genes', protein_names, disease_names,gene_names, './','test')
     '''
 
     ##transposes tensor and ensure no 0 zeroes are present for visualization
@@ -76,11 +79,14 @@ def basicVisual(tensor, x_names, y_names,z_names):
 
     ##Creation of axes and labels
     ax.set_xticks([])
-    ax.set(xticks=range(tensor_T.shape[0]), xticklabels=x_names,
-        yticks=range(tensor_T.shape[1]), yticklabels=y_names,
-        zticks=range(tensor_T.shape[2]), zticklabels=z_names)  
-    ax.set_xlabel('CRs', fontsize=18)
-    ax.set_ylabel('Diseases', fontsize=18)
+    ax.set(xticks=range(tensor_T.shape[0]), xticklabels=x_labels,
+        yticks=range(tensor_T.shape[1]), yticklabels=y_labels,
+        zticks=range(tensor_T.shape[2]), zticklabels=z_labels)  
+    ax.set_xlabel(x_names, fontsize=18)
+    ax.set_ylabel(y_names, fontsize=18)
     ax.yaxis.labelpad=15
-    ax.set_zlabel('Genes', fontsize=18)
+    ax.set_zlabel(z_names, fontsize=18)
     ax.scatter(x, y, z, cmap='cm.coolwarm')
+    plt.show()
+    plt.savefig(os.path.join(img_filePath, img_name), format="png")
+    return tensor_T
