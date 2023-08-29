@@ -2,6 +2,11 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+from rpy2.robjects.packages import importr
+import rpy2.robjects as robjects
+import rpy2.robjects.numpy2ri
+from .utils import *
+import statistics
 
 
 def createTensor(input_matrix, input_index_column, y_val, z_val):
@@ -43,10 +48,10 @@ def createTensor(input_matrix, input_index_column, y_val, z_val):
 
     ##make positive with abs
     incidence_matrix = np.absolute(incidence_matrix) 
-    x_names = incidence_matrix.index
-    tensor = incidence_matrix.to_numpy().reshape([x, y, z]).transpose([2, 0, 1]) ## why is it transposed like this? no reason given here
-    y_names = pd.Index([v.split('_')[0] for v in incidence_matrix.columns.to_numpy().reshape([y,z]).transpose([1,0])[0]]) ##  some fancy matrix manipulation to get disease names
-    z_names = pd.Index([v.split('_')[1] for v in incidence_matrix.columns.to_numpy().reshape([x,y])[1]]) 
+    x_names = incidence_matrix.index # type: ignore
+    tensor = incidence_matrix.to_numpy().reshape([x, y, z]).transpose([2, 0, 1]) # type: ignore ## why is it transposed like this? no reason given here
+    y_names = pd.Index([v.split('_')[0] for v in incidence_matrix.columns.to_numpy().reshape([y,z]).transpose([1,0])[0]]) # type: ignore ##  some fancy matrix manipulation to get disease names
+    z_names = pd.Index([v.split('_')[1] for v in incidence_matrix.columns.to_numpy().reshape([x,y])[1]])  # type: ignore
     print('Size of the tensor:',tensor.shape)
     return incidence_matrix,incidence_matrix_binary,x_names,y_names,z_names,tensor
 
@@ -90,3 +95,55 @@ def basicVisual(tensor, x_names, y_names,z_names, x_labels, y_labels, z_labels, 
     plt.show()
     plt.savefig(os.path.join(img_filePath, img_name), format="png")
     return tensor_T
+
+def getCoreConsistency(tensor, imageName, iters = 100, num_k = 11, start =2, top_k=20):
+    rpy2.robjects.numpy2ri.activate()
+    importr('multiway')
+    parafac = robjects.r["parafac"]
+    corcondia = robjects.r["corcondia"]
+    cc_values = {}
+    cc_factors = {}
+    for i in range(iters):
+        for k in range(start, num_k):
+            pfac = parafac(tensor, nfac=k, nstart=1)
+            A_f = np.array(pfac[pfac.names.index('A')])
+            B_f = np.array(pfac[pfac.names.index('B')])
+            C_f = np.array(pfac[pfac.names.index('C')])
+            namda = compute_namda(A_f, B_f, C_f)
+            if k not in cc_values.keys():
+                cc_values[k] = [corcondia(tensor, pfac, divisor = ["core", "nfac"])[0]]
+                cc_factors[k] = [namda]
+            else:
+                cc_values[k].append(corcondia(tensor, pfac, divisor = ["core", "nfac"])[0])
+                cc_factors[k].append(namda)
+    ys = []
+    ys_average = []
+    dictionary_k_scores = dict()
+    for k in range(start, num_k):
+        ccvs = np.array(cc_values[k])
+        ccfs = np.array(cc_factors[k])
+        top_ccs = rank_k(ccvs, top_k)
+        ys.append(top_ccs)
+        ys_average.append(statistics.mean(top_ccs))
+        dictionary_k_scores[k] = {"mean" : statistics.mean(top_ccs), "sd" : statistics.stdev(top_ccs)}
+    ys = np.array(ys)
+    xs = np.array([list(range(start, num_k))] * top_k).T
+    xs_average = list(range(start, num_k))
+    # xs
+    fig = plt.figure(figsize=(7, 4.3))
+    ax = fig.add_subplot(111)
+    ax.tick_params(axis='both', which='major', labelsize=14)
+    plt.scatter(xs, ys, 10, c='blue')
+    linestyle = {"linestyle":"-", "linewidth":2, "markeredgewidth":2, "elinewidth":2, "capsize":5}
+    plt.errorbar(xs_average, ys_average, color="green", **linestyle, fmt='-')    
+    plt.xlabel("# of components", fontsize=16)
+    plt.ylabel("Core consistency", fontsize=16)
+    plt.grid(linestyle='-.')
+    plt.savefig(imageName, format = "png", resolution = 1200)
+    plt.show()
+    sorted_dictionary_by_mean = sorted(dictionary_k_scores.items(), key= lambda m: (m[1]['mean']), reverse = True)
+    pairs = pd.DataFrame([xs_average,ys_average])
+    # pairs = pairs.set_index(0).rename_axis(None)
+#    pairs.columns = [[''],['']]
+    print("Number of K vs. Core consistency")
+    return sorted_dictionary_by_mean[0][0]

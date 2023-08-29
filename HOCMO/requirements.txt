@@ -9,3 +9,5 @@ notebook == 6.4.12
 matplotlib
 setuptools
 wheel
+rpy2
+
