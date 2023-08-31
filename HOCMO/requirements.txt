@@ -10,4 +10,6 @@ matplotlib
 setuptools
 wheel
 rpy2
-
+statistics
+scikit-learn
+tensorly

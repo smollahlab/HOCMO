@@ -345,6 +345,7 @@ def _initialize_nmf(X, n_components, init=None, eps=1e-26,
 
     return W, H
 
+
 import tensorly as tl
 from tensorly.base import unfold
 import tensorly.decomposition.candecomp_parafac as td
@@ -356,6 +357,8 @@ def init_nnsvd_test(tensor, n_component, random_state=None, normalize_factors=Fa
                                     svd='numpy_svd', random_state=None, normalize_factors=None)
     
     return factors
+
+##This function is never called?
 
 def init_nnsvd(tensor, n_component):
     factors = []

@@ -12,3 +12,5 @@ wheel
 tensorly
 rpy2
 statistics
+scikit-learn
+tensorly
