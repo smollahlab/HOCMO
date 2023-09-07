@@ -6,7 +6,6 @@ from rpy2.robjects.packages import importr
 import rpy2.robjects as robjects
 import rpy2.robjects.numpy2ri
 from .utils import *
-from .ncp import *
 import statistics
 from sktensor import dtensor
 
@@ -180,31 +179,13 @@ def getCoreConsistency(tensor, imageName, iters = 100, num_k = 11, start =2, top
     print("Number of K vs. Core consistency")
     return sorted_dictionary_by_mean[0][0]
 
-def factorizeNCP(tensor, components):
-    '''
-    Factorizes the nonlinear complementarity problem  via non-negative single variable decomposition. 
-    SVD is used to generate latent factors for each layer of the tensor, which is then used along with the dimension of the tensor to perform non negative factorization.
-
-    INPUTS:
-    tensor: 3d tensor to be analyzed
-    components: optimal number of components found by getCoreConsistency
-
-    OUTPUTS:
-    Elbow plot
-
-    '''
-
-    num_component = components
-    X = dtensor(tensor) 
-    init_factors = init_nnsvd(X, num_component)
-    X_approx_ks = nonnegative_tensor_factorization(X, num_component, method='anls_bpp', 
-                                                   init=init_factors.copy())
-
-    C = X_approx_ks.U[0]
-    A = X_approx_ks.U[1]
-    B = X_approx_ks.U[2]
-    print('[A,B,C]:', A.shape, B.shape, C.shape)
-    return A, B, C
+def factorize(tensor, components, method="ncp"):
+    if method == "ncp":
+        return factorizeNCP(tensor, components)
+    else:
+        return factorizeTensorly(tensor, components)
 
 
-    
+
+
+

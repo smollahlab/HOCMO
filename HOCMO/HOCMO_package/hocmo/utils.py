@@ -9,7 +9,8 @@ from tensorly.base import unfold
 from numpy import zeros, ones, kron, tile, any, all
 import numpy.linalg as nla
 import time
-from sktensor import ktensor
+from sktensor import ktensor, dtensor
+from tensorly.decomposition import non_negative_parafac
 
 def compute_namda(A, B, C):
     '''
@@ -225,6 +226,7 @@ def init_nnsvd(tensor, n_component):
     return factors
 
 
+
 def find(condition):
     "Return the indices where ravel(condition) is true"
     res, = np.nonzero(np.ravel(condition))
@@ -255,7 +257,7 @@ def normalEqComb(AtA, AtB, PassSet=None):
     """
     if AtB.size == 0:
         Z = np.zeros([])
-    elif (PassSet == None) or np.all(PassSet):
+    elif PassSet is None or np.all(PassSet):
         Z = solve(AtA, AtB)
     else:
         Z = np.zeros(AtB.shape)
@@ -286,7 +288,6 @@ def normalEqComb(AtA, AtB, PassSet=None):
                     Z[ix1] = solve(AtA[ix2], AtB[ix1])
     return Z
 
-
 def _column_group_recursive(B):
     """ Given a binary matrix, find groups of the same columns
         with a recursive strategy
@@ -302,22 +303,20 @@ def _column_group_recursive(B):
     initial = np.arange(0, B.shape[1])
     return [a for a in column_group_sub(B, 0, initial) if len(a) > 0]
 
-
 def column_group_sub(B, i, cols):
     vec = B[i][cols]
     if len(cols) <= 1:
         return [cols]
     if i == (B.shape[0] - 1):
         col_trues = cols[vec.nonzero()[0]]
-        col_falses = cols[(-vec).nonzero()[0]]
+        col_falses = cols[(~vec).nonzero()[0]]
         return [col_trues, col_falses]
     else:
         col_trues = cols[vec.nonzero()[0]]
-        col_falses = cols[(-vec).nonzero()[0]]
+        col_falses = cols[(~vec).nonzero()[0]]
         after = column_group_sub(B, i + 1, col_trues)
         after.extend(column_group_sub(B, i + 1, col_falses))
     return after
-
 
 def nnlsm_activeset(A, B, overwrite=0, isInputProd=0, init=None):
     """
@@ -468,7 +467,6 @@ def nnlsm_activeset(A, B, overwrite=0, isInputProd=0, init=None):
 
     return X, Y
 
-
 def nnlsm_blockpivot(A, B, isInputProd=0, init=None):
     """
     Nonnegativity Constrained Least Squares with Multiple Righthand Sides
@@ -595,7 +593,6 @@ def nnlsm_blockpivot(A, B, isInputProd=0, init=None):
 
     return X, Y
 
-
 def getGradient(X, F, nWay, r):
     grad = []
     for k in range(nWay):
@@ -625,7 +622,6 @@ def getProjGradient(X, F, nWay, r):
         pGrad.append(grad)
     return pGrad
 
-
 class anls_asgroup(object):
 
     def initializer(self, X, F, nWay, orderWays, r):
@@ -639,8 +635,8 @@ class anls_asgroup(object):
         # solve NNLS problems for each factor
         for k in range(nWay):
             curWay = orderWays[k]
-            ways = range(nWay)
-            ways.remove(curWay)
+            ways = list(range(nWay))
+            ways = [x for x in ways if x != curWay]
             XF = X.uttkrp(F, curWay)
             # Compute the inner-product matrix
             FF = ones((r, r))
@@ -651,7 +647,6 @@ class anls_asgroup(object):
             F[curWay] = Fthis.T
             FF_init[curWay] = (F[curWay].T.dot(F[curWay]))
         return F, FF_init
-
 
 class anls_bpp(object):
 
@@ -665,8 +660,8 @@ class anls_bpp(object):
     def iterSolver(self, X, F, FF_init, nWay, r, orderWays):
         for k in range(nWay):
             curWay = orderWays[k]
-            ways = range(nWay)
-            ways.remove(curWay)
+            ways = list(range(nWay))
+            ways = [x for x in ways if x != curWay]
             XF = X.uttkrp(F, curWay)
             # Compute the inner-product matrix
             FF = ones((r, r))
@@ -688,8 +683,8 @@ class mu(object):
         eps = 1e-16
         for k in range(nWay):
             curWay = orderWays[k]
-            ways = range(nWay)
-            ways.remove(curWay)
+            ways = list(range(nWay))
+            ways = [x for x in ways if x != curWay]
             XF = X.uttkrp(F, curWay)
             FF = ones((r, r))
             for i in ways:
@@ -718,8 +713,8 @@ class hals(object):
         d = np.sum(F[orderWays[-1]]**2, axis=0)
         for k in range(nWay):
             curWay = orderWays[k]
-            ways = range(nWay)
-            ways.remove(curWay)
+            ways = list(range(nWay))
+            ways = [x for x in ways if x != curWay]
             XF = X.uttkrp(F, curWay)
             FF = ones((r, r))
             for i in ways:
@@ -897,7 +892,41 @@ def nonnegative_tensor_factorization(X, r, method='anls_bpp',
 
     return F_kten
 
+def factorizeNCP(tensor, components):
+    '''
+    Factorizes the nonlinear complementarity problem  via non-negative single variable decomposition. 
+    SVD is used to generate latent factors for each layer of the tensor, which is then used along with the dimension of the tensor to perform non negative factorization.
+
+    INPUTS:
+    tensor: 3d tensor to be analyzed
+    components: optimal number of components found by getCoreConsistency
+
+    OUTPUTS:
+    Elbow plot
+
+    '''
+
+    num_component = components
+    X = dtensor(tensor) 
+    init_factors = init_nnsvd(X, num_component)
+    X_approx_ks = nonnegative_tensor_factorization(X, num_component, method='anls_bpp', 
+                                                   init=init_factors.copy())
+
+    C = X_approx_ks.U[0]
+    A = X_approx_ks.U[1]
+    B = X_approx_ks.U[2]
+    print('[A,B,C]:', A.shape, B.shape, C.shape)
+    return A, B, C
 
 
-
-
+def factorizeTensorly(tensor, components):
+    num_component = 2
+    print('tensor{}'.format(tensor.shape),'= component_1 + component_2 + ... + component_{}= [A,B,C]'.format(num_component))
+    weights, factors = non_negative_parafac(tensor, rank=num_component, init='svd')
+    C = np.array(factors[0])
+    A = np.array(factors[1])
+    B = np.array(factors[2])
+    print('[A,B,C]:', A.shape, B.shape, C.shape)
+    print(C)
+    print(B)
+    return A, B, C 
