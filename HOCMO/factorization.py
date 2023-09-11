@@ -446,6 +446,7 @@ def plotFactorMatrices(A, B, C, tensor, imgName_A, imgName_B, imgName_C, ligand_
     plt.savefig(imgName_C, format="png", resolution=1200)
     fig.colorbar(cax3)
 
+
 def componentPredictionsForFactors(A, B):
     component_preds = A.argmax(axis=1) # classify proteins into respective components based on the largest membership values
     print('{} proteins in total, each protein belongs to a predicted component with the largest membership value:\n\n'.format(A.shape[0]), component_preds)
@@ -1004,3 +1005,5 @@ def callRppaDataProcessingPipeline(factorization_method, filePath_rppa, fileName
     cutoffs_asymptotic_list = [M1_cutoff_asymptotic, M2_cutoff_asymptotic, M3_cutoff_asymptotic]
     getSignificantEntities([patterns_AB_pairs, patterns_AC_pairs, patterns_BC_pairs], cutoffs_elbow_list, cutoffs_center_elbow_list, cutoffs_asymptotic_list, [mean_AB, mean_AC, mean_BC], ["M1_Elbow", "M2_Elbow", "M3_Elbow"], ["M1_Center_Elbow", "M2_Center_Elbow", "M3_Center_Elbow"], ["M1_Asymptotic", "M2_Asymptotic", "M3_Asymptotic"], results_filePath)
     print("Completed rppa")
+
+    

@@ -10,7 +10,11 @@ from numpy import zeros, ones, kron, tile, any, all
 import numpy.linalg as nla
 import time
 from sktensor import ktensor, dtensor
+import matplotlib.pyplot as plt
 from tensorly.decomposition import non_negative_parafac
+from matplotlib import colors
+from scipy.special import softmax
+from scipy.stats import norm
 
 def compute_namda(A, B, C):
     '''
@@ -902,7 +906,8 @@ def factorizeNCP(tensor, components):
     components: optimal number of components found by getCoreConsistency
 
     OUTPUTS:
-    Elbow plot
+    ??
+    Why is each dimension using the same X_approx_ks? what is it really doing here?
 
     '''
 
@@ -918,7 +923,6 @@ def factorizeNCP(tensor, components):
     print('[A,B,C]:', A.shape, B.shape, C.shape)
     return A, B, C
 
-
 def factorizeTensorly(tensor, components):
     num_component = 2
     print('tensor{}'.format(tensor.shape),'= component_1 + component_2 + ... + component_{}= [A,B,C]'.format(num_component))
@@ -930,3 +934,145 @@ def factorizeTensorly(tensor, components):
     print(C)
     print(B)
     return A, B, C 
+
+def plotClusters(factor_matrix, clusters, labels,imgName):
+    fig = plt.figure(figsize=(3,4))
+    colors = ['darkorange','deepskyblue']
+    for k in range(len(clusters)):
+        plt.scatter(factor_matrix[clusters[k], 0], factor_matrix[clusters[k], 1], c=colors[k], s=20,label='Cluster '+str(k+1))
+    show_ids=[]
+    for v in np.random.choice(clusters[0],2,replace=False):
+        if factor_matrix[v, 0] > 0.6:
+            plt.text(factor_matrix[v, 0], factor_matrix[v, 1]+.03, labels[v], fontsize=8)
+            show_ids.append(v)
+    for v in np.random.choice(clusters[1],1,replace=False):
+        if factor_matrix[v, 1] > 0.6:
+            plt.text(factor_matrix[v, 0], factor_matrix[v, 1]+.03, labels[v], fontsize=8)
+            show_ids.append(v)       
+    plt.xticks(fontsize=13)
+    plt.xlabel('Comp1', fontsize=13)
+    plt.ylabel('Comp2', fontsize=13)
+    plt.legend(fontsize=13)
+    plt.show()
+    print(show_ids)    
+    fig.savefig(imgName, format="png", resolution=1200)
+    return show_ids
+
+
+def plotProbabilityDistributionOfClusters(factor_matrix, show_ids, y_labels_ranked, img_filePath,img_name):
+    #logging.debug("Plotting probability distribution for the factor matrix.. ")
+    fig = plt.figure(figsize=(4,6))
+    ax1 = fig.add_subplot(111)
+    cax1 = ax1.matshow(softmax(factor_matrix,axis=1),cmap='bwr',norm = colors.TwoSlopeNorm(vcenter=0))
+    ax1.set_aspect('auto')
+    ax1.set_title('Probability distribution of clusters', y=-0.1,fontsize=13)
+    fig.colorbar(cax1)
+    plt.rc('ytick',labelsize=12)        
+    loc = plticker.MultipleLocator(base=4) # this locator puts ticks at regular intervals
+    ax1.yaxis.set_major_locator(loc)
+    show_y_names = y_labels_ranked[range(0, len(y_labels_ranked), 4)].to_list()
+# ax1.set_yticks(range(len(protein_names_ranked)))
+# # loc = plticker.MultipleLocator(base=3) # this locator puts ticks at regular intervals
+# # ax1.yaxis.set_major_locator(loc)
+# show_protein_names = protein_names_ranked.to_list()
+    print(show_y_names)
+    for i in range(len(show_y_names)):
+        if i not in show_ids:
+            show_y_names[i] = ''
+    show_y_names = [''] + show_y_names
+    ax1.set_yticklabels(show_y_names, fontsize=11)
+    ax1.set_xticklabels(['','Cluster 1', 'Cluster 2', 'comp_3'],fontsize=12)
+    plt.show()
+    plt.savefig(os.path.join(img_filePath, img_name), format="png", resolution=1200)
+
+def findCorrelationMatrix(factor_matrix1, factor_matrix2):
+    #logging.debug("Creating a correlation matrix for the given factor matrices.")
+    B_expand = np.expand_dims(factor_matrix2, axis=1)
+    patterns = np.sum(np.transpose(np.multiply(factor_matrix1, B_expand), [1,0,2]), axis=2)
+    print(patterns.shape)
+    return patterns
+
+def plotCorrelationMatrix(patterns, x_labels, y_labels, img_title, img_file):
+    #logging.debug("Plotting the correlation matrix.. ")
+    fig = plt.figure(figsize=(2,6))
+    ax = fig.add_subplot(111)
+    aa = ax.matshow(patterns,cmap='bwr', norm =colors.TwoSlopeNorm(vcenter=0))
+    ax.set_aspect('auto')
+# ax.set_title('Components')
+# ax.set_ylabel(str(tensor.shape[1])+' proteins', size=(16))
+    ax.set_yticks(range(len(y_labels)))
+    loc = plticker.MultipleLocator(base=10) # this locator puts ticks at regular intervals
+    ax.yaxis.set_major_locator(loc)
+    #show_protein_names = protein_names_ranked[range(0, len(protein_names_ranked), 10)].insert(0,'')
+    ax.set_yticklabels(y_labels, fontsize=11)
+    plt.rc('ytick',labelsize=13)
+    ax.set_xticklabels(x_labels, fontsize=11, rotation =55)
+    ax.set_title(img_title, y=-0.1, fontsize=16)
+    fig.colorbar(aa)
+    plt.show()
+    fig.savefig(img_file, format="png", resolution=1200)
+
+def plotCorrelationMatrixGaussianDistribution(patterns, xlabel, ylabel, img_title, img_file):
+    fig = plt.figure(figsize=(7, 4.3))
+    ax = fig.add_subplot(111)
+    ax.tick_params(axis='both', which='major', labelsize=14)
+    flatten_patterns = patterns.flatten()
+    flatten_patterns.sort()
+    mean, std = norm.fit(flatten_patterns)
+    print('mean:{}, std:{}'.format(mean, std))
+    fitted_pdf = norm.pdf(flatten_patterns, loc=mean, scale=std)
+    linestyle = {"linestyle":"-", "linewidth":2, "markeredgewidth":2, "elinewidth":2, "capsize":5}
+    plt.errorbar(flatten_patterns, fitted_pdf, color="green", **linestyle, fmt='-')
+    plt.xlabel(xlabel, fontsize=16)
+    plt.ylabel(ylabel, fontsize=16)
+    plt.legend([img_title], fontsize=13)
+    plt.grid(linestyle='-.')
+    plt.show()
+    plt.savefig(img_file, format="png", resolution=1200)
+    return mean, std, flatten_patterns, fitted_pdf
+
+def writeResultsToExcel(filePath, fileName, flatten_patterns, fitted_pdf, mean, std, sheet_name):
+    writer_intensity = pd.ExcelWriter(fileName)
+    intense_density = np.concatenate([flatten_patterns, fitted_pdf]).reshape(2,flatten_patterns.shape[0]).transpose([1,0])
+    intense_density_mat = pd.DataFrame(data=intense_density, columns=['Intensity','Density'])
+    intense_density_mat.loc[-1] = [mean, std]
+    intense_density_mat.index = intense_density_mat.index + 1
+    intense_density_mat = intense_density_mat.sort_index()
+    intense_density_mat.rename(index = {0: "mean/std"}, inplace = True)
+    intense_density_mat.to_excel(writer_intensity, sheet_name)
+    writer_intensity.save()
+
+def computeCorrelationForfactorMatrices(factor_matrix1, factor_matrix2, xlabels_plot, ylabels_plot, xlabel_pdc, ylabel_pdc,
+                                        imgtitle_plot, imgtitle_pdc, imgfilePathPlot, imgfilePathPd,
+                                       sheet_name, excel_path, file_name_excel):
+    patterns =  findCorrelationMatrix(factor_matrix1, factor_matrix2)
+    plotCorrelationMatrix(patterns, xlabels_plot, ylabels_plot, imgtitle_plot, os.path.join(imgfilePathPlot, str(imgtitle_plot+".png")))
+    mean, std, flatten_patterns, fitted_pdf = plotCorrelationMatrixGaussianDistribution(patterns, xlabel_pdc, ylabel_pdc, imgtitle_pdc, os.path.join(imgfilePathPd, str(imgtitle_pdc + ".png")))
+    writeResultsToExcel(excel_path, file_name_excel, flatten_patterns, fitted_pdf, mean, std, sheet_name)
+    return patterns,mean,std 
+
+def getSignificantEntitiesForCutOff(patterns, mean, cutoff, sheet_name, filePath):
+    writer_mean = pd.ExcelWriter(filePath)
+    stack = patterns.T.stack().to_frame()
+    stack.columns = ["Intensity"]
+    stack_sorted = stack[~((stack.values-mean < cutoff))]
+    stack_sorted.to_excel(writer_mean, sheet_name)
+    writer_mean.save()
+
+def getSignificantEntitiesForCenterElbow(patterns_list, cutoffs_center_elbow_list, mean_list, filePath, sheet_names_list):
+    #logging.debug("Finding significant entities using the elbow of pdf curve ..")
+    for i in range(len(patterns_list)):
+        getSignificantEntitiesForCutOff(patterns_list[i], mean_list[i], cutoffs_center_elbow_list[i], sheet_names_list[i], filePath)
+
+def getSignificantEntitiesForElbow(patterns_list, cutoffs_elbow_list, mean_list, filePath, sheet_names_list):
+    #logging.debug("Finding significant entities using the elbow of pdf curve ..")
+    for i in range(len(patterns_list)):
+        getSignificantEntitiesForCutOff(patterns_list[i], mean_list[i], cutoffs_elbow_list[i], sheet_names_list[i], filePath)
+
+def getSignificantEntitiesAsymptotic(patterns_list, cutoffs_asymptotic_list, mean_list, filePath, sheet_names_list):
+    #logging.debug("Finding significant entities using the asymptote of pdf curve ..")
+    for i in range(len(patterns_list)):
+        getSignificantEntitiesForCutOff(patterns_list[i], mean_list[i], cutoffs_asymptotic_list[i], sheet_names_list[i], filePath)
+
+
+
