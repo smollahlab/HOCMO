@@ -16,3 +16,4 @@ scikit-learn
 tensorly
 scikit-tensor-py3
 ncp
+openpyxl

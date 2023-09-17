@@ -1,5 +1,5 @@
 import numpy as np
-from numpy.linalg import norm
+import pandas as pd
 from sklearn.utils.validation import check_is_fitted, check_non_negative
 from sklearn.utils.extmath import randomized_svd, safe_sparse_dot, squared_norm
 from sklearn.utils import check_random_state
@@ -13,8 +13,10 @@ from sktensor import ktensor, dtensor
 import matplotlib.pyplot as plt
 from tensorly.decomposition import non_negative_parafac
 from matplotlib import colors
+import matplotlib.ticker as plticker
 from scipy.special import softmax
 from scipy.stats import norm
+import os
 
 def compute_namda(A, B, C):
     '''
@@ -34,7 +36,7 @@ def compute_namda(A, B, C):
         A_r = A[:,r]
         B_r = B[:,r]
         C_r = C[:,r]
-        namda *= norm(A_r)*norm(B_r)*norm(C_r)
+        namda *= np.linalg.norm(A_r)*np.linalg.norm(B_r)*np.linalg.norm(C_r)
     return namda
 
 
@@ -386,15 +388,15 @@ def nnlsm_activeset(A, B, overwrite=0, isInputProd=0, init=None):
         X = init
         X[X < 0] = 0
         PassSet = (X > 0).copy()
-        NotOptSet = ones((1, k), dtype=np.bool)
+        NotOptSet = ones((1, k), dtype=np.bool) # type: ignore
     else:
         X = zeros((n, k))
-        PassSet = zeros((n, k), dtype=np.bool)
-        NotOptSet = ones((1, k), dtype=np.bool)
+        PassSet = zeros((n, k), dtype=np.bool)# type: ignore
+        NotOptSet = ones((1, k), dtype=np.bool)# type: ignore
 
     Y = zeros((n, k))
-    if (~NotOptSet).any():
-        Y[:, ~NotOptSet] = AtA.dot(X[:, ~NotOptSet]) - AtB[:, ~NotOptSet]
+    if (~NotOptSet).any():# type: ignore
+        Y[:, ~NotOptSet] = AtA.dot(X[:, ~NotOptSet]) - AtB[:, ~NotOptSet]# type: ignore
     NotOptCols = find(NotOptSet)
 
     bigIter = 0
@@ -455,18 +457,18 @@ def nnlsm_activeset(A, B, overwrite=0, isInputProd=0, init=None):
 
             Y[abs(Y) < 1e-12] = 0   # for numerical stability.
 
-            NotOptSubSet = (Y[:, FeaCols] < 0) & ~PassSet[:, FeaCols]
+            NotOptSubSet = (Y[:, FeaCols] < 0) & ~PassSet[:, FeaCols] # type: ignore
 
             NewOptCols = FeaCols[all(~NotOptSubSet, axis=0)]
             UpdateNotOptCols = FeaCols[any(NotOptSubSet, axis=0)]
 
             if UpdateNotOptCols.shape[0] > 0:
                 minIx = np.argmin(Y[:, UpdateNotOptCols] * \
-                                  ~PassSet[:, UpdateNotOptCols], axis=0)
+                                  ~PassSet[:, UpdateNotOptCols], axis=0) # type: ignore
                 idx = np.ravel_multi_index((minIx, UpdateNotOptCols), (n, k))
                 PassSet.ravel()[idx] = True
 
-            NotOptSet.T[NewOptCols] = False
+            NotOptSet.T[NewOptCols] = False # type: ignore
             NotOptCols = find(NotOptSet)
 
     return X, Y
@@ -526,7 +528,7 @@ def nnlsm_blockpivot(A, B, isInputProd=0, init=None):
     X = zeros((n, k))
     if init is None:
         Y = - AtB
-        PassiveSet = zeros((n, k), dtype=np.bool)
+        PassiveSet = zeros((n, k), dtype=np.bool) # type: ignore
     else:
         PassiveSet = (init > 0).copy()
         X = normalEqComb(AtA, AtB, PassiveSet)
@@ -539,8 +541,8 @@ def nnlsm_blockpivot(A, B, isInputProd=0, init=None):
     Ninf = zeros((1, k))
     Ninf[:] = n + 1
 
-    NonOptSet = (Y < 0) & ~PassiveSet
-    InfeaSet = (X < 0) & PassiveSet
+    NonOptSet = (Y < 0) & ~PassiveSet # type: ignore
+    InfeaSet = (X < 0) & PassiveSet # type: ignore
     NotGood = (np.sum(NonOptSet, axis=0) + \
                np.sum(InfeaSet, axis=0))[np.newaxis, :]
     NotOptCols = NotGood > 0
@@ -589,8 +591,8 @@ def nnlsm_blockpivot(A, B, isInputProd=0, init=None):
 
         # check optimality
         NotOptMask = tile(NotOptCols, (n, 1))
-        NonOptSet = NotOptMask & (Y < 0) & ~PassiveSet
-        InfeaSet = NotOptMask & (X < 0) & PassiveSet
+        NonOptSet = NotOptMask & (Y < 0) & ~PassiveSet # type: ignore
+        InfeaSet = NotOptMask & (X < 0) & PassiveSet # type: ignore
         NotGood = (np.sum(NonOptSet, axis=0) +
                    np.sum(InfeaSet, axis=0))[np.newaxis, :]
         NotOptCols = NotGood > 0
@@ -734,8 +736,8 @@ class hals(object):
         return F, FF_init
 
 def getStopCriterion(pGrad, nWay, nr_grad_all):
-    retVal = np.sum(np.linalg.norm(pGrad[i], 'fro') ** 2
-                    for i in range(nWay))
+    retVal = np.sum(np.linalg.norm(pGrad[i], 'fro') ** 2 # type: ignore
+                    for i in range(nWay)) # type: ignore
     return np.sqrt(retVal) / nr_grad_all
 
 
@@ -832,8 +834,8 @@ def nonnegative_tensor_factorization(X, r, method='anls_bpp',
     grad = getGradient(X, F_cell, nWay, r)
 
     nr_X = X.norm()
-    nr_grad_all = np.sqrt(np.sum(np.linalg.norm(grad[i], 'fro') ** 2
-                                 for i in range(nWay)))
+    nr_grad_all = np.sqrt(np.sum(np.linalg.norm(grad[i], 'fro') ** 2 # type: ignore
+                                 for i in range(nWay)))# type: ignore
 
     if method == "anls_bpp":
         method = anls_bpp()
@@ -881,7 +883,7 @@ def nonnegative_tensor_factorization(X, r, method='anls_bpp',
                         cntu = False
 
                 elif stop_criterion == 2:
-                    prev_rel_Error = rel_Error
+                    prev_rel_Error = rel_Error # type: ignore
                     rel_Error = getRelError(X, F_kten, nWay, nr_X)
                     SC_DIFF = np.abs(prev_rel_Error - rel_Error)
                     if SC_DIFF < tol:
@@ -894,7 +896,7 @@ def nonnegative_tensor_factorization(X, r, method='anls_bpp',
         if not cntu:
             break
 
-    return F_kten
+    return F_kten # type: ignore
 
 def factorizeNCP(tensor, components):
     '''
@@ -906,8 +908,7 @@ def factorizeNCP(tensor, components):
     components: optimal number of components found by getCoreConsistency
 
     OUTPUTS:
-    ??
-    Why is each dimension using the same X_approx_ks? what is it really doing here?
+    A,B,C Latent factors found by NTF per Panisson's paper
 
     '''
 
@@ -924,9 +925,17 @@ def factorizeNCP(tensor, components):
     return A, B, C
 
 def factorizeTensorly(tensor, components):
-    num_component = 2
-    print('tensor{}'.format(tensor.shape),'= component_1 + component_2 + ... + component_{}= [A,B,C]'.format(num_component))
-    weights, factors = non_negative_parafac(tensor, rank=num_component, init='svd')
+    '''
+    Calculates namda? Found by multiplying the norm of the three dimensions of the tensor?
+    INPUT:
+    tensor:tensor to be factorized
+    components: optimal number of components as found by core consistency
+
+    OUTPUT:
+    A,B,C: Latent factors found by NTF per Panisson's paper
+    '''
+    print('tensor{}'.format(tensor.shape),'= component_1 + component_2 + ... + component_{}= [A,B,C]'.format(components))
+    weights, factors = non_negative_parafac(tensor, rank=components, init='svd')
     C = np.array(factors[0])
     A = np.array(factors[1])
     B = np.array(factors[2])
@@ -936,6 +945,16 @@ def factorizeTensorly(tensor, components):
     return A, B, C 
 
 def plotClusters(factor_matrix, clusters, labels,imgName):
+    '''
+    Plotting scatter plots found within each Components
+    INPUT:
+    factor_matrix:input matrix with raw data
+    clusters: clusters found in data
+    labels, imgName: labels and name of figures
+
+    OUTPUT:
+    scatter plot
+    '''
     fig = plt.figure(figsize=(3,4))
     colors = ['darkorange','deepskyblue']
     for k in range(len(clusters)):
@@ -949,17 +968,24 @@ def plotClusters(factor_matrix, clusters, labels,imgName):
         if factor_matrix[v, 1] > 0.6:
             plt.text(factor_matrix[v, 0], factor_matrix[v, 1]+.03, labels[v], fontsize=8)
             show_ids.append(v)       
-    plt.xticks(fontsize=13)
-    plt.xlabel('Comp1', fontsize=13)
-    plt.ylabel('Comp2', fontsize=13)
-    plt.legend(fontsize=13)
-    plt.show()
-    print(show_ids)    
-    fig.savefig(imgName, format="png", resolution=1200)
+    plt.legend(fontsize=13)   
+    fig.savefig(imgName, format="png")
+    plt.show() 
     return show_ids
 
+def plotProbabilityDistributionOfClusters(factor_matrix, show_ids, y_labels_ranked, components, img_filePath,img_name):
+    '''
+    Plots probability distribution for the factor matrix. 
+    
+    INPUTS:
+    factor_matrix: matrix whose probability distribution is to be plotted
+    show_ids: cluster membership found from plotClusters
+    y_labels_ranked: ranked/sorted list of y labels
+    img_filePath,img_name: Path for image to be stored
 
-def plotProbabilityDistributionOfClusters(factor_matrix, show_ids, y_labels_ranked, img_filePath,img_name):
+    OUTPUTS:
+    probability distribution for the factor matrix. number of clusters corresponds to number of components k, clusters are plotted on the x-axis, the probability distribution is plotted on the y-axis
+    '''
     #logging.debug("Plotting probability distribution for the factor matrix.. ")
     fig = plt.figure(figsize=(4,6))
     ax1 = fig.add_subplot(111)
@@ -967,25 +993,38 @@ def plotProbabilityDistributionOfClusters(factor_matrix, show_ids, y_labels_rank
     ax1.set_aspect('auto')
     ax1.set_title('Probability distribution of clusters', y=-0.1,fontsize=13)
     fig.colorbar(cax1)
-    plt.rc('ytick',labelsize=12)        
-    loc = plticker.MultipleLocator(base=4) # this locator puts ticks at regular intervals
-    ax1.yaxis.set_major_locator(loc)
-    show_y_names = y_labels_ranked[range(0, len(y_labels_ranked), 4)].to_list()
-# ax1.set_yticks(range(len(protein_names_ranked)))
-# # loc = plticker.MultipleLocator(base=3) # this locator puts ticks at regular intervals
-# # ax1.yaxis.set_major_locator(loc)
-# show_protein_names = protein_names_ranked.to_list()
-    print(show_y_names)
+    plt.rc('ytick',labelsize=12)
+
+    if len(y_labels_ranked) > 15:
+        loc = plticker.MultipleLocator(base=4) # this locator puts ticks at regular intervals
+        show_y_names = y_labels_ranked[range(0, len(y_labels_ranked), 4)].to_list()
+    else:
+        loc = plticker.MultipleLocator(base=1) # this locator puts ticks at regular intervals
+        show_y_names = y_labels_ranked.to_list() 
+    ax1.yaxis.set_major_locator(loc)  
     for i in range(len(show_y_names)):
         if i not in show_ids:
             show_y_names[i] = ''
     show_y_names = [''] + show_y_names
-    ax1.set_yticklabels(show_y_names, fontsize=11)
-    ax1.set_xticklabels(['','Cluster 1', 'Cluster 2', 'comp_3'],fontsize=12)
+    print(show_y_names)
+    ax1.set_yticklabels(show_y_names, fontsize=11)    
+    x_labels = ['',]
+    for i in range(1,components+1):
+        x_labels.append('comp_'+str(i))
+    ax1.set_xticklabels(x_labels,fontsize=12)
+    plt.savefig(os.path.join(img_filePath, img_name), format="png")
     plt.show()
-    plt.savefig(os.path.join(img_filePath, img_name), format="png", resolution=1200)
 
 def findCorrelationMatrix(factor_matrix1, factor_matrix2):
+    '''
+    Creating a correlation matrix for the given factor matrices
+
+    INPUTS:
+    factor_matrix1, factor_matrix2: The two matrices who correlation is to be determined
+
+    OUTPUTS:
+    a correlation matrix for the given factor matrices
+    '''
     #logging.debug("Creating a correlation matrix for the given factor matrices.")
     B_expand = np.expand_dims(factor_matrix2, axis=1)
     patterns = np.sum(np.transpose(np.multiply(factor_matrix1, B_expand), [1,0,2]), axis=2)
@@ -993,26 +1032,53 @@ def findCorrelationMatrix(factor_matrix1, factor_matrix2):
     return patterns
 
 def plotCorrelationMatrix(patterns, x_labels, y_labels, img_title, img_file):
+    '''
+    Plots found correlation matrix 
+
+    INPUTS:
+    patterns:
+    x_labels, y_labels,: Labels for each axis
+    img_title, img_file: file path for figure to be saved
+
+    OUTPUTS:
+    a correlation matrix png
+    '''
     #logging.debug("Plotting the correlation matrix.. ")
     fig = plt.figure(figsize=(2,6))
     ax = fig.add_subplot(111)
     aa = ax.matshow(patterns,cmap='bwr', norm =colors.TwoSlopeNorm(vcenter=0))
     ax.set_aspect('auto')
-# ax.set_title('Components')
-# ax.set_ylabel(str(tensor.shape[1])+' proteins', size=(16))
     ax.set_yticks(range(len(y_labels)))
-    loc = plticker.MultipleLocator(base=10) # this locator puts ticks at regular intervals
+    if len(y_labels) > 15:
+        loc = plticker.MultipleLocator(base=10) # this locator puts ticks at regular intervals
+        sparse_names = y_labels[range(0, len(y_labels), 10)].insert(0,'')
+    else:
+        loc = plticker.MultipleLocator(base=1) # this locator puts ticks at regular intervals
+        sparse_names = y_labels.insert(0,'')
     ax.yaxis.set_major_locator(loc)
-    #show_protein_names = protein_names_ranked[range(0, len(protein_names_ranked), 10)].insert(0,'')
-    ax.set_yticklabels(y_labels, fontsize=11)
+    ax.set_yticklabels(sparse_names, fontsize=11)
     plt.rc('ytick',labelsize=13)
+    x_labels = x_labels.tolist()
+    x_labels.insert(0,'')
+    x_labels = [ str(x) for x in x_labels ]
     ax.set_xticklabels(x_labels, fontsize=11, rotation =55)
     ax.set_title(img_title, y=-0.1, fontsize=16)
     fig.colorbar(aa)
+    fig.savefig(img_file, format="png")
     plt.show()
-    fig.savefig(img_file, format="png", resolution=1200)
 
 def plotCorrelationMatrixGaussianDistribution(patterns, xlabel, ylabel, img_title, img_file):
+    '''
+    Plots found correlation matrix with Gaussian Distribution. Similar to plotProbabilityDistributionOfClusters and plotCorrelationMatrix
+
+    INPUTS:
+    patterns:
+    x_labels, y_labels,: Labels for each axis
+    img_title, img_file: file path for figure to be saved
+
+    OUTPUTS:
+    a correlation matrix png
+    '''
     fig = plt.figure(figsize=(7, 4.3))
     ax = fig.add_subplot(111)
     ax.tick_params(axis='both', which='major', labelsize=14)
@@ -1027,37 +1093,51 @@ def plotCorrelationMatrixGaussianDistribution(patterns, xlabel, ylabel, img_titl
     plt.ylabel(ylabel, fontsize=16)
     plt.legend([img_title], fontsize=13)
     plt.grid(linestyle='-.')
+    plt.savefig(img_file, format="png")
     plt.show()
-    plt.savefig(img_file, format="png", resolution=1200)
     return mean, std, flatten_patterns, fitted_pdf
 
 def writeResultsToExcel(filePath, fileName, flatten_patterns, fitted_pdf, mean, std, sheet_name):
-    writer_intensity = pd.ExcelWriter(fileName)
+    '''
+    Saves dataframe result as excel file. 
+
+    INPUTS:
+    filePath, fileName: path for file to be saved
+    flatten_patterns, fitted_pdf: patterns to be concatenated and saved.
+    mean, std: determines cutoff for Significant Entities
+    sheet_name: name of excel sheet
+
+    OUTPUTS:
+    Excel sheet
+    '''
+    writer_intensity = pd.ExcelWriter(os.path.join(filePath, fileName))
     intense_density = np.concatenate([flatten_patterns, fitted_pdf]).reshape(2,flatten_patterns.shape[0]).transpose([1,0])
     intense_density_mat = pd.DataFrame(data=intense_density, columns=['Intensity','Density'])
-    intense_density_mat.loc[-1] = [mean, std]
+    intense_density_mat.loc[-1] = [mean, std] #?
     intense_density_mat.index = intense_density_mat.index + 1
     intense_density_mat = intense_density_mat.sort_index()
     intense_density_mat.rename(index = {0: "mean/std"}, inplace = True)
     intense_density_mat.to_excel(writer_intensity, sheet_name)
-    writer_intensity.save()
-
-def computeCorrelationForfactorMatrices(factor_matrix1, factor_matrix2, xlabels_plot, ylabels_plot, xlabel_pdc, ylabel_pdc,
-                                        imgtitle_plot, imgtitle_pdc, imgfilePathPlot, imgfilePathPd,
-                                       sheet_name, excel_path, file_name_excel):
-    patterns =  findCorrelationMatrix(factor_matrix1, factor_matrix2)
-    plotCorrelationMatrix(patterns, xlabels_plot, ylabels_plot, imgtitle_plot, os.path.join(imgfilePathPlot, str(imgtitle_plot+".png")))
-    mean, std, flatten_patterns, fitted_pdf = plotCorrelationMatrixGaussianDistribution(patterns, xlabel_pdc, ylabel_pdc, imgtitle_pdc, os.path.join(imgfilePathPd, str(imgtitle_pdc + ".png")))
-    writeResultsToExcel(excel_path, file_name_excel, flatten_patterns, fitted_pdf, mean, std, sheet_name)
-    return patterns,mean,std 
+    writer_intensity.save() # type: ignore
 
 def getSignificantEntitiesForCutOff(patterns, mean, cutoff, sheet_name, filePath):
+    '''
+    Filters results for significant results.
+
+    INPUTS:
+    patterns: input results
+    mean, cutoff: metrics used to determine if a value is significantly above the mean.
+    sheet_name, filePath: path for excel sheet to be saved
+
+    OUTPUTS:
+    Excel sheet of significant values
+    '''
     writer_mean = pd.ExcelWriter(filePath)
     stack = patterns.T.stack().to_frame()
     stack.columns = ["Intensity"]
     stack_sorted = stack[~((stack.values-mean < cutoff))]
     stack_sorted.to_excel(writer_mean, sheet_name)
-    writer_mean.save()
+    writer_mean.save() # type: ignore
 
 def getSignificantEntitiesForCenterElbow(patterns_list, cutoffs_center_elbow_list, mean_list, filePath, sheet_names_list):
     #logging.debug("Finding significant entities using the elbow of pdf curve ..")

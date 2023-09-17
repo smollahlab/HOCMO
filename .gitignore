@@ -145,3 +145,5 @@ CRO/ontologies/*
 
 # UMLS Norm tool
 NLP/descriptive_statistics/lvg2023/
+HOCMO/.devcontainer/devcontainer.json
+.gitignore
