@@ -507,7 +507,7 @@ def plotForFactorMatrix(factor_matrix, clusters, labels_ranked, components, imgN
     factor_matrix: input matrix, input matrix with raw data
     clusters: output from getClusterMembershipProbability, predicted cluster membership
     labels_ranked: sorted list of labels
-    imgName_cluster_scatter: Name of cluster membership scatterplot
+    imgName_cluster_scatter: Name of cluster membership scatterplot 
     img_filePath ,img_name_prob: Name of path for figure of cluster probability distribution
 
     EXAMPLE USAGE:
@@ -525,7 +525,21 @@ def computeCorrelationForfactorMatrices(factor_matrix1, factor_matrix2, xlabels_
                                        sheet_name, excel_path, file_name_excel):
     '''
     Wrapper function for findCorrelationMatrix, plotCorrelationMatrix, plotCorrelationMatrixGaussianDistribution,writeResultsToExcel
-    See description in utils.py for details on inputs and outputs.
+
+    INPUTS:
+    factor_matrix1, factor_matrix2: Two matrices whose correlations we wish to find
+    xlabels_plot, ylabels_plot, xlabel_pdc, ylabel_pdc: Labels for the correlation matrices and probability distribution functions
+    imgtitle_plot, imgtitle_pdc, imgfilePathPlot, imgfilePathPd: titles and path for generated figures
+    sheet_name, excel_path, file_name_excel: name and path of excel results to be saved
+
+    OUTPUTS:
+    Correlation Matrix, probability distribution function of correlation and saved correlation matrix as excel sheet.
+
+    EXAMPLE USAGE:
+    > hocmo.plotForFactorMatrix(A_ranked, A_clusters, A_names_ranked, components,"proteins_per_cluster_scatter_plot.png", './data/' ,"proteins_per_cluster_probability.png")
+
+    EXAMPLE OUTPUT:
+    > Figures and .xlsx
     '''
     patterns =  findCorrelationMatrix(factor_matrix1, factor_matrix2)
     plotCorrelationMatrix(patterns, xlabels_plot, ylabels_plot, imgtitle_plot, os.path.join(imgfilePathPlot, str(imgtitle_plot+".png")))
@@ -537,9 +551,9 @@ def getCorrelationsForAllFactors(A_ranked, B_ranked, C, A_names_ranked, B_names_
     '''
     Gets pairwise correlation scores and probability distribution matrices. Means and stds for??
     INPUTS:
-    A_ranked, B_ranked, C:
-    A_names_ranked, B_names_ranked: 
-    excel_path, file_name_excel, imgFilePath, imgtitles_plot, imgtitle_pdc: 
+    A_ranked, B_ranked, C: Latent factors
+    A_names_ranked, B_names_ranked: sorted names of latent factors
+    excel_path, file_name_excel, imgFilePath, imgtitles_plot, imgtitle_pdc: path for excel and images to be saved.
 
     OUTPUTS:
     Correlation plots, probability distribution figures, means and stds
@@ -549,7 +563,6 @@ def getCorrelationsForAllFactors(A_ranked, B_ranked, C, A_names_ranked, B_names_
                                         ['Probability Density Function M1r', 'Probability Density Function M2r','Probability Density Function M3r'])
     EXAMPLE OUTPUT:
     > means, stds, Probability Density Function figures for ineach input
-
     '''
     patterns_AB, mean_AB, std_AB = computeCorrelationForfactorMatrices(A_ranked, B_ranked, A_names_ranked,B_names_ranked,"Intensity", "Density",
                                         imgtitles_plot[0], imgtitle_pdc[0], imgFilePath, imgFilePath,
@@ -620,6 +633,22 @@ def plotCorrelationsPerEntity(patterns_AC, tensor_binary, A_names_ranked, B_name
         plt.show()
 
 def writeCorrelationsToExcel(patterns_list, sheet_names_patterns_list, filePath, A_names_ranked, B_names_ranked, C_names):
+    '''
+    Saves Correlation matrix to excel.
+    INPUTS:
+    patterns_list: list conntaining pairwise correlations
+    sheet_names_patterns_list, filePath: sheet name and path of excel sheet to be saved to
+    A_names_ranked, B_names_ranked, C_names: names of latent factors used as indexes for excel sheets
+
+    OUTPUTS:
+    Excel sheets containing correlation matrices
+
+    EXAMPLE USAGE:
+    > patterns_AB_pairs, patterns_AC_pairs, patterns_BC_pairs = hocmo.writeCorrelationsToExcel(patterns_list, ["M1_AB", "M2_AC", "M3_BC"], './data/correlations.xlsx', A_names_ranked, B_names_ranked, gene_names)
+
+    EXAMPLE OUTPUT:
+    > pairwise correlation matrix as dataframes
+    '''
     patterns_AB_pairs = pd.DataFrame(data=patterns_list[0], index=A_names_ranked, columns=B_names_ranked)
     patterns_AC_pairs = pd.DataFrame(patterns_list[1], index=A_names_ranked, 
                               columns=C_names)
@@ -633,7 +662,23 @@ def writeCorrelationsToExcel(patterns_list, sheet_names_patterns_list, filePath,
     return patterns_AB_pairs, patterns_AC_pairs, patterns_BC_pairs
 
 def getSignificantEntities(patterns_list, cutoffs_elbow_list, cutoffs_center_elbow_list, cutoffs_asymptotic_list, mean_list, sheet_names_elbow, sheet_names_center_elbow, sheet_names_asymptotic, filePath):
-    #logging.debug("In wrapper function to find sognificant entities..")
+    '''
+    Filters for significant results of correlations
+    INPUTS:
+    patterns_list: List of correlation matrices
+    cutoffs_elbow_list, cutoffs_center_elbow_list, cutoffs_asymptotic_list, mean_list: list of cutoffs values to determine significance
+    sheet_names_elbow, sheet_names_center_elbow, sheet_names_asymptotic: names of sheets to be saved in the excel sheet 
+    filePath: filePath of saved excel sheet
+
+    OUTPUTS:
+    excel sheets containing filtered significant correlations
+
+    EXAMPLE USAGE:
+    > hocmo.getSignificantEntities([patterns_AB_pairs, patterns_AC_pairs, patterns_BC_pairs], cutoffs_elbow_list, cutoffs_center_elbow_list, cutoffs_asymptotic_list, [mean_AB, mean_AC, mean_BC], ["M1_Elbow", "M2_Elbow", "M3_Elbow"], ["M1_Center_Elbow", "M2_Center_Elbow", "M3_Center_Elbow"], ["M1_Asymptotic", "M2_Asymptotic", "M3_Asymptotic"], './data/SignificantEntities.xlsx')
+
+    EXAMPLE OUTPUT:
+    > Saved significant entities to  excel sheets
+    '''
     getSignificantEntitiesForCenterElbow(patterns_list, cutoffs_center_elbow_list, mean_list, filePath, sheet_names_center_elbow)
     getSignificantEntitiesForElbow(patterns_list, cutoffs_elbow_list, mean_list, filePath, sheet_names_elbow)
     getSignificantEntitiesAsymptotic(patterns_list, cutoffs_asymptotic_list, mean_list, filePath, sheet_names_asymptotic)
