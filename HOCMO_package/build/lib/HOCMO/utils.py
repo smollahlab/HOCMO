@@ -909,7 +909,6 @@ def factorizeNCP(tensor, components):
 
     OUTPUTS:
     A,B,C Latent factors found by NTF per Panisson's paper
-
     '''
 
     num_component = components
@@ -960,14 +959,17 @@ def plotClusters(factor_matrix, clusters, labels,imgName):
     for k in range(len(clusters)):
         plt.scatter(factor_matrix[clusters[k], 0], factor_matrix[clusters[k], 1], c=colors[k], s=20,label='Cluster '+str(k+1))
     show_ids=[]
-    for v in np.random.choice(clusters[0],2,replace=False):
-        if factor_matrix[v, 0] > 0.6:
+    for v in np.random.choice(clusters[0],int(len(factor_matrix)/3),replace=False):
+        if factor_matrix[v, 0] > 0.55:
             plt.text(factor_matrix[v, 0], factor_matrix[v, 1]+.03, labels[v], fontsize=8)
             show_ids.append(v)
-    for v in np.random.choice(clusters[1],1,replace=False):
-        if factor_matrix[v, 1] > 0.6:
+    for v in np.random.choice(clusters[1],int(len(factor_matrix)/6),replace=False):
+        if factor_matrix[v, 1] > 0.55:
             plt.text(factor_matrix[v, 0], factor_matrix[v, 1]+.03, labels[v], fontsize=8)
-            show_ids.append(v)       
+            show_ids.append(v)  
+    plt.xticks(fontsize=13)
+    plt.xlabel('Comp1', fontsize=13)
+    plt.ylabel('Comp2', fontsize=13)     
     plt.legend(fontsize=13)   
     fig.savefig(imgName, format="png")
     plt.show() 
@@ -995,24 +997,32 @@ def plotProbabilityDistributionOfClusters(factor_matrix, show_ids, y_labels_rank
     fig.colorbar(cax1)
     plt.rc('ytick',labelsize=12)
 
-    if len(y_labels_ranked) > 15:
-        loc = plticker.MultipleLocator(base=4) # this locator puts ticks at regular intervals
-        show_y_names = y_labels_ranked[range(0, len(y_labels_ranked), 4)].to_list()
+    if len(y_labels_ranked) > 30:
+        loc = plticker.MultipleLocator(base=10) # this locator puts ticks at regular intervals
+        show_y_names = y_labels_ranked[range(0, len(y_labels_ranked),10)].to_list()
     else:
-        loc = plticker.MultipleLocator(base=1) # this locator puts ticks at regular intervals
+        loc = plticker.MultipleLocator(base=2) # this locator puts ticks at regular intervals
         show_y_names = y_labels_ranked.to_list() 
+    show_y_names_sig = show_y_names
     ax1.yaxis.set_major_locator(loc)  
-    for i in range(len(show_y_names)):
+    for i in range(len(show_y_names_sig)):
         if i not in show_ids:
-            show_y_names[i] = ''
+            show_y_names_sig[i] = ''
     show_y_names = [''] + show_y_names
-    print(show_y_names)
+    show_y_names_sig = [''] + show_y_names_sig
+    ##general
     ax1.set_yticklabels(show_y_names, fontsize=11)    
     x_labels = ['',]
     for i in range(1,components+1):
         x_labels.append('comp_'+str(i))
     ax1.set_xticklabels(x_labels,fontsize=12)
     plt.savefig(os.path.join(img_filePath, img_name), format="png")
+    ax1.set_yticklabels(show_y_names_sig, fontsize=11)    
+    x_labels = ['',]
+    for i in range(1,components+1):
+        x_labels.append('comp_'+str(i))
+    ax1.set_xticklabels(x_labels,fontsize=12)
+    plt.savefig(os.path.join(img_filePath, "sig_"+img_name), format="png")
     plt.show()
 
 def findCorrelationMatrix(factor_matrix1, factor_matrix2):

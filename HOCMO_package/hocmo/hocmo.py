@@ -9,6 +9,8 @@ import rpy2.robjects.numpy2ri
 from .utils import *
 import statistics
 from sktensor import dtensor
+import sys
+
 
 def createTensor(input_matrix, input_index_column, y_val, z_val):
     '''
@@ -52,7 +54,9 @@ def createTensor(input_matrix, input_index_column, y_val, z_val):
     x_names = incidence_matrix.index # type: ignore
     tensor = incidence_matrix.to_numpy().reshape([x, y, z]).transpose([2, 0, 1]) # type: ignore ## why is it transposed like this? no reason given here ##reordering
     y_names = pd.Index([v.split('_')[0] for v in incidence_matrix.columns.to_numpy().reshape([y,z]).transpose([1,0])[0]]) # type: ignore ##  some fancy matrix manipulation to get disease names
-    z_names = pd.Index([v.split('_')[1] for v in incidence_matrix.columns.to_numpy().reshape([x,y])[1]])  # type: ignore
+    z_names = [v.split('_')[1] for v in incidence_matrix.columns.to_numpy()] # type: ignore
+    z_names = pd.Index(list({value:"" for value in z_names}))  # type: ignore
+    
     print('Size of the tensor:',tensor.shape)
     return incidence_matrix,incidence_matrix_binary,x_names,y_names,z_names,tensor
 
@@ -82,6 +86,12 @@ def basicVisual(tensor, x_names, y_names,z_names, x_labels, y_labels, z_labels, 
     fig.clf()
     ax = fig.add_subplot(111, projection='3d')
 
+    if len(x_labels)>20:
+        x_labels = ''
+    if len(y_labels)>20:
+        y_labels = ''
+    if len(z_labels)>20:
+        z_labels = ''
     ##Creation of axes and labels
     ax.set_xticks([])
     ax.set(xticks=range(tensor_T.shape[0]), xticklabels=x_labels,
@@ -278,12 +288,13 @@ def componentPredictionsForFactors(A, B):
     print('{} inputs in total, each input belongs to a predicted component with the largest membership value:\n\n'.format(B.shape[0]), component_preds_B)
     return component_preds_A, component_preds_B
 
-def getClusterMembershipProbabilityA(A, num_component, component_preds_A,  incidence_matrix_binary, incidence_matrix, y_label, img_title, imgName ):
+def getClusterMembershipProbabilityA(A, y_val, z_val, num_component, component_preds_A,  incidence_matrix_binary, incidence_matrix, y_label, img_title, imgName ):
     '''
     Get Cluster Membership Probability for factorized output A
 
     INPUTS:
     A: factorized outputs from factorize
+    y_val, z_val: size of convoluted data, same as in createTensor
     num_component: Predicted number of components from getCoreConsistency
     component_preds: Output from componentPredictionsForFactors. Predicted component membership for each factorized layer of tensor
     incidence_matrix_binary, incidence_matrix: input tensors, created from createTensor
@@ -318,7 +329,7 @@ def getClusterMembershipProbabilityA(A, num_component, component_preds_A,  incid
     x_names = incidence_matrix.index
     A_ranked = A[new_indexes]
     A_names_ranked = x_names[new_indexes]
-    tensor_binary = incidence_matrix_binary.to_numpy()[new_indexes].reshape([incidence_matrix.shape[0],5,5]).transpose([1, 0, 2]) ##hard coded?
+    tensor_binary = incidence_matrix_binary.to_numpy()[new_indexes].reshape([incidence_matrix.shape[0],y_val, z_val]).transpose([1, 0, 2]) ##hard coded?
     print(tensor_binary.shape)
     fig = plt.figure(figsize=(10,7))
 # fig.subplots_adjust(hspace=0, wspace=0.3)
@@ -564,16 +575,16 @@ def getCorrelationsForAllFactors(A_ranked, B_ranked, C, A_names_ranked, B_names_
     EXAMPLE OUTPUT:
     > means, stds, Probability Density Function figures for ineach input
     '''
-    patterns_AB, mean_AB, std_AB = computeCorrelationForfactorMatrices(A_ranked, B_ranked, A_names_ranked,B_names_ranked,"Intensity", "Density",
+    patterns_BA, mean_BA, std_BA = computeCorrelationForfactorMatrices(A_ranked, B_ranked, B_names_ranked, A_names_ranked,"Intensity", "Density",
                                         imgtitles_plot[0], imgtitle_pdc[0], imgFilePath, imgFilePath,
-                                       "M1_AB", excel_path,file_name_excel) ##
-    patterns_AC, mean_AC, std_AC = computeCorrelationForfactorMatrices(A_ranked, C, A_names_ranked, C_names, "Intensity", "Density",
+                                       "M1_BA", excel_path,file_name_excel) ##
+    patterns_CA, mean_CA, std_CA = computeCorrelationForfactorMatrices(A_ranked, C, C_names, A_names_ranked, "Intensity", "Density",
                                         imgtitles_plot[1], imgtitle_pdc[1], imgFilePath, imgFilePath,
-                                       "M2_AC", excel_path,file_name_excel) ##
-    patterns_BC, mean_BC, std_BC = computeCorrelationForfactorMatrices(B_ranked, C, B_names_ranked, C_names, "Intensity", "Density",
+                                       "M2_CA", excel_path,file_name_excel) ##
+    patterns_CB, mean_CB, std_CB = computeCorrelationForfactorMatrices(B_ranked, C, C_names, B_names_ranked, "Intensity", "Density",
                                         imgtitles_plot[2], imgtitle_pdc[2], imgFilePath, imgFilePath,
-                                       "M3_BC", excel_path,file_name_excel) ##
-    return [patterns_AB, patterns_AC, patterns_BC], [mean_AB, mean_AC, mean_BC], [std_AB, std_AC, std_BC]
+                                       "M3_CB", excel_path,file_name_excel) ##
+    return [patterns_BA, patterns_CA, patterns_CB], [mean_BA, mean_CA, mean_CB], [std_BA, std_CA, std_CB]
  
 def plotCorrelationsPerEntity(patterns_AC, tensor_binary, A_names_ranked, B_names_ranked, C_names, img_FilePath, filePath): ##reason why its AC?
     '''
@@ -609,6 +620,7 @@ def plotCorrelationsPerEntity(patterns_AC, tensor_binary, A_names_ranked, B_name
         ax.set_yticklabels(A_names_ranked.insert(0,''), size=(13))
         ax.set_xticklabels(C_names,fontsize=12)
         fig.colorbar(aa)
+        ax.set_title(str(B_names_ranked[i]), y=-0.1, fontsize=16)
         plt.savefig(os.path.join(img_FilePath, str(B_names_ranked[i]+'.png')), format="png")
         plt.show()
 # fitting the data with a gaussian distribution
@@ -683,6 +695,52 @@ def getSignificantEntities(patterns_list, cutoffs_elbow_list, cutoffs_center_elb
     getSignificantEntitiesForElbow(patterns_list, cutoffs_elbow_list, mean_list, filePath, sheet_names_elbow)
     getSignificantEntitiesAsymptotic(patterns_list, cutoffs_asymptotic_list, mean_list, filePath, sheet_names_asymptotic)
 
+def getHOCscores(patterns_AC, patterns_AB, A_names_ranked, B_names_ranked, C_names_ranked, filePath):
+    '''
+    Calculates HOC score. A CSV of AC relationships is created for each entity in B. This is then used to calculate the triplicate score
+    INPUTS:
+    patterns_AC, patterns_AB: Correlation matrices from which HOC score is derived
+     A_names_ranked, B_names_ranked, C_names_ranked: axes, used as labels in generated CSV files
+    filePath: filePath of output CSV and summmary CSV 
+
+    OUTPUTS:
+    A CSV of A-C relationships is created for each entity in B.
+    A summary CSV with descriptive statistics for each sheet.
+    EXAMPLE USAGE:
+    > summary_df = hocmo.getHOCscores(patterns_AC, patterns_AB, A_names_ranked, B_names_ranked, condition_names, './data/')
+
+    EXAMPLE OUTPUT:
+    > CSV files
+    '''
+    print("Inside Hoc scores function")
+    rowlist = []
+    for i in range(patterns_AB.shape[1]):
+        summ_dict = {}
+        print("Iteration ", i)
+        AB_i = np.expand_dims(patterns_AB[:,i], axis=0)
+        patterns_cp_cg_i = patterns_AC * AB_i.T
+        hoc_score_i = pd.DataFrame(data=patterns_cp_cg_i, index=A_names_ranked, columns=C_names_ranked)
+        fname = str(B_names_ranked[i] +".csv")
+        print(fname)
+        hoc_score_i = hoc_score_i.div(np.max(hoc_score_i.to_numpy().flatten()))
+        hoc_score_i.to_csv(os.path.join(filePath, fname))
+        print("File written...")
+        gene_np = hoc_score_i.to_numpy().flatten()
+        gene_np_sorted = sorted(gene_np)
+        summ_dict["B_entities"] = B_names_ranked[i]
+        summ_dict["min"] = np.min(gene_np)
+        summ_dict["1Q"] = np.percentile(gene_np_sorted, 25)
+        summ_dict["median"] = np.percentile(gene_np_sorted, 50)
+        summ_dict["3Q"] = np.percentile(gene_np_sorted, 75)
+        summ_dict["max"] = np.max(gene_np)
+        rowlist.append(summ_dict)
+        sys.stdout.flush()
+    summary_df = pd.DataFrame(rowlist)
+    print("created summary file")
+    summary_df.to_csv(os.path.join(filePath, "hoc_summaries.csv"))
+    return summary_df
+
+'''
 def calculateHOCScores(patterns_AB, patterns_rppa_gcp, filePath, hoc_file_name, hoc_filtered_file_name, all_hoc_score_file_name):
     sig_ligands = ligand_names_ranked
     sig_proteins = ['CCNB1','PLK1','RB1pS807S811','RPS6pS240S244','DUSP4','RPS6pS235S236',
@@ -833,6 +891,8 @@ def calculateHOCScores(patterns_AB, patterns_rppa_gcp, filePath, hoc_file_name, 
     print(protein_names_ranked)
     print(histone_names_ranked)
 
+
+'''
 
 ### Creating wrapper functions for rppa , gcp and rppa_gcp_hocmo
 '''

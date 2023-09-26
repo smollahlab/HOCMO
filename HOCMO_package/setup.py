@@ -5,7 +5,7 @@ with open("requirements.txt") as handle:
 
 setup(
     name="hocmo",
-    version="0.0.6",
+    version="0.0.7",
     install_requires = dependencies,
     packages=find_packages(),
 )
