@@ -12,7 +12,7 @@ from sktensor import dtensor
 import sys
 
 
-def createTensor(input_matrix, input_index_column, y_val, z_val):
+def createTensor(input_matrix, input_index_column, y_val, z_val, sort=True):
     '''
     Performs data preprocessing and creates a 3 dimensional tensor based on an input incidience matrix. See (Ref 1) for information regarding incideience matrices and their format. Also prints size of tensor
     INPUTS:
@@ -25,6 +25,7 @@ def createTensor(input_matrix, input_index_column, y_val, z_val):
     incidence_matrix_binary: Binary version of the processed matrix. -1 if the original value was <0 and 1 if >=0
     x_names, y_names, z_names: List of names of variables derived from input matrix. (for y and z names to function, seperate the two with '_')
     tensor: tensor representing input
+    sort: boolean deciding whether you want your input columns to be sorted (lexographically) this may not work well for numerical data, but if comparing more than one input, will ensure that they are all in the same order. Set it to false if you wish to use a custom order.
 
     EXAMPLE USAGE:
     > incidence_matrix,incidence_matrix_binary,protein_names,disease_names,gene_names,tensor = hocmo.createTensor('HOCMO_test.csv','CRs',5,5)
@@ -37,7 +38,8 @@ def createTensor(input_matrix, input_index_column, y_val, z_val):
     ## Skipping much of the preprocessing as we have a very simplified matrix
     incidence_matrix = pd.read_csv(input_matrix)
     incidence_matrix = incidence_matrix.set_index(input_index_column)
-
+    if sort == True:
+        incidence_matrix.sort_index(axis=1, inplace=True)
     ## Dimensions of the tensor, concerning that these appear to be hard coded
     x = incidence_matrix.shape[0]
     y = y_val
@@ -82,7 +84,7 @@ def basicVisual(tensor, x_names, y_names,z_names, x_labels, y_labels, z_labels, 
     x,y,z = tensor_T.nonzero()
 
     ##Creation of 3d tensor plot
-    fig = plt.figure(figsize=(9,8))
+    fig = plt.figure(figsize=(15,11))
     fig.clf()
     ax = fig.add_subplot(111, projection='3d')
 
@@ -97,10 +99,10 @@ def basicVisual(tensor, x_names, y_names,z_names, x_labels, y_labels, z_labels, 
     ax.set(xticks=range(tensor_T.shape[0]), xticklabels=x_labels,
         yticks=range(tensor_T.shape[1]), yticklabels=y_labels,
         zticks=range(tensor_T.shape[2]), zticklabels=z_labels)  
-    ax.set_xlabel(x_names, fontsize=18)
-    ax.set_ylabel(y_names, fontsize=18)
+    ax.set_xlabel(str(str(tensor_T.shape[0])+ ' '+ x_names), fontsize=18)
+    ax.set_ylabel(str(str(tensor_T.shape[1]) + ' ' +y_names), fontsize=18)
     ax.yaxis.labelpad=15
-    ax.set_zlabel(z_names, fontsize=18)
+    ax.set_zlabel(str(str(tensor_T.shape[2]) + ' ' +z_names), fontsize=18)
     ax.scatter(x, y, z, cmap='cm.coolwarm')
     plt.savefig(os.path.join(img_filePath, img_name), format="png")
     plt.show()
@@ -264,7 +266,7 @@ def plotFactorMatrices(A, B, C, components, imgName_A, imgName_B, imgName_C, x_n
     plt.show()
     fig.colorbar(cax3)
 
-def componentPredictionsForFactors(A, B):
+def componentPredictionsForFactors(A, B, C):
     '''
     Classify inputs into components. Component group is determined based on largest membership values
     INPUTS:
@@ -286,7 +288,9 @@ def componentPredictionsForFactors(A, B):
     print('{} inputs in total, each input belongs to a predicted component with the largest membership value:\n\n'.format(A.shape[0]), component_preds_A)
     component_preds_B = B.argmax(axis=1) # classify inputs into respective components based on the largest membership values
     print('{} inputs in total, each input belongs to a predicted component with the largest membership value:\n\n'.format(B.shape[0]), component_preds_B)
-    return component_preds_A, component_preds_B
+    component_preds_C = C.argmax(axis=1) # classify inputs into respective components based on the largest membership values
+    print('{} inputs in total, each input belongs to a predicted component with the largest membership value:\n\n'.format(B.shape[0]), component_preds_B)
+    return component_preds_A, component_preds_B, component_preds_C
 
 def getClusterMembershipProbabilityA(A, y_val, z_val, num_component, component_preds_A,  incidence_matrix_binary, incidence_matrix, y_label, img_title, imgName ):
     '''
@@ -695,50 +699,120 @@ def getSignificantEntities(patterns_list, cutoffs_elbow_list, cutoffs_center_elb
     getSignificantEntitiesForElbow(patterns_list, cutoffs_elbow_list, mean_list, filePath, sheet_names_elbow)
     getSignificantEntitiesAsymptotic(patterns_list, cutoffs_asymptotic_list, mean_list, filePath, sheet_names_asymptotic)
 
-def getHOCscores(patterns_AC, patterns_AB, A_names_ranked, B_names_ranked, C_names_ranked, filePath):
-    '''
-    Calculates HOC score. A CSV of AC relationships is created for each entity in B. This is then used to calculate the triplicate score
-    INPUTS:
-    patterns_AC, patterns_AB: Correlation matrices from which HOC score is derived
-     A_names_ranked, B_names_ranked, C_names_ranked: axes, used as labels in generated CSV files
-    filePath: filePath of output CSV and summmary CSV 
+def crossVisualize(patterns_AB1, patterns_AB, A_names_ranked, A_names_ranked1, output_filename):
+    patterns_AB1_expand = np.expand_dims(patterns_AB1, axis=1)
+    patterns_1_2 = np.sum(np.transpose(np.multiply(patterns_AB, patterns_AB1_expand), [1, 0, 2]), axis=2)
+    print(patterns_1_2.shape)
 
-    OUTPUTS:
-    A CSV of A-C relationships is created for each entity in B.
-    A summary CSV with descriptive statistics for each sheet.
-    EXAMPLE USAGE:
-    > summary_df = hocmo.getHOCscores(patterns_AC, patterns_AB, A_names_ranked, B_names_ranked, condition_names, './data/')
+    fig = plt.figure(figsize=(5, 7))
+    ax = fig.add_subplot(111)
+    aa = ax.matshow(patterns_1_2, cmap='bwr', norm=colors.TwoSlopeNorm(vcenter=0))
+    ax.set_aspect('auto')
 
-    EXAMPLE OUTPUT:
-    > CSV files
-    '''
-    print("Inside Hoc scores function")
+    ax.set_yticks(range(len(A_names_ranked)))
+    loc = plticker.MultipleLocator(base=10)
+    ax.yaxis.set_major_locator(loc)
+    show_protein_names = A_names_ranked[range(0, len(A_names_ranked), 10)].insert(0, '')
+    ax.set_yticklabels(show_protein_names, fontsize=11)
+
+    ax.set_xticks(range(len(A_names_ranked1)))
+    loc = plticker.MultipleLocator(base=3.2)
+    ax.xaxis.set_major_locator(loc)
+    show_2_names = A_names_ranked1[range(0, len(A_names_ranked1), 3)].insert(0, '')
+    ax.set_xticklabels(show_2_names, fontsize=11, rotation=90)
+
+    ax.set_title("$\mathbf{M}_4$", y=-0.1, fontsize=16)
+    fig.colorbar(aa)
+
+    patterns_1_2_pairs = pd.DataFrame(data=patterns_1_2, index=A_names_ranked, columns=A_names_ranked1)
+
+    with pd.ExcelWriter(output_filename) as writer_rppa_gcp:
+        patterns_1_2_pairs.to_excel(writer_rppa_gcp, "M4")
+
+    # Fitting the data with a gaussian distribution
+    fig = plt.figure(figsize=(7, 4.3))
+    ax = fig.add_subplot(111)
+    ax.tick_params(axis='both', which='major', labelsize=14)
+
+    patterns_1_2_ = patterns_1_2.flatten()
+    patterns_1_2_.sort()
+    mean, std = norm.fit(patterns_1_2_)
+    print('mean:{}, std:{}'.format(mean, std))
+
+    fitted_pdf = norm.pdf(patterns_1_2_, loc=mean, scale=std)
+    linestyle = {"linestyle": "-", "linewidth": 2, "markeredgewidth": 2, "elinewidth": 2, "capsize": 5}
+    plt.errorbar(patterns_1_2_, fitted_pdf, color="green", **linestyle, fmt='-')
+    plt.xlabel("Interaction Intensity", fontsize=16)
+    plt.ylabel("Density Value", fontsize=16)
+    plt.legend(['Probability Density Function (M4)'])
+    plt.grid(linestyle='-.')
+    plt.show()
+    return patterns_1_2
+
+
+def getAllHOCScores(patterns_1, patterns_2, names_1_ranked, names_2_ranked, common_axis_names_ranked, filePath):
+    writer_hoc_score = pd.ExcelWriter(filePath)
+    total_hoc_score = pd.DataFrame()
     rowlist = []
-    for i in range(patterns_AB.shape[1]):
+    for i in range(patterns_1.shape[1]):
         summ_dict = {}
-        print("Iteration ", i)
-        AB_i = np.expand_dims(patterns_AB[:,i], axis=0)
-        patterns_cp_cg_i = patterns_AC * AB_i.T
-        hoc_score_i = pd.DataFrame(data=patterns_cp_cg_i, index=A_names_ranked, columns=C_names_ranked)
-        fname = str(B_names_ranked[i] +".csv")
-        print(fname)
-        hoc_score_i = hoc_score_i.div(np.max(hoc_score_i.to_numpy().flatten()))
-        hoc_score_i.to_csv(os.path.join(filePath, fname))
-        print("File written...")
-        gene_np = hoc_score_i.to_numpy().flatten()
-        gene_np_sorted = sorted(gene_np)
-        summ_dict["B_entities"] = B_names_ranked[i]
-        summ_dict["min"] = np.min(gene_np)
-        summ_dict["1Q"] = np.percentile(gene_np_sorted, 25)
-        summ_dict["median"] = np.percentile(gene_np_sorted, 50)
-        summ_dict["3Q"] = np.percentile(gene_np_sorted, 75)
-        summ_dict["max"] = np.max(gene_np)
+        patterns_1_i = np.expand_dims(patterns_1[:, i], axis=0)
+        patterns_1_2_i = patterns_2 * patterns_1_i.T
+        hoc_score_i = pd.DataFrame(data=patterns_1_2_i, index=names_1_ranked, columns=names_2_ranked)
+        hoc_score_i.to_excel(writer_hoc_score, common_axis_names_ranked[i])
+        entity_np = hoc_score_i.to_numpy().flatten()
+        entity_np_sorted = sorted(entity_np)
+        summ_dict["B_entities"] = common_axis_names_ranked[i]
+        summ_dict["min"] = np.min(entity_np)
+        summ_dict["1Q"] = np.percentile(entity_np_sorted, 25)
+        summ_dict["median"] = np.percentile(entity_np_sorted, 50)
+        summ_dict["3Q"] = np.percentile(entity_np_sorted, 75)
+        summ_dict["max"] = np.max(entity_np)
         rowlist.append(summ_dict)
-        sys.stdout.flush()
+        hoc_score_i_reset = hoc_score_i.reset_index()
+        result_hoc_score_i = hoc_score_i_reset.melt(id_vars=['Protein'], var_name='histone', value_name='HOC Score')
+        result_hoc_score_i['Triplet'] = '<' + result_hoc_score_i['Protein'] + ', ' + result_hoc_score_i['histone'] + ', ' + common_axis_names_ranked[i] + '>'
+        result_hoc_score_i = result_hoc_score_i[['Triplet', 'HOC Score']]
+        total_hoc_score = pd.concat([total_hoc_score, result_hoc_score_i])
     summary_df = pd.DataFrame(rowlist)
-    print("created summary file")
-    summary_df.to_csv(os.path.join(filePath, "hoc_summaries.csv"))
-    return summary_df
+    summary_df.to_excel(writer_hoc_score, 'Summary Statistics')
+    total_hoc_score = total_hoc_score.sort_values('HOC Score', ascending=False)
+    total_hoc_score.to_excel(writer_hoc_score, 'All Triplets')
+    writer_hoc_score.save()
+    return total_hoc_score
+
+def getFilteredHOCScores(patterns_1, patterns_2, names_1_ranked, names_2_ranked, sig_common_axis, sig_1, sig_2, filePath):
+    writer_hoc_score = pd.ExcelWriter(filePath)
+    total_hoc_score = pd.DataFrame()
+    rowlist = []
+    for i in range(patterns_1.shape[1]):
+        summ_dict = {}
+        patterns_1_i = np.expand_dims(patterns_1[:, i], axis=0)
+        patterns_1_2_i = patterns_2 * patterns_1_i.T
+        hoc_score_i = pd.DataFrame(data=patterns_1_2_i, index=names_1_ranked, columns=names_2_ranked)
+        hoc_score_i = hoc_score_i.loc[sig_1, sig_2]
+        hoc_score_i = hoc_score_i/hoc_score_i.max().max()
+        hoc_score_i.to_excel(writer_hoc_score, sig_common_axis[i])
+        entity_np = hoc_score_i.to_numpy().flatten()
+        entity_np_sorted = sorted(entity_np)
+        summ_dict["B_entities"] = sig_common_axis[i]
+        summ_dict["min"] = np.min(entity_np)
+        summ_dict["1Q"] = np.percentile(entity_np_sorted, 25)
+        summ_dict["median"] = np.percentile(entity_np_sorted, 50)
+        summ_dict["3Q"] = np.percentile(entity_np_sorted, 75)
+        summ_dict["max"] = np.max(entity_np)
+        rowlist.append(summ_dict)
+        hoc_score_i_reset = hoc_score_i.reset_index()
+        result_hoc_score_i = hoc_score_i_reset.melt(id_vars=['Protein'], var_name='histone', value_name='HOC Score')
+        result_hoc_score_i['Triplet'] = '<' + result_hoc_score_i['Protein'] + ', ' + result_hoc_score_i['histone'] + ', ' + sig_common_axis[i] + '>'
+        result_hoc_score_i = result_hoc_score_i[['Triplet', 'HOC Score']]
+        total_hoc_score = pd.concat([total_hoc_score, result_hoc_score_i])
+    summary_df = pd.DataFrame(rowlist)
+    summary_df.to_excel(writer_hoc_score, 'Summary Statistics')
+    total_hoc_score = total_hoc_score.sort_values('HOC Score', ascending=False)
+    total_hoc_score.to_excel(writer_hoc_score, 'All Triplets')
+    writer_hoc_score.save()
+    return total_hoc_score
 
 '''
 def calculateHOCScores(patterns_AB, patterns_rppa_gcp, filePath, hoc_file_name, hoc_filtered_file_name, all_hoc_score_file_name):
