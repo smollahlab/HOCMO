@@ -8,8 +8,8 @@ import rpy2.robjects as robjects
 import rpy2.robjects.numpy2ri
 from .utils import *
 import statistics
-from sktensor import dtensor
-import sys
+import warnings
+warnings.filterwarnings("ignore")
 
 
 def createTensor(input_matrix, input_index_column, y_val, z_val, sort=True):
@@ -84,7 +84,7 @@ def basicVisual(tensor, x_names, y_names,z_names, x_labels, y_labels, z_labels, 
     x,y,z = tensor_T.nonzero()
 
     ##Creation of 3d tensor plot
-    fig = plt.figure(figsize=(10,15))
+    fig = plt.figure(figsize=(15,11))
     fig.clf()
     ax = fig.add_subplot(111, projection='3d')
 
@@ -218,7 +218,7 @@ def factorize(tensor, components, method="ncp"):
 
 def plotFactorMatrices(A, B, C, components, imgName_A, imgName_B, imgName_C, x_names, y_names,z_names):
     '''
-    What is actually plotted here? Need context so I can figure out how to rename all the axes.
+    Plots component memership of each decomposed latent factor.
     INPUTS:
     A, B, C: individual latent factors to plot
     components: optimal number of components found from getCoreConsistency
@@ -226,13 +226,13 @@ def plotFactorMatrices(A, B, C, components, imgName_A, imgName_B, imgName_C, x_n
     x_names, y_names,z_names: used to label figures
 
     OUTPUTS:
-    Figure of latent factors as matrices
+    Figure of latent factors component membership. 3 graphs, each with number of columns equal to components
 
     EXAMPLE USAGE:
-    > incidence_matrix,incidence_matrix_binary,protein_names,disease_names,gene_names,tensor = hocmo.createTensor('HOCMO_test.csv','CRs',5,5)
+    > hocmo.plotFactorMatrices(A, B, C, components, './data/A_rppa.png', './data/B_rppa.png', './data/C_rppa.png', protein_names,ligand_names,condition_names)
 
     EXAMPLE OUTPUT:
-    > Size of the tensor: (5, 5, 5)
+    > Figure of latent factors component membership
     '''
     x_labels = ['',]
     for i in range(1,components+1):
@@ -270,19 +270,21 @@ def componentPredictionsForFactors(A, B, C):
     '''
     Classify inputs into components. Component group is determined based on largest membership values
     INPUTS:
-    A,B: factorized outputs from factorize
+    A,B,C: factorized outputs from factorize
 
     OUTPUTS:
-    predicted component group
+    predicted component groups: component_preds_A, component_preds_B, component_preds_C.
 
     EXAMPLE USAGE:
-    > component_preds_A, component_preds_B = hocmo.componentPredictionsForFactors(A,B)
+    > component_preds_A, component_preds_B, component_preds_C = hocmo.componentPredictionsForFactors(A,B,C)
 
     EXAMPLE OUTPUT:
     > 5 inputs in total, each input belongs to a predicted component with the largest membership value:
     > [0 1 0 1 1]
     > 5 inputs in total, each input belongs to a predicted component with the largest membership value:
     > [0 1 0 0 0]
+    > 5 inputs in total, each input belongs to a predicted component with the largest membership value:
+    > [1 1 0 0 0]
     '''
     component_preds_A = A.argmax(axis=1) # classify inputs into respective components based on the largest membership values
     print('{} inputs in total, each input belongs to a predicted component with the largest membership value:\n\n'.format(A.shape[0]), component_preds_A)
@@ -305,7 +307,9 @@ def getClusterMembershipProbabilityA(A, y_val, z_val, num_component, component_p
     y_label, img_title, imgName: label and name of output image.
 
     OUTPUTS:
-    Cluster Membership Probability for factorized output A
+    tensor_binary: processed version of input binary tensor. Tensor is re-ranked to match the new ranking of latent factor A.
+    A_ranked, A_names_ranked, A_clusters: A is ranked based on strength of correlation. A_ranked is the actual latent factor variables. A_names_ranked is the labels of the latent factor A.
+                                            A_clusters represents the components to which different entities in A belong
 
     EXAMPLE USAGE:
     > tensor_binary, A_ranked, A_names_ranked, A_clusters = hocmo.getClusterMembershipProbabilityA(A, components, component_preds_A,  incidence_matrix_binary, incidence_matrix,
@@ -360,13 +364,13 @@ def getClusterMembershipProbability(factor_matrix,num_component, component_preds
     y_label, imgName: label and name of output image.
 
     OUTPUTS:
-    Cluster Membership Probability for factorized output A
+    Cluster Membership Probability for factorized output. Analgous to getClusterMembershipProbabilityA
 
     EXAMPLE USAGE:
     > B_ranked, B_names_ranked, B_clusters = hocmo.getClusterMembershipProbability(B, components, component_preds_B, gene_names, 'Components', 'Ligands', "B_ranked_per_cluster.png")
 
     EXAMPLE OUTPUT:
-    > Membership Probability figure.
+    > Same as output for getClusterMembershipProbabilityA
     '''
     # rerange the proteins in matrix A
     new_indices = []
@@ -562,7 +566,7 @@ def computeCorrelationForfactorMatrices(factor_matrix1, factor_matrix2, xlabels_
     writeResultsToExcel(excel_path, file_name_excel, flatten_patterns, fitted_pdf, mean, std, sheet_name)
     return patterns,mean,std 
    
-def getCorrelationsForAllFactors(A_ranked, B_ranked, C, A_names_ranked, B_names_ranked, C_names, excel_path, file_name_excel, imgFilePath, imgtitles_plot, imgtitle_pdc):
+def getCorrelationsForAllFactors(A_ranked, B_ranked, C_ranked, A_names_ranked, B_names_ranked, C_names_ranked, excel_path, file_name_excel, imgFilePath, imgtitles_plot, imgtitle_pdc):
     '''
     Gets pairwise correlation scores and probability distribution matrices. Means and stds for??
     INPUTS:
@@ -582,15 +586,15 @@ def getCorrelationsForAllFactors(A_ranked, B_ranked, C, A_names_ranked, B_names_
     patterns_BA, mean_BA, std_BA = computeCorrelationForfactorMatrices(A_ranked, B_ranked, B_names_ranked, A_names_ranked,"Intensity", "Density",
                                         imgtitles_plot[0], imgtitle_pdc[0], imgFilePath, imgFilePath,
                                        "M1_BA", excel_path,file_name_excel) ##
-    patterns_CA, mean_CA, std_CA = computeCorrelationForfactorMatrices(A_ranked, C, C_names, A_names_ranked, "Intensity", "Density",
+    patterns_CA, mean_CA, std_CA = computeCorrelationForfactorMatrices(A_ranked, C_ranked, C_names_ranked, A_names_ranked, "Intensity", "Density",
                                         imgtitles_plot[1], imgtitle_pdc[1], imgFilePath, imgFilePath,
                                        "M2_CA", excel_path,file_name_excel) ##
-    patterns_CB, mean_CB, std_CB = computeCorrelationForfactorMatrices(B_ranked, C, C_names, B_names_ranked, "Intensity", "Density",
+    patterns_CB, mean_CB, std_CB = computeCorrelationForfactorMatrices(B_ranked, C_ranked, C_names_ranked, B_names_ranked, "Intensity", "Density",
                                         imgtitles_plot[2], imgtitle_pdc[2], imgFilePath, imgFilePath,
                                        "M3_CB", excel_path,file_name_excel) ##
     return [patterns_BA, patterns_CA, patterns_CB], [mean_BA, mean_CA, mean_CB], [std_BA, std_CA, std_CB]
  
-def plotCorrelationsPerEntity(patterns_AC, tensor_binary, A_names_ranked, B_names_ranked, C_names, img_FilePath, filePath): ##reason why its AC?
+def plotCorrelationsPerEntity(patterns_AC, tensor_binary, A_names_ranked, B_names_ranked, C_names_ranked, img_FilePath, filePath): ##reason why its AC?
     '''
     Plots Correlation matrix and score per entity found in specific pairwise relationship.
 
@@ -613,8 +617,8 @@ def plotCorrelationsPerEntity(patterns_AC, tensor_binary, A_names_ranked, B_name
     norm = colors.TwoSlopeNorm(vcenter=0)
     fig = plt.figure(figsize=(16,10))
     plt.set_cmap('bwr')
-    C_names = C_names.insert(0,'')
-    C_names = [ str(x) for x in C_names ]
+    C_names_ranked = C_names_ranked.insert(0,'')
+    C_names_ranked = [ str(x) for x in C_names_ranked ]
     for i in range(patterns_AC_by_entity.shape[0]):
         fig = plt.figure(figsize=(16,10))
         plt.set_cmap('bwr')
@@ -622,7 +626,7 @@ def plotCorrelationsPerEntity(patterns_AC, tensor_binary, A_names_ranked, B_name
         aa = ax.matshow(patterns_AC_by_entity[i], norm=norm)
         ax.set_aspect('auto')
         ax.set_yticklabels(A_names_ranked.insert(0,''), size=(13))
-        ax.set_xticklabels(C_names,fontsize=12)
+        ax.set_xticklabels(C_names_ranked,fontsize=12)
         fig.colorbar(aa)
         ax.set_title(str(B_names_ranked[i]), y=-0.1, fontsize=16)
         plt.savefig(os.path.join(img_FilePath, str(B_names_ranked[i]+'.png')), format="png")
@@ -648,16 +652,16 @@ def plotCorrelationsPerEntity(patterns_AC, tensor_binary, A_names_ranked, B_name
         plt.savefig(os.path.join(img_FilePath, 'PDF (M2_'+str(B_names_ranked[i]+').png')), format="png")
         plt.show()
 
-def writeCorrelationsToExcel(patterns_list, sheet_names_patterns_list, filePath, A_names_ranked, B_names_ranked, C_names):
+def writeCorrelationsToExcel(patterns_list, sheet_names_patterns_list, filePath, A_names_ranked, B_names_ranked, C_names_ranked):
     '''
     Saves Correlation matrix to excel.
     INPUTS:
     patterns_list: list conntaining pairwise correlations
     sheet_names_patterns_list, filePath: sheet name and path of excel sheet to be saved to
-    A_names_ranked, B_names_ranked, C_names: names of latent factors used as indexes for excel sheets
+    A_names_ranked, B_names_ranked, C_names_ranked: names of latent factors used as indexes for excel sheets
 
     OUTPUTS:
-    Excel sheets containing correlation matrices
+    Excel sheets containing correlation matrices, with the same data as dataframes stored in patterns_AB_pairs, patterns_AC_pairs, patterns_BC_pairs
 
     EXAMPLE USAGE:
     > patterns_AB_pairs, patterns_AC_pairs, patterns_BC_pairs = hocmo.writeCorrelationsToExcel(patterns_list, ["M1_AB", "M2_AC", "M3_BC"], './data/correlations.xlsx', A_names_ranked, B_names_ranked, gene_names)
@@ -667,14 +671,14 @@ def writeCorrelationsToExcel(patterns_list, sheet_names_patterns_list, filePath,
     '''
     patterns_AB_pairs = pd.DataFrame(data=patterns_list[0], index=A_names_ranked, columns=B_names_ranked)
     patterns_AC_pairs = pd.DataFrame(patterns_list[1], index=A_names_ranked, 
-                              columns=C_names)
+                              columns=C_names_ranked)
     patterns_BC_pairs = pd.DataFrame(data=patterns_list[2], index=B_names_ranked, 
-                      columns=C_names)
+                      columns=C_names_ranked)
     writer = pd.ExcelWriter(filePath)
     patterns_AB_pairs.to_excel(writer, sheet_names_patterns_list[0])
     patterns_AC_pairs.to_excel(writer, sheet_names_patterns_list[1])
     patterns_BC_pairs.to_excel(writer, sheet_names_patterns_list[2])
-    writer.save()
+    writer.close()
     return patterns_AB_pairs, patterns_AC_pairs, patterns_BC_pairs
 
 def getSignificantEntities(patterns_list, cutoffs_elbow_list, cutoffs_center_elbow_list, cutoffs_asymptotic_list, mean_list, sheet_names_elbow, sheet_names_center_elbow, sheet_names_asymptotic, filePath):
@@ -700,6 +704,23 @@ def getSignificantEntities(patterns_list, cutoffs_elbow_list, cutoffs_center_elb
     getSignificantEntitiesAsymptotic(patterns_list, cutoffs_asymptotic_list, mean_list, filePath, sheet_names_asymptotic)
 
 def crossVisualize(patterns_AB1, patterns_AB, A_names_ranked, A_names_ranked1, output_filename):
+    '''
+    If you run the pipeline on more than one set of triplicate data, if they are a common axis, you can use this function to plot the relationship between the two triplcates.
+    i.e. patterns AB and AB1 shared B as a common axis. Then A and A1 can be plotted against one another
+    INPUTS:
+    patterns_AB1, patterns_AB: The two outputs from two seperate tensors that share a common axis.
+    A_names_ranked, A_names_ranked1: corresponding labels of each output
+    output_filename: the path for the generated image to be saved
+
+    OUTPUTS:
+    correlation matrix image of latent factors from two seperate tensors that share a common axis.
+
+    EXAMPLE USAGE:
+    > patterns_rppa_gcp = hocmo.crossVisualize(patterns_AB1, patterns_AB, A_names_ranked, A_names_ranked1, "data/M4_with_Intensity_dist_ncp.xlsx")
+
+    EXAMPLE OUTPUT:
+    > Saved significant image
+    '''
     patterns_AB1_expand = np.expand_dims(patterns_AB1, axis=1)
     patterns_1_2 = np.sum(np.transpose(np.multiply(patterns_AB, patterns_AB1_expand), [1, 0, 2]), axis=2)
     print(patterns_1_2.shape)
@@ -750,7 +771,28 @@ def crossVisualize(patterns_AB1, patterns_AB, A_names_ranked, A_names_ranked1, o
     return patterns_1_2
 
 
-def getAllHOCScores(patterns_1, patterns_2, names_1_ranked, names_2_ranked, common_axis_names_ranked, filePath):
+def getAllHOCScores(patterns_1, patterns_2, names_1_ranked, names_2_ranked, names_3_ranked, filePath):
+    '''
+    Find the higher-order correlation score. Two pairwise correlation patterns (created from the same tensor) that have the same number of rows are multipled. 
+
+    INPUTS:
+    patterns_1, patterns_2: the two pairwse correlation patterns generated from the same tensor, and have the same number of rows
+        Dimension of output files is determined by pattern 2. (wil have the same output dimensions)
+    names_1_ranked, names_2_ranked,names_3_ranked: the ranked labels corresponding to each pattern
+    filePath: filePath of saved excel sheet
+
+    OUTPUTS:
+    excel sheets containing filtered significant correlations
+
+    EXAMPLE USAGE:
+    > total_hoc_score = hocmo.getAllHOCScores(patterns_AB, patterns_AC, A_names_ranked, C_names_ranked, B_names_ranked,"data/HOC_scores.xlsx")
+
+    EXAMPLE OUTPUT:
+    > An .xlsx file is created with a number of sheets equal to the number of elements in names_3_ranked +2. 
+    A correlation matrix is created for each entity along the common axis and saved to a sheet. (e.g. for each element in B, we create an excel sheet with elements of A as rows and elements of C as columns, the score is stored in this sheet)
+    We also provide a list of all triplicates and their score. This is an alternative representation of data stored in the excel sheets.
+    We also provide a sheet with some summary statistics for each element in B (i.e. each sheet in the .xlsx file)
+    '''
     writer_hoc_score = pd.ExcelWriter(filePath)
     total_hoc_score = pd.DataFrame()
     rowlist = []
@@ -759,10 +801,10 @@ def getAllHOCScores(patterns_1, patterns_2, names_1_ranked, names_2_ranked, comm
         patterns_1_i = np.expand_dims(patterns_1[:, i], axis=0)
         patterns_1_2_i = patterns_2 * patterns_1_i.T
         hoc_score_i = pd.DataFrame(data=patterns_1_2_i, index=names_1_ranked, columns=names_2_ranked)
-        hoc_score_i.to_excel(writer_hoc_score, common_axis_names_ranked[i])
+        hoc_score_i.to_excel(writer_hoc_score, names_3_ranked[i])
         entity_np = hoc_score_i.to_numpy().flatten()
         entity_np_sorted = sorted(entity_np)
-        summ_dict["B_entities"] = common_axis_names_ranked[i]
+        summ_dict["B_entities"] = names_3_ranked[i]
         summ_dict["min"] = np.min(entity_np)
         summ_dict["1Q"] = np.percentile(entity_np_sorted, 25)
         summ_dict["median"] = np.percentile(entity_np_sorted, 50)
@@ -771,17 +813,45 @@ def getAllHOCScores(patterns_1, patterns_2, names_1_ranked, names_2_ranked, comm
         rowlist.append(summ_dict)
         hoc_score_i_reset = hoc_score_i.reset_index()
         result_hoc_score_i = hoc_score_i_reset.melt(id_vars=['Protein'], var_name='histone', value_name='HOC Score')
-        result_hoc_score_i['Triplet'] = '<' + result_hoc_score_i['Protein'] + ', ' + result_hoc_score_i['histone'] + ', ' + common_axis_names_ranked[i] + '>'
+        result_hoc_score_i['Triplet'] = '<' + result_hoc_score_i['Protein'] + ', ' + result_hoc_score_i['histone'] + ', ' + names_3_ranked[i] + '>'
         result_hoc_score_i = result_hoc_score_i[['Triplet', 'HOC Score']]
         total_hoc_score = pd.concat([total_hoc_score, result_hoc_score_i])
     summary_df = pd.DataFrame(rowlist)
     summary_df.to_excel(writer_hoc_score, 'Summary Statistics')
     total_hoc_score = total_hoc_score.sort_values('HOC Score', ascending=False)
     total_hoc_score.to_excel(writer_hoc_score, 'All Triplets')
-    writer_hoc_score.save()
+    writer_hoc_score.close()
     return total_hoc_score
 
-def getFilteredHOCScores(patterns_1, patterns_2, names_1_ranked, names_2_ranked, sig_common_axis, sig_1, sig_2, filePath):
+def getFilteredHOCScores(patterns_1, patterns_2, names_1_ranked, names_2_ranked, sig_3, sig_1, sig_2, filePath):
+    '''
+    Analgous to getAllHOCScores, with the added ability to run HOCMO on selected elements in each latent factor and normalize the HOC score for the filtered entities
+
+    INPUTS:
+    patterns_1, patterns_2: the two pairwse correlation patterns generated from the same tensor, and have the same number of rows
+        Dimension of output files is determined by pattern 2. (wil have the same output dimensions)
+    names_1_ranked, names_2_ranked,names_3_ranked: the ranked labels corresponding to each pattern
+    sig_3, sig_1, sig_2: the significant entities in each pattern.
+    filePath: filePath of saved excel sheet
+
+    OUTPUTS:
+    excel sheets containing filtered significant correlations
+
+    EXAMPLE USAGE:
+    > sig_ligands = B_names_ranked
+    > sig_proteins = ['CCNB1','PLK1','RB1pS807S811','RPS6pS240S244','DUSP4','RPS6pS235S236',
+                'CDC2','MYH2pS1943']
+    > sig_histones = ['H3K9me2S10ph1K14ac0 ','H3K9me3S10ph1K14ac0 ','H3K18ub1K23ac0 ']
+    > total_hoc_score = hocmo.getFilteredHOCScores(patterns_AB, patterns_rppa_gcp, A_names_ranked, A_names_ranked1, B_names_ranked,sig_proteins, sig_histones, "data/filtered_HOC_scores.xlsx")
+
+
+    EXAMPLE OUTPUT:
+    > An .xlsx file is created with a number of sheets equal to the number of elements in names_3_ranked +2. 
+    For the filtered HOC score, all scores are normalized to range of [0,1] based on the maximum score.
+    A correlation matrix is created for each entity along the common axis and saved to a sheet. (e.g. for each element in B, we create an excel sheet with elements of A as rows and elements of C as columns, the score is stored in this sheet)
+    We also provide a list of all triplicates and their score. This is an alternative representation of data stored in the excel sheets.
+    We also provide a sheet with some summary statistics for each element in B (i.e. each sheet in the .xlsx file)
+    '''
     writer_hoc_score = pd.ExcelWriter(filePath)
     total_hoc_score = pd.DataFrame()
     rowlist = []
@@ -792,10 +862,10 @@ def getFilteredHOCScores(patterns_1, patterns_2, names_1_ranked, names_2_ranked,
         hoc_score_i = pd.DataFrame(data=patterns_1_2_i, index=names_1_ranked, columns=names_2_ranked)
         hoc_score_i = hoc_score_i.loc[sig_1, sig_2]
         hoc_score_i = hoc_score_i/hoc_score_i.max().max()
-        hoc_score_i.to_excel(writer_hoc_score, sig_common_axis[i])
+        hoc_score_i.to_excel(writer_hoc_score, sig_3[i])
         entity_np = hoc_score_i.to_numpy().flatten()
         entity_np_sorted = sorted(entity_np)
-        summ_dict["B_entities"] = sig_common_axis[i]
+        summ_dict["B_entities"] = sig_3[i]
         summ_dict["min"] = np.min(entity_np)
         summ_dict["1Q"] = np.percentile(entity_np_sorted, 25)
         summ_dict["median"] = np.percentile(entity_np_sorted, 50)
@@ -804,215 +874,12 @@ def getFilteredHOCScores(patterns_1, patterns_2, names_1_ranked, names_2_ranked,
         rowlist.append(summ_dict)
         hoc_score_i_reset = hoc_score_i.reset_index()
         result_hoc_score_i = hoc_score_i_reset.melt(id_vars=['Protein'], var_name='histone', value_name='HOC Score')
-        result_hoc_score_i['Triplet'] = '<' + result_hoc_score_i['Protein'] + ', ' + result_hoc_score_i['histone'] + ', ' + sig_common_axis[i] + '>'
+        result_hoc_score_i['Triplet'] = '<' + result_hoc_score_i['Protein'] + ', ' + result_hoc_score_i['histone'] + ', ' + sig_3[i] + '>'
         result_hoc_score_i = result_hoc_score_i[['Triplet', 'HOC Score']]
         total_hoc_score = pd.concat([total_hoc_score, result_hoc_score_i])
     summary_df = pd.DataFrame(rowlist)
     summary_df.to_excel(writer_hoc_score, 'Summary Statistics')
     total_hoc_score = total_hoc_score.sort_values('HOC Score', ascending=False)
     total_hoc_score.to_excel(writer_hoc_score, 'All Triplets')
-    writer_hoc_score.save()
+    writer_hoc_score.close()
     return total_hoc_score
-
-'''
-def calculateHOCScores(patterns_AB, patterns_rppa_gcp, filePath, hoc_file_name, hoc_filtered_file_name, all_hoc_score_file_name):
-    sig_ligands = ligand_names_ranked
-    sig_proteins = ['CCNB1','PLK1','RB1pS807S811','RPS6pS240S244','DUSP4','RPS6pS235S236',
-                'CDC2','MYH2pS1943'] ## sig based on P, source? 
-    sig_histones = ['H3K9me2S10ph1K14ac0 ','H3K9me3S10ph1K14ac0 ','H3K18ub1K23ac0 '] ## Prompt for
-    writer_hoc_score = pd.ExcelWriter(hoc_file_name)
-    filtered_writer_hoc_score = pd.ExcelWriter(hoc_filtered_file_name)
-    for i in range(patterns_AB.shape[1]):
-        ligand_i = np.expand_dims(patterns_AB[:,i], axis=0)
-        patterns_rppa_gcp_i = patterns_rppa_gcp * ligand_i.T
-        hoc_score_i = pd.DataFrame(data=patterns_rppa_gcp_i, index= protein_names_ranked, columns=histone_names_ranked)
-#     hoc_score_i.to_excel(writer_hoc_score, ligand_names_ranked[i])
-        filtered_hoc_score_i = hoc_score_i.loc[sig_proteins, sig_histones]
-        filtered_hoc_score_i = filtered_hoc_score_i/filtered_hoc_score_i.max().max()
-        filtered_hoc_score_i.to_excel(filtered_writer_hoc_score, ligand_names_ranked[i])
-    # writer_hoc_score.save()
-    filtered_writer_hoc_score.save()
-    all_hoc_score_file = os.path.join(filePath, hoc_file_name)
-    sig_proteins = ['CCNB1','PLK1','RB1pS807S811','RPS6pS240S244','DUSP4','RPS6pS235S236']
-# -----------------------Category 3
-    hoc_dict_c3 = {}
-    #Functionalize
-    all_hoc_score_EGF = pd.read_excel(all_hoc_score_file, sheet_name='EGF').set_index('Protein')
-    filtered_hoc_score_EGF_h4 = all_hoc_score_EGF.loc[sig_proteins, 'H4(20to23)K20me0'] ##What are these??
-    print(filtered_hoc_score_EGF_h4.max())
-    filtered_hoc_score_EGF_h4 = filtered_hoc_score_EGF_h4/1380.100965754926
-    for pro in sig_proteins:
-        ke = '<EFG,' + pro + ',' + 'H4(20to23)K20me0 >'
-        hoc_dict_c3[ke] = filtered_hoc_score_EGF_h4.loc[pro]
-    ###
-
-    all_hoc_score_HGF = pd.read_excel(all_hoc_score_file, sheet_name='HGF').set_index('Protein')
-    filtered_hoc_score_HGF_h4 = all_hoc_score_HGF.loc[sig_proteins, 'H4(20to23)K20me0']
-    print(filtered_hoc_score_HGF_h4.max())
-    filtered_hoc_score_HGF_h4 = filtered_hoc_score_HGF_h4/1380.100965754926
-    for pro in sig_proteins:
-        ke = '<HGF,' + pro + ',' + 'H4(20to23)K20me0 >'
-        hoc_dict_c3[ke] = filtered_hoc_score_HGF_h4.loc[pro]
-    all_hoc_score_OSM = pd.read_excel(all_hoc_score_file, sheet_name='OSM').set_index('Protein')
-    filtered_hoc_score_OSM_h4 = all_hoc_score_OSM.loc[sig_proteins, 'H4(20to23)K20me0']
-    print(filtered_hoc_score_OSM_h4.max())
-    filtered_hoc_score_OSM_h4 = filtered_hoc_score_OSM_h4/1380.100965754926
-    for pro in sig_proteins:
-        ke = '<OSM,' + pro + ',' + 'H4(20to23)K20me0 >'
-        hoc_dict_c3[ke] = filtered_hoc_score_OSM_h4.loc[pro]
-    all_hoc_score_BMP2 = pd.read_excel(all_hoc_score_file, sheet_name='BMP2').set_index('Protein')
-    filtered_hoc_score_BMP2_h4 = all_hoc_score_BMP2.loc[sig_proteins, 'H4(20to23)K20me0']
-    print(filtered_hoc_score_BMP2_h4.max())
-    filtered_hoc_score_BMP2_h4 = filtered_hoc_score_BMP2_h4/1380.100965754926
-    for pro in sig_proteins:
-        ke = '<BMP2,' + pro + ',' + 'H4(20to23)K20me0 >'
-        hoc_dict_c3[ke] = filtered_hoc_score_BMP2_h4.loc[pro]
-
-    all_hoc_score_IFNG = pd.read_excel(all_hoc_score_file, sheet_name='IFNG').set_index('Protein')
-    filtered_hoc_score_IFNG_h4 = all_hoc_score_IFNG.loc[sig_proteins, 'H4(20to23)K20me0']
-    print(filtered_hoc_score_IFNG_h4.max())
-    filtered_hoc_score_IFNG_h4 = filtered_hoc_score_IFNG_h4/1380.100965754926
-    for pro in sig_proteins:
-        ke = '<IFNG,' + pro + ',' + 'H4(20to23)K20me0 >'
-        hoc_dict_c3[ke] = filtered_hoc_score_IFNG_h4.loc[pro]
-
-    all_hoc_score_TGFB = pd.read_excel(all_hoc_score_file, sheet_name='TGFB').set_index('Protein')
-    filtered_hoc_score_TGFB_h4 = all_hoc_score_TGFB.loc[sig_proteins, 'H4(20to23)K20me0']
-    print(filtered_hoc_score_TGFB_h4.max())
-    filtered_hoc_score_TGFB_h4 = filtered_hoc_score_TGFB_h4/1380.100965754926
-    for pro in sig_proteins:
-        ke = '<TGFB,' + pro + ',' + 'H4(20to23)K20me0 >'
-        hoc_dict_c3[ke] = filtered_hoc_score_TGFB_h4.loc[pro]
-    hoc_score_file = os.path.join('dataset/PLOS_results_2021-10-27/','HOC_scores_filtered_2.xlsx')        
-# hoc_score_file = os.path.join('dataset/PLOS_results_2021-10-27/','HOC_scores_filtered.xlsx')# filtered_2 : Not found. File name 
-                                                                                            # generated is filtered.xlsx     
-    EGF_hoc = pd.read_excel(hoc_score_file, sheet_name='EGF').set_index('Protein')
-    HGF_hoc = pd.read_excel(hoc_score_file, sheet_name='HGF').set_index('Protein')
-    OSM_hoc = pd.read_excel(hoc_score_file, sheet_name='OSM').set_index('Protein')
-    BMP2_hoc = pd.read_excel(hoc_score_file, sheet_name='BMP2').set_index('Protein')
-    IFNG_hoc = pd.read_excel(hoc_score_file, sheet_name='IFNG').set_index('Protein')
-    TGFB_hoc = pd.read_excel(hoc_score_file, sheet_name='TGFB').set_index('Protein')
-    print(EGF_hoc.max().max())
-    print(HGF_hoc.max().max())
-    print(OSM_hoc.max().max())
-    print(BMP2_hoc.max().max())
-    print(IFNG_hoc.max().max())
-    print(TGFB_hoc.max().max())
-    hoc_score_file = os.path.join('dataset/PLOS_results_2021-10-27/','HOC_scores_filtered_2.xlsx')
-# hoc_score_file = os.path.join('dataset/PLOS_results_2021-10-27/','HOC_scores_filtered.xlsx')
-    EGF_hoc = pd.read_excel(hoc_score_file, sheet_name='EGF').set_index('Protein')
-    HGF_hoc = pd.read_excel(hoc_score_file, sheet_name='HGF').set_index('Protein')
-    OSM_hoc = pd.read_excel(hoc_score_file, sheet_name='OSM').set_index('Protein')
-    BMP2_hoc = pd.read_excel(hoc_score_file, sheet_name='BMP2').set_index('Protein')
-    IFNG_hoc = pd.read_excel(hoc_score_file, sheet_name='IFNG').set_index('Protein')
-    TGFB_hoc = pd.read_excel(hoc_score_file, sheet_name='TGFB').set_index('Protein')
-
-# -----------------------Category 1
-    hoc_dict_c1 = {}
-    sig_proteins = ['CCNB1','PLK1','RB1pS807S811','RPS6pS240S244','DUSP4','RPS6pS235S236']
-    sig_histones = ['H3K9me2S10ph1K14ac0 ','H3K9me3S10ph1K14ac0 ']
-    for pro in sig_proteins:
-        for his in sig_histones:
-            ke = '<EFG,' + pro + ',' + his + '>'
-            hoc_dict_c1[ke] = EGF_hoc.loc[pro][his]/1380.100965754926
-    for pro in sig_proteins:
-        for his in sig_histones:
-            ke = '<HGF,' + pro + ',' + his + '>'
-            hoc_dict_c1[ke] = HGF_hoc.loc[pro][his]/1380.100965754926
-    for pro in sig_proteins:
-        for his in sig_histones:
-            ke = '<OSM,' + pro + ',' + his + '>'
-            hoc_dict_c1[ke] = OSM_hoc.loc[pro][his]/1380.100965754926
-    for pro in sig_proteins:
-        for his in sig_histones:
-            ke = '<BMP2,' + pro + ',' + his + '>'
-            hoc_dict_c1[ke] = BMP2_hoc.loc[pro][his]/1380.100965754926
-    for pro in sig_proteins:
-        for his in sig_histones:
-            ke = '<IFNG,' + pro + ',' + his + '>'
-            hoc_dict_c1[ke] = IFNG_hoc.loc[pro][his]/1380.100965754926
-    for pro in sig_proteins:
-        for his in sig_histones:
-            ke = '<TGFB,' + pro + ',' + his + '>'
-            hoc_dict_c1[ke] = TGFB_hoc.loc[pro][his]/1380.100965754926
-
-# -----------------------Category 2        
-    hoc_dict_c2 = {}
-    sig_proteins = ['CCNB1','PLK1','RB1pS807S811','RPS6pS240S244','DUSP4','RPS6pS235S236',
-                'CDC2','MYH2pS1943']
-    sig_histones = ['H3K18ub1K23ac0 ']
-    for pro in sig_proteins:
-        for his in sig_histones:
-            ke = '<EFG,' + pro + ',' + his + '>'
-            hoc_dict_c2[ke] = EGF_hoc.loc[pro][his]/1380.100965754926
-        
-# -----------------------Category 3
-# hoc_dict_c3
-
-    all_hoc_score_group = pd.ExcelWriter(all_hoc_score_file_name)
-    hoc_score_g1 = pd.DataFrame(data=hoc_dict_c1.values(), index= hoc_dict_c1.keys(), columns=['HOC_scores'])
-    hoc_score_g2 = pd.DataFrame(data=hoc_dict_c2.values(), index= hoc_dict_c2.keys(), columns=['HOC_scores'])
-    hoc_score_g3 = pd.DataFrame(data=hoc_dict_c3.values(), index= hoc_dict_c3.keys(), columns=['HOC_scores'])
-    hoc_score_g1.to_excel(all_hoc_score_group, 'Fig10b')
-    hoc_score_g2.to_excel(all_hoc_score_group, 'Fig10c')
-    hoc_score_g3.to_excel(all_hoc_score_group, 'Fig10d')
-    all_hoc_score_group.save()
-    hoc_score_i.loc[sig_proteins, sig_histones]
-    print(patterns_AB.shape)
-    print(protein_names_ranked)
-    print(ligand_names_ranked)
-    print(patterns_rppa_gcp.shape)
-    print(protein_names_ranked)
-    print(histone_names_ranked)
-
-
-'''
-
-### Creating wrapper functions for rppa , gcp and rppa_gcp_hocmo
-'''
-def callRppaDataProcessingPipeline(factorization_method, filePath_rppa, fileName_rppa, filePath_sig_proteins, fileName_sig_proteins, img_FilePath, results_filePath):
-    rppa_averaged, rppa_averaged_binary, tensor, protein_names, ligand_names = createRppaTensor(filePath_rppa, fileName_rppa, filePath_sig_proteins, fileName_sig_proteins)
-    components = getCoreConsistency(tensor, os.path.join(img_FilePath, "core_consistency_rppa.png"), iters = 100, num_k = 11, start =2, top_k=20)
-    print("k-main :", components)
-    A, B, C = factorize(tensor, components, method=factorization_method)
-    plotFactorMatrices(A, B, C, tensor, 'A_rppa.png', 'B_rppa.png', 'C_rppa.png', ligand_names)
-    component_preds, component_preds_B = componentPredictionsForFactors(A, B)
-    tensor_binary, A_ranked, protein_names_ranked, clusters = getClusterMembershipProbabilityA(A, component_preds,  rppa_averaged_binary, protein_names, 
-                                                        'Components', 'Proteins', components, "A_ranked_per_cluster.png", rppa_averaged)
-    B_ranked, clusters_B, ligand_names_ranked = getClusterMembershipProbability(B, component_preds_B, ligand_names, 'Components', 'Ligands', components, "B_ranked_per_cluster.png")
-    plotLatentFactor(A_ranked, B_ranked, C, protein_names_ranked, ligand_names_ranked, img_FilePath)
-    saveFactorsToExcel(A_ranked, B_ranked, C, protein_names_ranked, ligand_names_ranked, results_filePath, "Factors_rppa_ncp.xlsx")
-    proteins = proteinsPerCluster(clusters, protein_names)
-    plotForFactorMatrix(A_ranked, clusters, protein_names_ranked, "proteins_per_cluster_scatter_plot.png", img_FilePath ,"proteins_per_cluster_probability.png")
-    excel_file_path = "/storage1/fs1/reetika/TME/"
-    patterns_list, means_list, std_list = getCorrelationsForAllFactors(A_ranked, B_ranked, C, protein_names_ranked, ligand_names_ranked, excel_file_path, "Intensity_density_ncp_rppa.xlsx", img_FilePath, [ "M1r", "M2r", "M3r"],
-                                        ['Probability Density Function M1r', 'Probability Density Function M2r','Probability Density Function M3r'])
-                                       
-    patterns_AB = patterns_list[0]
-    patterns_AC = patterns_list[1]
-    patterns_BC = patterns_list[2]
-    mean_AB = means_list[0]
-    mean_AC = means_list[1]
-    mean_BC = means_list[2]
-    std_AB = std_list[0]
-    std_AC = std_list[1]
-    std_BC = std_list[2]
-    plotCorrelationsPerLigand(patterns_AC, tensor_binary, ligand_names_ranked, img_FilePath, results_filePath)
-    patterns_AB_pairs, patterns_AC_pairs, patterns_BC_pairs = writeCorrelationsToExcel(patterns_list, ["M1_AB", "M2_AC", "M3_BC"], results_filePath, protein_names_ranked, ligand_names_ranked, ['4 hrs', '8 hrs', '24 hrs', '48 hrs'])
-    M1_cutoff_ce = 2.890480549 - mean_AB ##expected?
-    M2_cutoff_ce = 0.70486722 - mean_AC
-    M3_cutoff_ce= 2.31192068 - mean_BC
-    cutoffs_center_elbow_list = [M1_cutoff_ce, M2_cutoff_ce, M3_cutoff_ce] ##prob dist
-    M1_cutoff_e = 2.890480549 - mean_AB
-    M2_cutoff_e = 0.70486722 - mean_BC
-    M3_cutoff_e= 2.31192068 - M3_mean
-    cutoffs_elbow_list = [M1_cutoff_e, M2_cutoff_e, M3_cutoff_e]
-    M1_cutoff_asymptotic = 4.137811156 - mean_AB
-    M2_cutoff_asymptotic = 1.110098385 - mean_AC
-    M3_cutoff_asymptotic=  2.342765763 - mean_BC
-    cutoffs_asymptotic_list = [M1_cutoff_asymptotic, M2_cutoff_asymptotic, M3_cutoff_asymptotic]
-    getSignificantEntities([patterns_AB_pairs, patterns_AC_pairs, patterns_BC_pairs], cutoffs_elbow_list, cutoffs_center_elbow_list, cutoffs_asymptotic_list, [mean_AB, mean_AC, mean_BC], ["M1_Elbow", "M2_Elbow", "M3_Elbow"], ["M1_Center_Elbow", "M2_Center_Elbow", "M3_Center_Elbow"], ["M1_Asymptotic", "M2_Asymptotic", "M3_Asymptotic"], results_filePath)
-    print("Completed rppa")
-
-'''
-

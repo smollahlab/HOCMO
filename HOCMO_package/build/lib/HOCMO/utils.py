@@ -17,17 +17,17 @@ import matplotlib.ticker as plticker
 from scipy.special import softmax
 from scipy.stats import norm
 import os
+import warnings
+warnings.filterwarnings("ignore")
 
 def compute_namda(A, B, C):
     '''
-    Calculates namda? Found by multiplying the norm of the three dimensions of the tensor?
+    Calculates namda. Found by multiplying the norm of the three dimensions of the tensor.
     INPUT:
-    A:
-    B:
-    C:
+    A,B,C: latent factors
 
     OUTPUT:
-    namda:
+    namda: orthogonal norm
 
     '''
     K = A.shape[1]
@@ -45,9 +45,9 @@ def rank_(cc_values, namdas, k):
     '''
     Calculates namda? Found by multiplying the norm of the three dimensions of the tensor?
     INPUT:
-    cc_values:
-    namdas:
-    k:
+    cc_values: all values unranked
+    namdas: output from compute_namda
+    k: cut off for top value
 
     OUTPUT:
     top core consistency values:
@@ -66,9 +66,8 @@ def rank_k(cc_values, k):
     '''
     Calculates namda? Found by multiplying the norm of the three dimensions of the tensor? Differs from Panissons's how?
     INPUT:
-    cc_values:
-    namdas:
-    k:
+    cc_values: all values unranked
+    k: cut off for top value
 
     OUTPUT:
     top core consistency values:
@@ -230,8 +229,6 @@ def init_nnsvd(tensor, n_component):
         W, H = initialize_nmf(um, n_component, init='nndsvd', eps=1e-6, random_state=None)
         factors.append(W)
     return factors
-
-
 
 def find(condition):
     "Return the indices where ravel(condition) is true"
@@ -925,13 +922,13 @@ def factorizeNCP(tensor, components):
 
 def factorizeTensorly(tensor, components):
     '''
-    Calculates namda? Found by multiplying the norm of the three dimensions of the tensor?
+    Factorizes tensor using tensorly
     INPUT:
     tensor:tensor to be factorized
     components: optimal number of components as found by core consistency
 
     OUTPUT:
-    A,B,C: Latent factors found by NTF per Panisson's paper
+    A,B,C: Latent factors found by tensorly. per Panisson's paper
     '''
     print('tensor{}'.format(tensor.shape),'= component_1 + component_2 + ... + component_{}= [A,B,C]'.format(components))
     weights, factors = non_negative_parafac(tensor, rank=components, init='svd')
@@ -1147,7 +1144,7 @@ def getSignificantEntitiesForCutOff(patterns, mean, cutoff, sheet_name, filePath
     stack.columns = ["Intensity"]
     stack_sorted = stack[~((stack.values-mean < cutoff))]
     stack_sorted.to_excel(writer_mean, sheet_name)
-    writer_mean.save() # type: ignore
+    writer_mean.close() # type: ignore
 
 def getSignificantEntitiesForCenterElbow(patterns_list, cutoffs_center_elbow_list, mean_list, filePath, sheet_names_list):
     #logging.debug("Finding significant entities using the elbow of pdf curve ..")
