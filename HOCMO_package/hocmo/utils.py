@@ -1120,7 +1120,7 @@ def writeResultsToExcel(filePath, fileName, flatten_patterns, fitted_pdf, mean, 
     writer_intensity = pd.ExcelWriter(os.path.join(filePath, fileName))
     intense_density = np.concatenate([flatten_patterns, fitted_pdf]).reshape(2,flatten_patterns.shape[0]).transpose([1,0])
     intense_density_mat = pd.DataFrame(data=intense_density, columns=['Intensity','Density'])
-    intense_density_mat.loc[-1] = [mean, std] #?
+    intense_density_mat.loc[-1] = [mean, std] # type: ignore #?
     intense_density_mat.index = intense_density_mat.index + 1
     intense_density_mat = intense_density_mat.sort_index()
     intense_density_mat.rename(index = {0: "mean/std"}, inplace = True)
