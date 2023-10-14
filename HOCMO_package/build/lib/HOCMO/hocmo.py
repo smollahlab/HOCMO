@@ -11,12 +11,12 @@ import statistics
 import warnings
 warnings.filterwarnings("ignore")
 
-
+# TODO: [Minyoung] `sort` should be listed as an input in the function documentation
 def createTensor(input_matrix, input_index_column, y_val, z_val, sort=True):
     '''
-    Performs data preprocessing and creates a 3 dimensional tensor based on an input incidience matrix. See (Ref 1) for information regarding incideience matrices and their format. Also prints size of tensor
+    Performs data preprocessing and creates a 3 dimensional tensor based on an input incidience matrix. See (Ref 1) for information regarding incidence matrices and their format. Also prints size of tensor
     INPUTS:
-    input_matrix: incidience matrix of hypergraph who's tensor is to be created
+    input_matrix: incidence matrix of hypergraph who's tensor is to be created
     input_index_column: this should correspond to one of your 3 values, in a standard incidience matrix, this should be the single dimensional variable
     y_val, z_val: these are the two convoluted variables
 
@@ -75,7 +75,7 @@ def basicVisual(tensor, x_names, y_names,z_names, x_labels, y_labels, z_labels, 
     3d scatter plot
 
     EXAMPLE USAGE:
-    > hocmo.basicVisual(tensor, 'CRs', 'Diseases', 'Genes', protein_names, disease_names,gene_names, './','test')
+    > hocmo.basicVisual(tensor, 'CRs', 'Diseases', 'Genes', protein_names, disease_names, gene_names, './', 'test')
     '''
 
     ##transposes tensor and ensure no 0 zeroes are present for visualization
@@ -111,7 +111,7 @@ def basicVisual(tensor, x_names, y_names,z_names, x_labels, y_labels, z_labels, 
 def getCoreConsistency(tensor, imageName, iters = 100, num_k = 11, start =2, top_k=20):
 
     '''
-    Calculates core consistency, a diagnostic used in determining the optimal number of copomnent for analysis in multiway models. Simulated results 
+    Calculates core consistency, a diagnostic used in determining the optimal number of components for analysis in multiway models. Simulated results 
     per number of component are then visualized via elbow plot.
     parafac/corncondia are packages in R developed by Panisson et al, we use them here via rpy2
 
@@ -162,7 +162,7 @@ def getCoreConsistency(tensor, imageName, iters = 100, num_k = 11, start =2, top
     dictionary_k_scores = dict()
     for k in range(start, num_k):
         ccvs = np.array(cc_values[k])
-        ccfs = np.array(cc_factors[k])
+        ccfs = np.array(cc_factors[k]) # TODO: [Minyoung] variable not used?
         top_idx = np.argsort(ccvs)[-top_k:]
         top_ccs = ccvs[top_idx]
         ys.append(top_ccs)
@@ -218,7 +218,7 @@ def factorize(tensor, components, method="ncp"):
 
 def plotFactorMatrices(A, B, C, components, imgName_A, imgName_B, imgName_C, x_names, y_names,z_names):
     '''
-    Plots component memership of each decomposed latent factor.
+    Plots component membership of each decomposed latent factor.
     INPUTS:
     A, B, C: individual latent factors to plot
     components: optimal number of components found from getCoreConsistency
@@ -354,7 +354,7 @@ def getClusterMembershipProbabilityA(A, y_val, z_val, num_component, component_p
 
 def getClusterMembershipProbability(factor_matrix,num_component, component_preds, x_names, y_label, img_title, imgName):
     '''
-    Get Cluster Membership Probability for generalized factorized output. Analgous to getClusterMembershipProbabilityA except tensor does not need to be ordered.
+    Get Cluster Membership Probability for generalized factorized output. Analogous to getClusterMembershipProbabilityA except tensor does not need to be ordered.
 
     INPUTS:
     factor_matrix: factorized outputs from factorize
@@ -364,7 +364,7 @@ def getClusterMembershipProbability(factor_matrix,num_component, component_preds
     y_label, imgName: label and name of output image.
 
     OUTPUTS:
-    Cluster Membership Probability for factorized output. Analgous to getClusterMembershipProbabilityA
+    Cluster Membership Probability for factorized output. Analogous to getClusterMembershipProbabilityA
 
     EXAMPLE USAGE:
     > B_ranked, B_names_ranked, B_clusters = hocmo.getClusterMembershipProbability(B, components, component_preds_B, gene_names, 'Components', 'Ligands', "B_ranked_per_cluster.png")
@@ -469,6 +469,7 @@ def plotLatentFactor(A_ranked, B_ranked, C, components, A_names_ranked, B_names_
     plt.show()
     fig.colorbar(cax3)
 
+# TODO: [Minyoung] change C to C_ranked for consistency?
 def saveFactorsToExcel(A_ranked, B_ranked, C, components, A_names_ranked, B_names_ranked, C_names, filePath, fileName):
     '''
     Save latent factors to excel file
@@ -570,8 +571,8 @@ def getCorrelationsForAllFactors(A_ranked, B_ranked, C_ranked, A_names_ranked, B
     '''
     Gets pairwise correlation scores and probability distribution matrices. Means and stds for??
     INPUTS:
-    A_ranked, B_ranked, C: Latent factors
-    A_names_ranked, B_names_ranked: sorted names of latent factors
+    A_ranked, B_ranked, C_ranked: Latent factors
+    A_names_ranked, B_names_ranked, C_names_ranked: sorted names of latent factors
     excel_path, file_name_excel, imgFilePath, imgtitles_plot, imgtitle_pdc: path for excel and images to be saved.
 
     OUTPUTS:

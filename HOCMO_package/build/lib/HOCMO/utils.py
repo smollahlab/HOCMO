@@ -39,7 +39,6 @@ def compute_namda(A, B, C):
         namda *= np.linalg.norm(A_r)*np.linalg.norm(B_r)*np.linalg.norm(C_r)
     return namda
 
-
 # Method1: rank the core consistency rigidly following Panisson's paper
 def rank_(cc_values, namdas, k):
     '''
