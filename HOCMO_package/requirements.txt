@@ -13,7 +13,6 @@ tensorly
 rpy2
 statistics
 scikit-learn
-tensorly
 scikit-tensor-py3
 ncp
 openpyxl

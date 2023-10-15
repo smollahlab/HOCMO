@@ -1,9 +1,9 @@
+LICENSE.txt
+README.md
+setup.cfg
 setup.py
-HOCMO/__init__.py
-HOCMO/hocmo.py
 hocmo/__init__.py
 hocmo/hocmo.py
-hocmo/ncp.py
 hocmo/utils.py
 hocmo.egg-info/PKG-INFO
 hocmo.egg-info/SOURCES.txt
