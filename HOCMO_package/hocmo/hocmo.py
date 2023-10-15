@@ -11,22 +11,22 @@ import statistics
 import warnings
 warnings.filterwarnings("ignore")
 
-
 def createTensor(input_matrix, input_index_column, y_val, z_val, sort=True):
     '''
-    Performs data preprocessing and creates a 3 dimensional tensor based on an input incidience matrix. See (Ref 1) for information regarding incideience matrices and their format. Also prints size of tensor
+    Performs data preprocessing and creates a 3 dimensional tensor based on an input incidience matrix. See (Ref 1) for information regarding incidence matrices and their format. Also prints size of tensor
     INPUTS:
-    input_matrix: incidience matrix of hypergraph who's tensor is to be created
+    input_matrix: incidence matrix of hypergraph who's tensor is to be created
     input_index_column: this should correspond to one of your 3 values, in a standard incidience matrix, this should be the single dimensional variable
     y_val, z_val: these are the two convoluted variables
+    sort: boolean deciding whether you want your input columns to be sorted (lexographically) this may not work well for numerical data, but if comparing more than one input, will ensure that they are all in the same order. Set it to false if you wish to use a custom order.
+
 
     OUTPUTS:
     incidence_matrix: Post-processed matrix
     incidence_matrix_binary: Binary version of the processed matrix. -1 if the original value was <0 and 1 if >=0
     x_names, y_names, z_names: List of names of variables derived from input matrix. (for y and z names to function, seperate the two with '_')
     tensor: tensor representing input
-    sort: boolean deciding whether you want your input columns to be sorted (lexographically) this may not work well for numerical data, but if comparing more than one input, will ensure that they are all in the same order. Set it to false if you wish to use a custom order.
-
+    
     EXAMPLE USAGE:
     > incidence_matrix,incidence_matrix_binary,protein_names,disease_names,gene_names,tensor = hocmo.createTensor('HOCMO_test.csv','CRs',5,5)
 
@@ -75,7 +75,7 @@ def basicVisual(tensor, x_names, y_names,z_names, x_labels, y_labels, z_labels, 
     3d scatter plot
 
     EXAMPLE USAGE:
-    > hocmo.basicVisual(tensor, 'CRs', 'Diseases', 'Genes', protein_names, disease_names,gene_names, './','test')
+    > hocmo.basicVisual(tensor, 'CRs', 'Diseases', 'Genes', protein_names, disease_names, gene_names, './', 'test')
     '''
 
     ##transposes tensor and ensure no 0 zeroes are present for visualization
@@ -111,7 +111,7 @@ def basicVisual(tensor, x_names, y_names,z_names, x_labels, y_labels, z_labels, 
 def getCoreConsistency(tensor, imageName, iters = 100, num_k = 11, start =2, top_k=20):
 
     '''
-    Calculates core consistency, a diagnostic used in determining the optimal number of copomnent for analysis in multiway models. Simulated results 
+    Calculates core consistency, a diagnostic used in determining the optimal number of components for analysis in multiway models. Simulated results 
     per number of component are then visualized via elbow plot.
     parafac/corncondia are packages in R developed by Panisson et al, we use them here via rpy2
 
@@ -162,7 +162,6 @@ def getCoreConsistency(tensor, imageName, iters = 100, num_k = 11, start =2, top
     dictionary_k_scores = dict()
     for k in range(start, num_k):
         ccvs = np.array(cc_values[k])
-        ccfs = np.array(cc_factors[k])
         top_idx = np.argsort(ccvs)[-top_k:]
         top_ccs = ccvs[top_idx]
         ys.append(top_ccs)
@@ -218,7 +217,7 @@ def factorize(tensor, components, method="ncp"):
 
 def plotFactorMatrices(A, B, C, components, imgName_A, imgName_B, imgName_C, x_names, y_names,z_names):
     '''
-    Plots component memership of each decomposed latent factor.
+    Plots component membership of each decomposed latent factor.
     INPUTS:
     A, B, C: individual latent factors to plot
     components: optimal number of components found from getCoreConsistency
@@ -342,7 +341,7 @@ def getClusterMembershipProbabilityA(A, y_val, z_val, num_component, component_p
     fig = plt.figure(figsize=(10,7))
 # fig.subplots_adjust(hspace=0, wspace=0.3)
     ax = fig.add_subplot(111)
-    aa = ax.matshow(A_ranked,cmap=plt.cm.gray_r) # type: ignore
+    aa = ax.matshow(A_ranked,cmap=plt.cm.gray_r)
     ax.set_aspect('auto')
     ax.set_title(img_title)
     ax.set_title('Components')
@@ -354,7 +353,7 @@ def getClusterMembershipProbabilityA(A, y_val, z_val, num_component, component_p
 
 def getClusterMembershipProbability(factor_matrix,num_component, component_preds, x_names, y_label, img_title, imgName):
     '''
-    Get Cluster Membership Probability for generalized factorized output. Analgous to getClusterMembershipProbabilityA except tensor does not need to be ordered.
+    Get Cluster Membership Probability for generalized factorized output. Analogous to getClusterMembershipProbabilityA except tensor does not need to be ordered.
 
     INPUTS:
     factor_matrix: factorized outputs from factorize
@@ -364,7 +363,7 @@ def getClusterMembershipProbability(factor_matrix,num_component, component_preds
     y_label, imgName: label and name of output image.
 
     OUTPUTS:
-    Cluster Membership Probability for factorized output. Analgous to getClusterMembershipProbabilityA
+    Cluster Membership Probability for factorized output. Analogous to getClusterMembershipProbabilityA
 
     EXAMPLE USAGE:
     > B_ranked, B_names_ranked, B_clusters = hocmo.getClusterMembershipProbability(B, components, component_preds_B, gene_names, 'Components', 'Ligands', "B_ranked_per_cluster.png")
@@ -393,7 +392,7 @@ def getClusterMembershipProbability(factor_matrix,num_component, component_preds
 # fig.subplots_adjust(hspace=0, wspace=0.3)
     #logging.debug("Plotting the factor matrix and labels.. ")
     ax = fig.add_subplot(111)
-    aa = ax.matshow(factor_matrix_ranked,cmap=plt.cm.gray_r) # type: ignore
+    aa = ax.matshow(factor_matrix_ranked,cmap=plt.cm.gray_r)
     ax.set_aspect('auto')
     ax.set_title(img_title)
     ax.set_ylabel(y_label, size=(13))
@@ -469,7 +468,7 @@ def plotLatentFactor(A_ranked, B_ranked, C, components, A_names_ranked, B_names_
     plt.show()
     fig.colorbar(cax3)
 
-def saveFactorsToExcel(A_ranked, B_ranked, C, components, A_names_ranked, B_names_ranked, C_names, filePath, fileName):
+def saveFactorsToExcel(A_ranked, B_ranked, C_ranked, components, A_names_ranked, B_names_ranked, C_names, filePath, fileName):
     '''
     Save latent factors to excel file
     INPUTS:
@@ -491,12 +490,12 @@ def saveFactorsToExcel(A_ranked, B_ranked, C, components, A_names_ranked, B_name
         x_labels.append('comp_'+str(i))
     A_out = pd.DataFrame(data=A_ranked, index=A_names_ranked, columns=x_labels)
     B_out = pd.DataFrame(data=B_ranked, index=B_names_ranked, columns=x_labels)
-    C_out = pd.DataFrame(data=C, index=C_names, columns=x_labels) ##num_component
+    C_out = pd.DataFrame(data=C_ranked, index=C_names, columns=x_labels) ##num_component
     writer = pd.ExcelWriter(os.path.join(filePath, fileName))
     A_out.to_excel(writer, "A")
     B_out.to_excel(writer, "B")
     C_out.to_excel(writer, "C")
-    writer.close()
+    writer.save()
 
 def entitiesPerCluster(clusters, entity_names): ##Scatter plots
     '''
@@ -515,8 +514,8 @@ def entitiesPerCluster(clusters, entity_names): ##Scatter plots
     '''
     for k in range(len(clusters)):
         entities = ' '.join(entity_names[clusters[k]])
-    print('Entity cluster {}: {}\n'.format(k, entities)) # type: ignore
-    return entities # type: ignore
+    print('Entity cluster {}: {}\n'.format(k, entities)) 
+    return entities
 
 def plotForFactorMatrix(factor_matrix, clusters, labels_ranked, components, imgName_cluster_scatter, img_filePath ,img_name_prob):
     '''
@@ -570,8 +569,8 @@ def getCorrelationsForAllFactors(A_ranked, B_ranked, C_ranked, A_names_ranked, B
     '''
     Gets pairwise correlation scores and probability distribution matrices. Means and stds for??
     INPUTS:
-    A_ranked, B_ranked, C: Latent factors
-    A_names_ranked, B_names_ranked: sorted names of latent factors
+    A_ranked, B_ranked, C_ranked: Latent factors
+    A_names_ranked, B_names_ranked, C_names_ranked: sorted names of latent factors
     excel_path, file_name_excel, imgFilePath, imgtitles_plot, imgtitle_pdc: path for excel and images to be saved.
 
     OUTPUTS:

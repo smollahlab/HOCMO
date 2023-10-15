@@ -1,3 +1,8 @@
 Metadata-Version: 2.1
 Name: hocmo
-Version: 0.0.7
+Version: 1.0.0
+Summary: A Generalized Higher-Order Correlation Model (HOCMO) tool to generate scores modeling the strength of the relationship between triplicate entities using a tensor-based approach
+Author: Charles Lu
+Author-email: lucharles@wustl.edu
+License: MIT
+License-File: LICENSE.txt
