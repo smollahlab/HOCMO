@@ -1,7 +1,7 @@
 # Higher-Order Correlation Model
 
 ## Description:
-A Generalized Higher-Order Correlation Model (HOCMO) tool to generate scores modeling the strength of the relationship between triplicate entities using a tensor-based approach
+A Generalized Higher-Order Correlation Model (HOCMO) tool to generate scores modeling the strength of the relationship among triplicate or quadruplet entities using a tensor-based approach
 
 ## Prerequisites:
 Developmental environment is provided via dockerfile. We also provide a requirements.txt if a local environment is preferred. Package is also available for installation on PyPi.
