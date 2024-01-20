@@ -7,7 +7,9 @@ A Generalized Higher-Order Correlation Model (HOCMO) tool to generate scores mod
 Developmental environment is provided via dockerfile. We also provide a requirements.txt if a local environment is preferred. Package is also available for installation on PyPi.
 
 ## Installation:
-
+```
+pip install hocmo
+```
 ## Contribution:
 
 ## License:
