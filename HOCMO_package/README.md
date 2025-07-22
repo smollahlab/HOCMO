@@ -27,4 +27,4 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 - Bro, Rasmus, and Henk A. L. Kiers. 2003. “A New Efficient Method for Determining the Number of Components in PARAFAC Models.” Journal of Chemometrics 17 (5): 274–86. https://doi.org/10.1002/cem.801.
 ## Contact:
-- smollah@wustl.edu, lucharles@wustl.edu
+- smollah@email.wustl.edu, lucharles@wustl.edu
